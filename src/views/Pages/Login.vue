@@ -28,10 +28,10 @@
             <b-card-header class="bg-transparent pb-5"  >
               <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
               <div class="btn-wrapper text-center">
-                <a href="#" class="btn btn-neutral btn-icon">
+                <!--<a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"><img src="img/icons/common/github.svg"></span>
                   <span class="btn-inner--text">Github</span>
-                </a>
+                </a>github로그인-->
                 <a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"><img src="img/icons/common/google.svg"></span>
                   <span class="btn-inner--text">Google</span>
@@ -49,7 +49,7 @@
                               name="Email"
                               :rules="{required: true, email: true}"
                               prepend-icon="ni ni-email-83"
-                              placeholder="Email"
+                              placeholder="email"
                               v-model="model.email">
                   </base-input>
 
@@ -59,7 +59,7 @@
                               :rules="{required: true, min: 6}"
                               prepend-icon="ni ni-lock-circle-open"
                               type="password"
-                              placeholder="Password"
+                              placeholder="password"
                               v-model="model.password">
                   </base-input>
 
@@ -96,8 +96,21 @@
       };
     },
     methods: {
-      onSubmit() {
-        // this will be called only after form is valid. You can do api call here to login
+      onSubmit(email, password) {
+        this.$store.dispatch('LOGIN', {email, password})
+          .then(() => this.redirect())
+          .catch(({message}) => this.msg = message)
+      },
+      redirect() {
+        const {search} = window.location
+        const tokens = search.replace(/^\?/, '').split('&')
+        const {returnPath} = tokens.reduce((qs, tkn) => {
+          const pair = tkn.split('=')
+          qs[pair[0]] = decodeURIComponent(pair[1])
+          return qs
+        }, {})
+
+        this.$router.push(returnPath)
       }
     }
   };

@@ -119,7 +119,7 @@
     props: {
       logo: {
         type: String,
-        default: 'img/brand/green.png',
+        default: 'starTroad_logo.png',
         description: 'Sidebar app logo'
       },
       autoClose: {

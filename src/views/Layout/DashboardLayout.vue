@@ -5,7 +5,7 @@
       <template slot="links">
         <sidebar-item
           :link="{
-            name: 'Dashboard',
+            name: 'Home',
             path: '/dashboard',
             icon: 'ni ni-tv-2 text-primary',
           }"
@@ -14,7 +14,7 @@
 
         <sidebar-item
             :link="{
-              name: 'Icons',
+              name: '로드맵 만들기',
               path: '/icons',
               icon: 'ni ni-planet text-blue'
               }"
@@ -23,35 +23,34 @@
 
         <sidebar-item
               :link="{
-                name: 'Maps',
+                name: '나의 로드맵',
                 path: '/maps',
                 icon: 'ni ni-pin-3 text-orange'
               }">
         </sidebar-item>
-
         <sidebar-item
+                :link="{
+                  name: '나의 스터디',
+                  path: '/tables',
+                  icon: 'ni ni-bullet-list-67 text-red'
+                }">
+        </sidebar-item>
+        <sidebar-item v-if="isAuthenticated" @click.prevent="onClickLogout"
               :link="{
                 name: 'User Profile',
                 path: '/profile',
                 icon: 'ni ni-single-02 text-yellow'
                 }">
         </sidebar-item>
-
-        <sidebar-item
-                :link="{
-                  name: 'Tables',
-                  path: '/tables',
-                  icon: 'ni ni-bullet-list-67 text-red'
-                }">
-        </sidebar-item>
-
-        <sidebar-item
+        
+        <sidebar-item v-else
                   :link="{
                     name: 'Login',
                     path: '/login',
                     icon: 'ni ni-key-25 text-info'
                   }">
         </sidebar-item>
+        
         <sidebar-item
                   :link="{
                     name: 'Register',
