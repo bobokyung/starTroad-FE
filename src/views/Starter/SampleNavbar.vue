@@ -1,6 +1,6 @@
 <template>
   <base-nav
-    container-classes="container-fluid"
+    container-classes=""
     class="navbar-top border-bottom navbar-expand"
     :class="$route.meta.navbarClasses ? $route.meta.navbarClasses : 'bg-success navbar-dark'"
     type=""
