@@ -24,7 +24,7 @@
         <sidebar-item
               :link="{
                 name: '나의 로드맵',
-                path: '/icons',
+                path: '/mymap',
                 icon: 'ni ni-pin-3 text-orange'
               }">
         </sidebar-item>
