@@ -13,7 +13,7 @@
     props: {
       type: {
         type: String,
-        default: 'success',
+        default: 'warning',
         description: 'Header background type'
       }
     }
