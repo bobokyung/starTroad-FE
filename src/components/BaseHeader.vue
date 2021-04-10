@@ -1,5 +1,5 @@
 <template>
-  <div class="header" :class="{[`bg-${type}`]: type}">
+  <div class="header">
      <b-container fluid>
       <div class="header-body">
         <slot></slot>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div id="toolbar">
-      <button
+      <b-button variant="primary"
         @click="
           $refs.chart.add({
             id: +new Date(),
@@ -13,13 +13,13 @@
           })
         "
       >
-        Add(Double-click canvas)
-      </button>
-      <button @click="$refs.chart.remove()">Delete(Del)</button>
-      <button @click="$refs.chart.editCurrent()">
-        Edit(Double-click node)
-      </button>
-      <button @click="$refs.chart.save()">Save</button>
+        추가하기(Canvas 두번클릭)
+      </b-button>
+      <b-button variant="danger" @click="$refs.chart.remove()">삭제하기(Del)</b-button>
+      <b-button @click="$refs.chart.editCurrent()">
+        수정하기(Node 두번클릭)
+      </b-button>
+      <b-button variant="success" @click="$refs.chart.save()">저장하기</b-button>
     </div>
     <flowchart
       :nodes="nodes"

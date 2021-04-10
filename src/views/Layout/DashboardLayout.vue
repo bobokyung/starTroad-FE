@@ -15,7 +15,7 @@
         <sidebar-item
             :link="{
               name: '로드맵 만들기',
-              path: '/icons',
+              path: '/makemap',
               icon: 'ni ni-planet text-blue'
               }"
             >

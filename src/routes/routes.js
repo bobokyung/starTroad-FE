@@ -41,9 +41,9 @@ const routes = [
         component: () => import(/* webpackChunkName: "demo" */ '../views/Dashboard.vue')
       },
       {
-        path: '/icons',
-        name: 'icons',
-        component: () => import(/* webpackChunkName: "demo" */ '../views/Icons.vue')
+        path: '/makemap',
+        name: 'makemap',
+        component: () => import(/* webpackChunkName: "demo" */ '../views/MakeRoadmap.vue')
       },
       {
         path: '/profile',

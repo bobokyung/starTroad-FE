@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="modal" v-if="visible" style="width: 320px">
+        <div class="roadmap-modal" v-if="visible" style="width: 320px">
             <div class="header">
                 <span>Edit</span>
             </div>
@@ -25,7 +25,7 @@
     </div>
 </template>
 <script>
-  import '../assets/modal.css';
+  import '@/assets/modal.css';
 
   export default {
     props: {
