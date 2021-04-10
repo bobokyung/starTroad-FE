@@ -35,21 +35,14 @@
                         <div class=" dropdown-header noti-title">
                             <h6 class="text-overflow m-0">Welcome!</h6>
                         </div>
-                        <router-link to="/profile" class="dropdown-item">
+                        <router-link to="/ profile" class="dropdown-item" v-if="isAuthenticated" @click.prevent="onClickLogout">
                             <i class="ni ni-single-02"></i>
                             <span>My profile</span>
+                            
                         </router-link>
                         <router-link to="/profile" class="dropdown-item">
                             <i class="ni ni-settings-gear-65"></i>
                             <span>Settings</span>
-                        </router-link>
-                        <router-link to="/profile" class="dropdown-item">
-                            <i class="ni ni-calendar-grid-58"></i>
-                            <span>Activity</span>
-                        </router-link>
-                        <router-link to="/profile" class="dropdown-item">
-                            <i class="ni ni-support-16"></i>
-                            <span>Support</span>
                         </router-link>
                         <div class="dropdown-divider"></div>
                         <a href="#!" class="dropdown-item">
@@ -80,30 +73,7 @@
                     </slot>
                 </ul>
                 <!--Divider-->
-                <hr class="my-3">
-                <!--Heading-->
-                <h6 class="navbar-heading text-muted">Documentation</h6>
-                <!--Navigation-->
-                <ul class="navbar-nav mb-md-3">
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="https://www.creative-tim.com/learning-lab/bootstrap-vue/alerts/argon-dashboard">
-                            <i class="ni ni-spaceship"></i> Getting started
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="https://www.creative-tim.com/learning-lab/bootstrap-vue/colors/argon-dashboard">
-                            <i class="ni ni-palette"></i> Foundation
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="https://www.creative-tim.com/learning-lab/bootstrap-vue/alerts/argon-dashboard">
-                            <i class="ni ni-ui-04"></i> Components
-                        </a>
-                    </li>
-                </ul>
+                
             </div>
             </div>
     </nav>
@@ -132,6 +102,15 @@
       return {
         autoClose: this.autoClose
       };
+    },
+    computed :{
+      isAuthenticated(){
+        let isAuthenticated = false
+        if(localStorage.getItem("accessToken")){
+          return true
+        }
+        return false
+      },
     },
     methods: {
       closeSidebar() {
