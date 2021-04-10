@@ -20,6 +20,7 @@
     "element-ui": "2.4.11",
     "es6-promise": "^4.1.1",
     "flatpickr": "^4.5.7",
+    "flowchart-vue": "^0.17.1",
     "fuse.js": "^3.2.0",
     "google-maps": "^3.2.1",
     "nouislider": "^12.1.0",
