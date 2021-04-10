@@ -5,6 +5,16 @@ function resolveSrc(_path) {
 }
 // vue.config.js
 module.exports = {
+  devServer: {
+    // 프록시 설정
+    proxy: {
+        // 프록시 요청을 보낼 api의 시작 부분
+        '/api': {
+            // 프록시 요청을 보낼 서버의 주소
+            target: 'http://localhost:3000'
+        }
+    }
+  },
   lintOnSave: true,
   configureWebpack: {
     // Set up all the aliases we use in our app.

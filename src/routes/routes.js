@@ -3,15 +3,38 @@ import AuthLayout from '@/views/Pages/AuthLayout.vue';
 
 import NotFound from '@/views/NotFoundPage.vue';
 
+
+const requireAuth = () => (from, to, next) => {
+  var isAuthenticated= false;
+  //this is just an example. You will have to find a better or 
+  // centralised way to handle you localstorage data handling 
+  if(localStorage.getItem('accessToken'))
+    // 나중에는 여기서 서버에 접속해서 인증 보내야함.
+    isAuthenticated = true;
+   else
+    isAuthenticated= false;
+   if(isAuthenticated) 
+   {
+    next(); // allow to enter route
+   } 
+   else
+   {
+    next('/login'); // go to '/login';
+   }
+}
+
+
 const routes = [
   {
     path: '/',
     redirect: 'dashboard',
     component: DashboardLayout,
+    beforeEnter : requireAuth(),
     children: [
       {
         path: '/dashboard',
-        name: 'Home',
+        name: 'dashboard',
+        beforeEnter : requireAuth(),
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
@@ -58,5 +81,6 @@ const routes = [
     ]
   }
 ];
+
 
 export default routes;

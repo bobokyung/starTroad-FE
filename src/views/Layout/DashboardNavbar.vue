@@ -66,7 +66,7 @@
             <span>Support</span>
           </b-dropdown-item>
           <div class="dropdown-divider"></div>
-          <b-dropdown-item href="#!">
+          <b-dropdown-item @click="logOut()">
             <i class="ni ni-user-run"></i>
             <span>Logout</span>
           </b-dropdown-item>
@@ -79,7 +79,7 @@
 <script>
 import { CollapseTransition } from 'vue2-transitions';
 import { BaseNav, Modal } from '@/components';
-
+import store from "@/store"
 export default {
   components: {
     CollapseTransition,
@@ -108,6 +108,11 @@ export default {
     };
   },
   methods: {
+    logOut(){
+      store.dispatch("LOGOUT").then(() => {
+        this.$router.go('/dashboard')
+      })
+    },
     capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     },

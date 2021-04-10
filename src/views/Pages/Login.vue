@@ -96,12 +96,16 @@
       };
     },
     methods: {
-      onSubmit(email, password) {
+      onSubmit() {
+        let email = this.model.email
+        let password = this.model.password
+        //password = this.model.password
         this.$store.dispatch('LOGIN', {email, password})
           .then(() => this.redirect())
           .catch(({message}) => this.msg = message)
       },
       redirect() {
+        /*
         const {search} = window.location
         const tokens = search.replace(/^\?/, '').split('&')
         const {returnPath} = tokens.reduce((qs, tkn) => {
@@ -109,8 +113,8 @@
           qs[pair[0]] = decodeURIComponent(pair[1])
           return qs
         }, {})
-
-        this.$router.push(returnPath)
+        */
+        this.$router.push('/dashboard')
       }
     }
   };

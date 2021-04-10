@@ -4,7 +4,7 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-const resourceHost = 'http://localhost:3000'
+const resourceHost = 'http://localhost:3000/api'
 
 const enhanceAccessToeken = () => {
   const {accessToken} = localStorage
@@ -37,6 +37,7 @@ export default new Vuex.Store({
     LOGIN ({commit}, {email, password}) {
       return axios.post(`${resourceHost}/login`, {email, password})
         .then(({data}) => {
+          console.log(data)
           commit('LOGIN', data)
           axios.defaults.headers.common['Authorization'] = `Bearer ${data.accessToken}`;
         })
