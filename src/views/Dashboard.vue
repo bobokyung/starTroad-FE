@@ -3,7 +3,7 @@
 
     <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-gradient-success">
       <!-- Card stats -->
-      <font size="3em" color="white">
+      <font class="subtitle-home">
         Computer Science <hr>
       </font>
       <b-row>
@@ -16,7 +16,7 @@
           img-alt="Image"
           img-top
           tag="article"
-          style="max-width: 15rem;"
+          style=""
           class="mb-2">
           <b-card-text>
             Frontend roadmap
@@ -33,7 +33,7 @@
           img-alt="Image"
           img-top
           tag="article"
-          style="max-width: 15rem;"
+          style=""
           class="mb-2">
           <b-card-text>
             Backend roadmap
@@ -50,7 +50,7 @@
           img-alt="Image"
           img-top
           tag="article"
-          style="max-width: 15rem;"
+          style=""
           class="mb-2">
           <b-card-text>
             DevOps roadmap
@@ -68,7 +68,7 @@
           img-alt="Image"
           img-top
           tag="article"
-          style="max-width: 15rem;"
+          style=""
           class="mb-2">
           <b-card-text>
             Android roadmap
@@ -83,7 +83,7 @@
 
 
 
-      <font size="3em" color="white">
+      <font class="subtitle-home">
         Computer Science <hr>
       </font>
       <b-row>
@@ -96,7 +96,7 @@
           img-alt="Image"
           img-top
           tag="article"
-          style="max-width: 15rem;"
+          style=""
           class="mb-2">
           <b-card-text>
             Frontend roadmap
@@ -113,7 +113,7 @@
           img-alt="Image"
           img-top
           tag="article"
-          style="max-width: 15rem;"
+          style=""
           class="mb-2">
           <b-card-text>
             Backend roadmap
@@ -130,7 +130,7 @@
           img-alt="Image"
           img-top
           tag="article"
-          style="max-width: 15rem;"
+          style=""
           class="mb-2">
           <b-card-text>
             DevOps roadmap
@@ -148,7 +148,7 @@
           img-alt="Image"
           img-top
           tag="article"
-          style="max-width: 15rem;"
+          style=""
           class="mb-2">
           <b-card-text>
             Android roadmap
@@ -182,5 +182,9 @@
 .el-table .cell{
   padding-left: 0px;
   padding-right: 0px;
+}
+.subtitle-home{
+  font-weight : bold;
+  font-size : 1.5rem;
 }
 </style>

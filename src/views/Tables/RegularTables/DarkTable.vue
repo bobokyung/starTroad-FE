@@ -1,7 +1,7 @@
 <template>
     <b-card no-body class="bg-default shadow">
         <b-card-header class="bg-transparent border-0">
-            <h3 class="mb-0 text-white">Dark table</h3>
+            <h3 class="mb-0">Dark table</h3>
         </b-card-header>
 
         <el-table class="table-responsive table table-dark"

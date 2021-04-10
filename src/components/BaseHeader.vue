@@ -20,4 +20,7 @@
   }
 </script>
 <style>
+.header-body{
+  color : #32325d !important;
+}
 </style>

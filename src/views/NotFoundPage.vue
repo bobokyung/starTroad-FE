@@ -7,9 +7,9 @@
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="6" class="px-5">
               <h1 class="text-light">Ooops!</h1>
-              <p class="text-lead text-white">Page not found. Don't worry though, we have plenty of other pages to explore</p>
+              <p class="text-lead">Page not found. Don't worry though, we have plenty of other pages to explore</p>
 
-              <router-link to="/dashboard" class="font-weight-bold text-white mt-5">Back to dashboard</router-link>
+              <router-link to="/dashboard" class="font-weight-bold mt-5">Back to dashboard</router-link>
             </b-col>
           </b-row>
         </div>

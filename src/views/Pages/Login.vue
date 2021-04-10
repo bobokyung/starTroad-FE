@@ -6,8 +6,8 @@
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-white">Welcome! starTroad</h1>
-              <p class="text-lead text-white"></p>
+              <h1 class="">Welcome! starTroad</h1>
+              <p class="text-lead "></p>
             </b-col>
           </b-row>
         </div>
