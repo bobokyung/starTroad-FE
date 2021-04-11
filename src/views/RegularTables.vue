@@ -102,7 +102,7 @@
 
 .el-table.table-dark th,
 .el-table.table-dark tr{
-  background-color: #172b4d;
+  background-color: #999999;
 }
 
 .el-table.table-dark td,

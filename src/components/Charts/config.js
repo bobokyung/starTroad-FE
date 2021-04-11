@@ -19,7 +19,7 @@ export const Charts = {
       900: '#212529'
     },
     theme: {
-      'default': '#172b4d',
+      'default': '#999999',
       'primary': '#5e72e4',
       'secondary': '#f4f5f7',
       'info': '#11cdef',
