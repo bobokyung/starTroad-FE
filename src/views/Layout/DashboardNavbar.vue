@@ -2,7 +2,7 @@
   <base-nav
     container-classes="container-fluid"
     class="navbar-top navbar-expand"
-    :class="{'navbar-dark': type === 'default'}"
+    :class="{'navbar-light': type === 'default'}"
   >
     <a href="#" aria-current="page" class="nav-title h1 mb-0 text-uppercase d-none d-lg-inline-block active router-link-active"> {{$route.name}} </a>
     <!-- Navbar links -->
@@ -53,10 +53,7 @@
             <i class="ni ni-single-02"></i>
             <span>My profile</span>
           </b-dropdown-item>
-          <b-dropdown-item href="#!">
-            <i class="ni ni-settings-gear-65"></i>
-            <span>Settings</span>
-          </b-dropdown-item>
+          
           
           <div class="dropdown-divider"></div>
           <b-dropdown-item @click="logOut()">

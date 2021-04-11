@@ -59,47 +59,13 @@
       <!-- Address -->
       <h6 class="heading-small text-muted mb-4">Contact information</h6>
 
-      <div class="pl-lg-4">
-        <b-row>
-          <b-col md="12">
-            <base-input
-              type="text"
-              label="Address"
-              placeholder="Home Address"
-              v-model="user.address"
-            >
-            </base-input>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col lg="4">
-            <base-input
-              type="text"
-              label="City"
-              placeholder="City"
-              v-model="user.city"
-            >
-            </base-input>
-          </b-col>
-          <b-col lg="4">
-            <base-input
-              type="text"
-              label="Country"
-              placeholder="Country"
-              v-model="user.country"
-            >
-            </base-input>
-          </b-col>
-          <b-col lg="4">
-            <base-input
-              label="Postal Code"
-              placeholder="ZIP Code"
-              v-model="user.postalCode"
-            >
-            </base-input>
-          </b-col>
-        </b-row>
-      </div>
+      <template>
+  <div>
+    <label for="tags-basic">Type a new tag and press enter</label>
+    <b-form-tags input-id="tags-basic" v-model="values"></b-form-tags>
+    <p class="mt-2">{{ values }}</p>
+  </div>
+</template>
 
       <hr class="my-4">
       <!-- Description -->
@@ -107,7 +73,7 @@
       <div class="pl-lg-4">
         <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
          <!--  <label class="form-control-label">About Me</label> -->
-          <b-form-textarea rows="4" value="A beautiful premium dashboard for BootstrapVue." id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+          <b-form-textarea rows="4" value="Hello!." id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
         </b-form-group>
       </div>
 
@@ -119,14 +85,12 @@ export default {
   data() {
     return {
       user: {
+        values: ['computer', 'science'],
         company: 'Creative Code Inc.',
         username: 'michael23',
         email: '',
         firstName: 'Mike',
         lastName: 'Andrew',
-        address: 'Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09',
-        city: 'New York',
-        country: 'USA',
         postalCode: '',
         aboutMe: `Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
       }
