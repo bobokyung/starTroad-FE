@@ -29,36 +29,7 @@
            </b-col>
          </b-row>
        </div>
-         <b-navbar-nav  class="align-items-lg-center ml-lg-auto">
-           <b-nav-item to="/dashboard">
-               <i class="ni ni-planet"></i>
-               <span class="nav-link-inner--text">HOME</span>
-           </b-nav-item>
-           <b-nav-item to="/register">
-               <i class="ni ni-circle-08"></i>
-               <span class="nav-link-inner--text">Register</span>
-           </b-nav-item>  
-
-           <b-nav-item to="/login">
-               <!--<i class="ni ni-key-25"></i>
-               <span class="nav-link-inner--text">Login</span>-->
-               <a href="" v-if="isAuthenticated" @click.prevent="onClickLogout">
-                 <i class="ni ni-key-25"></i>
-                <span class="nav-link-inner--text">Logout</span></a>
-
-               <router-link to="/login" v-else>
-                <i class="ni ni-key-25"></i>
-                <span class="nav-link-inner--text">Login</span>
-               </router-link>
-           </b-nav-item>
-
-           <b-nav-item to="/profile">
-            <a href="" v-if="isAuthenticated" @click.prevent="onClickLogout">
-               <i class="ni ni-single-02"></i>
-               <span class="nav-link-inner--text">Profile</span></a>
-
-           </b-nav-item>
-       </b-navbar-nav>
+         
      </template>
     </base-nav>
 
