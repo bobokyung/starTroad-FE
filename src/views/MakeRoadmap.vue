@@ -11,7 +11,9 @@
               <b-tab class="tab" title="MAP" active>
                 <Roadmap></Roadmap>
               </b-tab>
-              <b-tab class="tab" title="Detail" ><p>I'm the second tab</p></b-tab>
+              <b-tab class="tab" title="Detail" >
+                <RoadmapDetail></RoadmapDetail>
+              </b-tab>
               <b-tab class="tab" title="Talk" disabled><p>I'm the tab with the very, very long title</p></b-tab>
               <b-tab class="tab" title="Study" disabled><p>I'm a disabled tab!</p></b-tab>
             </b-tabs>
@@ -22,9 +24,11 @@
 </template>
 <script>
 import Roadmap from "../views/Roadmap/Roadmap"
+import RoadmapDetail from "../views/Roadmap/RoadmapDetail"
 export default {
   components : {
-    Roadmap
+    Roadmap,
+    RoadmapDetail
   },
   data(){
     return {
