@@ -17,9 +17,9 @@
           <b-col lg="6">
             <base-input
               type="text"
-              label="Username"
-              placeholder="Username"
-              v-model="user.username"
+              label="User Id"
+              placeholder="Userid"
+              v-model="user.userid"
             >
             </base-input>
           </b-col>
@@ -37,18 +37,18 @@
           <b-col lg="6">
             <base-input
               type="text"
-              label="First Name"
-              placeholder="First Name"
-              v-model="user.firstName"
+              label="Name"
+              placeholder="Name"
+              v-model="user.name"
             >
             </base-input>
           </b-col>
           <b-col lg="6">
             <base-input
               type="text"
-              label="Last Name"
-              placeholder="Last Name"
-              v-model="user.lastName"
+              label="Birth"
+              placeholder="birth"
+              v-model="user.birth"
             >
             </base-input>
           </b-col>
@@ -87,10 +87,10 @@ export default {
       user: {
         values: ['computer', 'science'],
         company: 'Creative Code Inc.',
-        username: 'michael23',
+        userid: 'michael23',
         email: '',
-        firstName: 'Mike',
-        lastName: 'Andrew',
+        name: 'Mike',
+        birth: '2021-01-01',
         postalCode: '',
         aboutMe: `Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
       }
