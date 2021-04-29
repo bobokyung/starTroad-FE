@@ -30,7 +30,7 @@
             </div>
             <div>
               <span class="heading">89</span>
-              <span class="description">Comments</span>
+              <span class="description">Likes</span>
             </div>
           </div>
         </b-col>
