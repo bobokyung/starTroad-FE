@@ -5,7 +5,7 @@
         <h3 class="mb-0">Edit profile </h3>
       </b-col>
       <b-col cols="4" class="text-right">
-        <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+        <a href="#dashboard" class="btn btn-sm btn-primary">Settings</a>
       </b-col>
     </b-row>
 

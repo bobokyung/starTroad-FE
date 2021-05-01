@@ -5,7 +5,7 @@
         <h3 class="mb-0">Make profile </h3>
       </b-col>
       <b-col cols="4" class="text-right">
-        <a href="/home" class="btn btn-sm btn-primary">Finish</a>
+        <a href="#dashboard" class="btn btn-sm btn-primary">Finish</a>
       </b-col>
     </b-row>
 
@@ -23,7 +23,10 @@
 
            
 
+        <b-row>  
+           <label>Profile Image <b-avatar size="20rem"></b-avatar></label>
 
+        
 
         <b-row>  
             <b-form-file

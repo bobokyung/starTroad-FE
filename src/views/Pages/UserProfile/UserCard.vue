@@ -12,7 +12,7 @@
 
     <b-card-header class="text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
       <div class="d-flex justify-content-between">
-        <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+       <!-- <a href="#" class="btn btn-sm btn-default float-right">Message</a>-->
       </div>
     </b-card-header>
 
@@ -40,11 +40,11 @@
           Jessica Jones<span class="font-weight-light">, 27</span>
         </h5>
         <div class="h5 font-weight-300">
-          <i class="ni location_pin mr-2"></i>Bucharest, Romania
+          <i class="ni location_pin mr-2"></i>major
         </div>
         
         <div>
-          <i class="ni education_hat mr-2"></i>Chung-Ang University of Computer Science
+          <i class="ni education_hat mr-2"></i>About Me
         </div>
         
 
