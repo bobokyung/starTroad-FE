@@ -1,7 +1,7 @@
 <template>
     <b-card no-body class="bg-default shadow">
         <b-card-header class="bg-transparent border-0">
-            <h3 class="mb-0">Dark table</h3>
+            <h3 class="mb-0">종료된 스터디</h3>
         </b-card-header>
 
         <el-table class="table-responsive table table-dark"
@@ -12,21 +12,21 @@
                              prop="name">
                 <template v-slot="{row}">
                     <b-media no-body class="align-items-center">
-                        <a href="#" class="mr-3">
+                        <!--    study image   <a href="#" class="mr-3">
                             <b-img class="avatar" rounded="circle" alt="Image placeholder" :src="row.img" />
-                        </a>
+                        </a>-->
                         <b-media-body>
                             <span class="font-weight-600 name mb-0 text-sm">{{row.title}}</span>
                         </b-media-body>
                     </b-media>
                 </template>
             </el-table-column>
-            <el-table-column label="Budget"
-                             prop="budget"
+            <el-table-column label="Date"
+                             prop="date"
                              min-width="140px">
             </el-table-column>
 
-            <el-table-column label="Status"
+            <!--<el-table-column label="Status"
                              min-width="170px"
                              prop="status">
                 <template v-slot="{row}">
@@ -35,7 +35,7 @@
                         <span class="status" :class="`text-${row.statusType}`">{{row.status}}</span>
                     </badge>
                 </template>
-            </el-table-column>
+            </el-table-column>-->
 
             <el-table-column label="Users" min-width="190px">
                 <div class="avatar-group">
@@ -71,6 +71,10 @@
                 </template>
             </el-table-column>
         </el-table>
+
+        <b-card-footer class="py-4 d-flex justify-content-end">
+            <base-pagination v-model="currentPage" :per-page="10" :total="50"></base-pagination>
+        </b-card-footer>
 
     </b-card>
 </template>

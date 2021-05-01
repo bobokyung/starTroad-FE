@@ -31,7 +31,7 @@
         <sidebar-item
                 :link="{
                   name: '나의 스터디',
-                  path: '/tables',
+                  path: '/mystudy',
                   icon: 'ni ni-bullet-list-67 text-red'
                 }">
         </sidebar-item>
