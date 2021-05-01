@@ -13,6 +13,21 @@
       <h6 class="heading-small text-muted mb-4">User information</h6>
 
       <div class="pl-lg-4">
+        <div class="mb-2">
+             <b-avatar size="20rem"></b-avatar>
+            </div>
+
+        <b-row>  
+            <b-form-file
+             v-model="imageData"
+             :state="Boolean(imageData)"
+             placeholder="Choose a prorfile image or drop it here..."
+             drop-placeholder="Drop file here..."
+             ></b-form-file>
+        </b-row>
+
+
+
         <b-row>
           <b-col lg="6">
             <base-input
@@ -95,7 +110,7 @@ export default {
   data() {
     return {
       user: {
-        
+        imageData:'',
 
 
         values: ['computer', 'science'],
