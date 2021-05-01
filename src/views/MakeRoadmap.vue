@@ -54,8 +54,6 @@ export default {
     height : 1000px;
     box-shadow: 0 1px 4px 0 rgba(21, 34, 50, 0.08);
     background-color: #ffffff;
-    .tab{
-    }
   }
 }
 </style>

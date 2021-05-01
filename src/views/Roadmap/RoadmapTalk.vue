@@ -13,7 +13,11 @@
       </div>
     </div>
 
-    <div class="comments" v-for="(comment, index) in sample.comments">
+    <hr>
+    <h2>의견(3)</h2>
+
+    <div class="comments" v-for="comment in sample.comments"
+    :key="comment.id">
       <div class="comments-header">
         <div class="author">
           <h2>{{comment.author}}</h2>
@@ -23,6 +27,19 @@
       <div class="content">
         <div>{{comment.content}}</div>
       </div>
+    </div>
+    
+    <hr>
+    <h2>내 의견</h2>
+    <div class ="add-comments">
+      <b-form-textarea
+        id="textarea-auto-height"
+        v-model = "myComment"
+        placeholder="의견을 남겨주세요."
+        rows="3"
+        max-rows="8"
+      ></b-form-textarea>
+      <b-button href="#" variant="primary">등록하기</b-button>
     </div>
 
   </b-container>
@@ -35,6 +52,7 @@ export default {
   },
   data () {
     return {
+      myComment : "",
       sample : {
         "id" : 1,
         "title" : "A 내용 추가해주세요",
@@ -106,9 +124,19 @@ export default {
   .comments{
     border : 1px solid #cee2e6;
     border-radius : 8px;
-    margin : 10px 0;
-    padding : 10px;
-
+    margin : 0 0 20px 0;
+    .comments-header{
+      background: #e9ecef;
+      padding : 10px;
+    }
+    .content{
+      padding : 10px;
+    }
+  }
+  .add-comments{
+    .btn{
+      float:right;
+    }
   }
 }
 </style>
