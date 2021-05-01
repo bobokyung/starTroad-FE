@@ -9,13 +9,15 @@
           <b-col lg="12" class="roadmap-container">
             <b-tabs content-class="mt-3" fill>
               <b-tab class="tab" title="MAP" active>
-                <Roadmap></Roadmap>
+                <RoadmapDiagram></RoadmapDiagram>
               </b-tab>
               <b-tab class="tab" title="Detail" >
                 <RoadmapDetail></RoadmapDetail>
               </b-tab>
-              <b-tab class="tab" title="Talk" disabled><p>I'm the tab with the very, very long title</p></b-tab>
-              <b-tab class="tab" title="Study" disabled><p>I'm a disabled tab!</p></b-tab>
+              <!-- <b-tab class="tab" title="Talk" >
+                <RoadmapTalk></RoadmapTalk>
+              </b-tab>
+              <b-tab class="tab" title="Study" disabled><p>I'm a disabled tab!</p></b-tab> -->
             </b-tabs>
           </b-col>
       </b-row>
@@ -23,11 +25,11 @@
   </div>
 </template>
 <script>
-import Roadmap from "../views/Roadmap/Roadmap"
+import RoadmapDiagram from "../views/Roadmap/RoadmapDiagram"
 import RoadmapDetail from "../views/Roadmap/RoadmapDetail"
 export default {
   components : {
-    Roadmap,
+    RoadmapDiagram,
     RoadmapDetail
   },
   data(){

@@ -41,6 +41,33 @@ const routes = [
         component: () => import(/* webpackChunkName: "demo" */ '../views/Dashboard.vue')
       },
       {
+        path: '/roadmap/:id',
+        name: 'roadmap',
+        beforeEnter : requireAuth(),
+        component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap.vue'),
+        children : [
+          
+          {
+            path : "talk",
+            component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalkList.vue'),
+            children : [
+              {
+                path : ":talk_id",
+                component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalk.vue'),
+              }
+            ]
+          },
+          {
+            path : "detail",
+            component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapDetail.vue'),
+          },
+          {
+            path : "study",
+            component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapStudy.vue'),
+          }
+        ]
+      },
+      {
         path: '/makemap',
         name: 'makemap',
         component: () => import(/* webpackChunkName: "demo" */ '../views/MakeRoadmap.vue')

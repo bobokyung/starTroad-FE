@@ -21,7 +21,7 @@
           <b-card-text>
             Frontend roadmap<br>Step by step guide to becoming a modern frontend developer
           </b-card-text>
-          <b-button href="#" variant="primary">Go roadmap</b-button>
+          <b-button href="#" variant="primary" @click="goToRoadmap()">Go roadmap</b-button>
         </b-card>
         </b-col>
         <b-col xl="3" md="6">
@@ -171,7 +171,11 @@
       };
     },
     methods: {
-      
+      goToRoadmap(){
+        //나중에는 data redering을 해보고 각 로드맵에 대한 id를 부여해서 roadmap 상세 페이지로 이동해야함
+        let roadmap_id = 1
+        this.$router.push({path:`/roadmap/${roadmap_id}`})
+      }
     },
     mounted() {
       
