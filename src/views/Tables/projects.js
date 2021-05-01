@@ -1,75 +1,74 @@
 
 export default [
   {
-    img: 'img/theme/bootstrap.jpg',
-    title: 'Argon Design System',
-    budget: '$2500 USD',
-    status: 'pending',
-    statusType: 'warning',
+    title: 'my sql같이 공부해요~@!',
+    date:'2020-01-01',
+    status: '모집중',
+    statusType: 'success',
     completion: 60
   },
   {
-    img: 'img/theme/angular.jpg',
-    title: 'Angular Now UI Kit PRO',
-    budget: '$1800 USD',
-    status: 'completed',
-    statusType: 'success',
+    
+    title: 'HTML공부 할사람 있나요',
+    date:'2020-01-01',
+    status: '모집완료',
+    statusType: 'info',
     completion: 100
   },
   {
-    img: 'img/theme/sketch.jpg',
-    title: 'Black Dashboard',
-    budget: '$3150 USD',
-    status: 'delayed',
-    statusType: 'danger',
+   
+    title: 'web sever 공부할사람 모집',
+    date:'2020-01-01',
+    status: '모집중',
+    statusType: 'success',
     completion: 72
   },
   {
-    img: 'img/theme/react.jpg',
-    title: 'React Material Dashboard',
-    budget: '$4400 USD',
-    status: 'on schedule',
+   
+    title: 'React같이 공부좀 합시다',
+    date:'2020-01-01',
+    status: '모집완료',
     statusType: 'info',
     completion: 90
   },
   {
-    img: 'img/theme/vue.jpg',
-    title: 'Vue Paper UI Kit PRO',
-    budget: '$2200 USD',
-    status: 'completed',
-    statusType: 'success',
+   
+    title: 'Vue 스터디',
+    date:'2020-01-01',
+    status: '모집완료',
+    statusType: 'info',
     completion: 100
   },
   {
-    img: 'img/theme/bootstrap.jpg',
-    title: 'Argon Design System',
-    budget: '$2500 USD',
-    status: 'pending',
-    statusType: 'warning',
+ 
+    title: 'CSS인원 구합니다',
+    date:'2020-01-01',
+    status: '모집완료',
+    statusType: 'info',
     completion: 60
   },
   {
-    img: 'img/theme/angular.jpg',
-    title: 'Angular Now UI Kit PRO',
-    budget: '$1800 USD',
-    status: 'completed',
-    statusType: 'success',
+   
+    title: 'Devops 토요일에 공부합시다',
+    date:'2020-01-01',
+    status: '모집완료',
+    statusType: 'info',
     completion: 100
   },
   {
-    img: 'img/theme/sketch.jpg',
-    title: 'Black Dashboard',
-    budget: '$3150 USD',
-    status: 'delayed',
-    statusType: 'danger',
+  
+    title: 'node.js 초보',
+    date:'2020-01-01',
+    status: '모집중',
+    statusType: 'success',
     completion: 72
   },
   {
-    img: 'img/theme/vue.jpg',
-    title: 'Vue Paper UI Kit PRO',
-    budget: '$2200 USD',
-    status: 'completed',
-    statusType: 'success',
+  
+    title: 'Android',
+    date:'2020-11-12',
+    status: '모집완료',
+    statusType: 'info',
     completion: 100
   }
 ]

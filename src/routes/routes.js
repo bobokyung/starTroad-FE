@@ -80,8 +80,8 @@ const routes = [
         component: () => import(/* webpackChunkName: "demo" */ '../views/MyMap.vue')
       },
       {
-        path: '/tables',
-        name: 'tables',
+        path: '/mystudy',
+        name: 'mystudy',
         component: () => import(/* webpackChunkName: "demo" */ '../views/RegularTables.vue')
       }
     ]
@@ -97,9 +97,9 @@ const routes = [
         component: () => import(/* webpackChunkName: "demo" */ '../views/Pages/Login.vue')
       },
       {
-        path: '/register',
-        name: 'register',
-        component: () => import(/* webpackChunkName: "demo" */ '../views/Pages/Register.vue')
+        path: '/loginadd',
+        name: 'loginadd',
+        component: () => import(/* webpackChunkName: "demo" */ '../views/Pages/LoginAdd.vue')
       },
       { path: '*', component: NotFound }
     ]

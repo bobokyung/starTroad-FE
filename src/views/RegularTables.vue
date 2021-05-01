@@ -1,7 +1,8 @@
 <template>
   <div>
+    
     <base-header class="pb-6 pb-8 pt-5 pt-md-8">
-      <!-- Card stats -->
+      <!--Card stats 
       <b-row>
         <b-col xl="3" md="6">
           <stats-card title="Total traffic"
@@ -56,8 +57,8 @@
             </template>
           </stats-card>
         </b-col>
-      </b-row>
-    </base-header>
+      </b-row>-->
+    </base-header> 
     <b-container fluid class="mt--7">
       <b-row>
         <b-col>
@@ -102,7 +103,7 @@
 
 .el-table.table-dark th,
 .el-table.table-dark tr{
-  background-color: #999999;
+  background-color: #172b4d;
 }
 
 .el-table.table-dark td,

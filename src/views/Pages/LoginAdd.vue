@@ -2,20 +2,28 @@
   <card>
     <b-row align-v="center" slot="header" >
       <b-col cols="8">
-        <h3 class="mb-0">Edit profile </h3>
+        <h3 class="mb-0">Make profile </h3>
       </b-col>
       <b-col cols="4" class="text-right">
-        <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+        <a href="/home" class="btn btn-sm btn-primary">Finish</a>
       </b-col>
     </b-row>
 
     <b-form @submit.prevent="updateProfile">
       <h6 class="heading-small text-muted mb-4">User information</h6>
-
       <div class="pl-lg-4">
-        <div class="mb-2">
+           <div class="mb-2">
              <b-avatar size="20rem"></b-avatar>
             </div>
+
+           
+
+
+
+
+           
+
+
 
         <b-row>  
             <b-form-file
@@ -25,8 +33,6 @@
              drop-placeholder="Drop file here..."
              ></b-form-file>
         </b-row>
-
-
 
         <b-row>
           <b-col lg="6">
@@ -69,21 +75,23 @@
           </b-col>
         </b-row>
         <b-row>
-          <b-col>
-             <base-input
+        <b-col>  
+            <base-input
               type="text"
               label="birth"
               placeholder="YYYY-MM-DD"
               v-model="user.birth"
             >
             </base-input>
-          </b-col>
+        </b-col>
         </b-row>
       </div>
+
+
       <hr class="my-4">
 
       <!-- Address -->
-      <h6 class="heading-small text-muted mb-4">Contact information</h6>
+    <h6 class="heading-small text-muted mb-4">Contact information</h6>
 
       
   <div>
@@ -91,6 +99,7 @@
     <b-form-tags input-id="tags-basic" v-model="values"></b-form-tags>
     <p class="mt-2">{{ values }}</p>
   </div>
+
 
       <hr class="my-4">
       <!-- Description -->
@@ -111,18 +120,18 @@ export default {
     return {
       user: {
         imageData:'',
-
-
-        values: ['computer', 'science'],
-        company: 'Creative Code Inc.',
-        userid: 'michael23',
+        
+        values: ['',''],
+        company: '',
+        userid: '',
         email: '',
-        name: 'Mike',
+        name: '',
         major:'',
 
         birth: '',
+
         postalCode: '',
-        aboutMe: `Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
+        aboutMe: ''
       }
     };
   },
@@ -132,6 +141,8 @@ export default {
     }
     
   }
+  
+  
 };
 </script>
 <style></style>
