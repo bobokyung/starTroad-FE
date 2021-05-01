@@ -55,24 +55,13 @@
         </b-row>
         <b-row>
           <b-col>
-            <label for="example-input">Choose a birth</label>
-            <b-input-group class="mb-3">
-            <b-form-input
-              id="example-input"
-              v-model="birth"
+             <base-input
               type="text"
+              label="birth"
               placeholder="YYYY-MM-DD"
-              autocomplete="on" ></b-form-input>
-            <b-input-group-append>
-              <b-form-datepicker
-               v-model="birth"
-               button-only="text"
-               right
-               locale="en-US"
-               calendar-width="250%"
-             ></b-form-datepicker>
-            </b-input-group-append>
-            </b-input-group>
+              v-model="user.birth"
+            >
+            </base-input>
           </b-col>
         </b-row>
       </div>
@@ -117,9 +106,6 @@ export default {
         major:'',
 
         birth: '',
-        formatted: '',
-        selected: '',
-
         postalCode: '',
         aboutMe: `Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
       }

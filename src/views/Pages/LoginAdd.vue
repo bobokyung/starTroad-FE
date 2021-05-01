@@ -12,6 +12,28 @@
     <b-form @submit.prevent="updateProfile">
       <h6 class="heading-small text-muted mb-4">User information</h6>
       <div class="pl-lg-4">
+           <div class="mb-2">
+             <b-avatar size="20rem"></b-avatar>
+            </div>
+
+           
+
+
+
+
+           
+
+
+
+        <b-row>  
+            <b-form-file
+             v-model="imageData"
+             :state="Boolean(imageData)"
+             placeholder="Choose a prorfile image or drop it here..."
+             drop-placeholder="Drop file here..."
+             ></b-form-file>
+        </b-row>
+
         <b-row>
           <b-col lg="6">
             <base-input
@@ -53,33 +75,19 @@
           </b-col>
         </b-row>
         <b-row>
-        <b-col>
-         
-
-
-    <label for="example-input">Choose a birth</label>
-    <b-input-group class="mb-3">
-      <b-form-input
-        id="example-input"
-        v-model="birth"
-        type="text"
-        placeholder="YYYY-MM-DD"
-        autocomplete="on"
-      ></b-form-input>
-      <b-input-group-append>
-        <b-form-datepicker
-          v-model="birth"
-          button-only="text"
-          right
-          locale="en-US"
-          calendar-width="250%"
-        ></b-form-datepicker>
-      </b-input-group-append>
-    </b-input-group>
-    
+        <b-col>  
+            <base-input
+              type="text"
+              label="birth"
+              placeholder="YYYY-MM-DD"
+              v-model="user.birth"
+            >
+            </base-input>
         </b-col>
         </b-row>
       </div>
+
+
       <hr class="my-4">
 
       <!-- Address -->
@@ -111,6 +119,8 @@ export default {
   data() {
     return {
       user: {
+        imageData:'',
+        
         values: ['',''],
         company: '',
         userid: '',
@@ -119,20 +129,15 @@ export default {
         major:'',
 
         birth: '',
-        formatted: '',
-        selected: '',
 
         postalCode: '',
         aboutMe: ''
       }
     };
   },
-  methods: {
-    updateProfile() {
-      alert('Your data: ' + JSON.stringify(this.user));
-    }
-    
-  }
+  
+  
+  
 };
 </script>
 <style></style>
