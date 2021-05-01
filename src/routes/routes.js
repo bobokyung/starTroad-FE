@@ -46,16 +46,13 @@ const routes = [
         beforeEnter : requireAuth(),
         component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap.vue'),
         children : [
-          
           {
             path : "talk",
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalkList.vue'),
-            children : [
-              {
-                path : ":talk_id",
-                component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalk.vue'),
-              }
-            ]
+          },
+          {
+            path : "talk/:talk_id",
+            component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalk.vue'),
           },
           {
             path : "detail",

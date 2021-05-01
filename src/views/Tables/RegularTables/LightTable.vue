@@ -22,7 +22,7 @@
                 </template>
             </el-table-column>
             <el-table-column label="Budget"
-                             prop="budget"f
+                             prop="budget"
                              min-width="140px">
             </el-table-column>
 

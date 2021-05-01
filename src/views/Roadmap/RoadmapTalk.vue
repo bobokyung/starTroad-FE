@@ -1,7 +1,8 @@
 <template>
   <div>
-    <span>Roadmap talk 세부 page입니다</span>
+    
   </div>
+
 </template>
 
 <script>

@@ -5,7 +5,7 @@
       <b-button class = "roadmap-detail-button" variant="info" @click="togglePreview()">
         {{ toggleContent }}
       </b-button>
-      <b-button class = "roadmap-detail-button" variant="success" @click="">
+      <b-button class = "roadmap-detail-button" variant="success">
         저장하기
       </b-button>
     </b-row>
