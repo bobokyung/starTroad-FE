@@ -5,7 +5,7 @@
         <h3 class="mb-0">Edit profile </h3>
       </b-col>
       <b-col cols="4" class="text-right">
-        <a href="#dashboard" class="btn btn-sm btn-primary">Settings</a>
+        <div class="btn btn-sm btn-primary" @click="gotoHome()">Settings</div>
       </b-col>
     </b-row>
 
@@ -129,9 +129,16 @@ export default {
   methods: {
     updateProfile() {
       alert('Your data: ' + JSON.stringify(this.user));
+    },
+    gotoHome(){
+      this.$router.push({path:'/dashboard'})
     }
     
   }
 };
 </script>
-<style></style>
+<style scoped>
+.btn{
+  cursor : pointer;
+}
+</style>

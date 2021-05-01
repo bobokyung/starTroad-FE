@@ -16,16 +16,7 @@
              <label>Profile Image <b-avatar size="20rem"></b-avatar></label>
             </div>
 
-           
-
-
-
-
-           
-
-        <b-row>  
-           <label>Profile Image <b-avatar size="20rem"></b-avatar></label>
-
+          
         
 
         <b-row>  
