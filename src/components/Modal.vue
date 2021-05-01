@@ -120,6 +120,6 @@
 </script>
 <style>
   .modal-backdrop {
-    background-color: rgba(199, 124, 124, 0.6) !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
   }
 </style>

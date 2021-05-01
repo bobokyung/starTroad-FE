@@ -1,7 +1,7 @@
 <template>
     <b-card no-body>
         <b-card-header class="border-0">
-            <h3 class="mb-0">Light table</h3>
+            <h3 class="mb-0">진행중인 스터디</h3>
         </b-card-header>
 
         <el-table class="table-responsive table"
@@ -12,19 +12,20 @@
                              prop="name">
                 <template v-slot="{row}">
                     <b-media no-body class="align-items-center">
-                        <a href="#" class="avatar rounded-circle mr-3">
+                       <!-- study image  <a href="#" class="avatar rounded-circle mr-3">
                             <img alt="Image placeholder" :src="row.img">
-                        </a>
+                        </a>-->
                         <b-media-body>
                             <span class="font-weight-600 name mb-0 text-sm">{{row.title}}</span>
                         </b-media-body>
                     </b-media>
                 </template>
             </el-table-column>
-            <el-table-column label="Budget"
+            <!--<el-table-column label="Budget"
                              prop="budget"
                              min-width="140px">
             </el-table-column>
+            -->
 
             <el-table-column label="Status"
                              min-width="170px"

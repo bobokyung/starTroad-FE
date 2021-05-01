@@ -2,16 +2,15 @@
   <card>
     <b-row align-v="center" slot="header" >
       <b-col cols="8">
-        <h3 class="mb-0">Edit profile </h3>
+        <h3 class="mb-0">Make profile </h3>
       </b-col>
       <b-col cols="4" class="text-right">
-        <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+        <a href="/home" class="btn btn-sm btn-primary">Finish</a>
       </b-col>
     </b-row>
 
     <b-form @submit.prevent="updateProfile">
       <h6 class="heading-small text-muted mb-4">User information</h6>
-
       <div class="pl-lg-4">
         <b-row>
           <b-col lg="6">
@@ -54,32 +53,37 @@
           </b-col>
         </b-row>
         <b-row>
-          <b-col>
-            <label for="example-input">Choose a birth</label>
-            <b-input-group class="mb-3">
-            <b-form-input
-              id="example-input"
-              v-model="birth"
-              type="text"
-              placeholder="YYYY-MM-DD"
-              autocomplete="on" ></b-form-input>
-            <b-input-group-append>
-              <b-form-datepicker
-               v-model="birth"
-               button-only="text"
-               right
-               locale="en-US"
-               calendar-width="250%"
-             ></b-form-datepicker>
-            </b-input-group-append>
-            </b-input-group>
-          </b-col>
+        <b-col>
+         
+
+
+    <label for="example-input">Choose a birth</label>
+    <b-input-group class="mb-3">
+      <b-form-input
+        id="example-input"
+        v-model="birth"
+        type="text"
+        placeholder="YYYY-MM-DD"
+        autocomplete="on"
+      ></b-form-input>
+      <b-input-group-append>
+        <b-form-datepicker
+          v-model="birth"
+          button-only="text"
+          right
+          locale="en-US"
+          calendar-width="250%"
+        ></b-form-datepicker>
+      </b-input-group-append>
+    </b-input-group>
+    
+        </b-col>
         </b-row>
       </div>
       <hr class="my-4">
 
       <!-- Address -->
-      <h6 class="heading-small text-muted mb-4">Contact information</h6>
+    <h6 class="heading-small text-muted mb-4">Contact information</h6>
 
       
   <div>
@@ -87,6 +91,7 @@
     <b-form-tags input-id="tags-basic" v-model="values"></b-form-tags>
     <p class="mt-2">{{ values }}</p>
   </div>
+
 
       <hr class="my-4">
       <!-- Description -->
@@ -106,14 +111,11 @@ export default {
   data() {
     return {
       user: {
-        
-
-
-        values: ['computer', 'science'],
-        company: 'Creative Code Inc.',
-        userid: 'michael23',
+        values: ['',''],
+        company: '',
+        userid: '',
         email: '',
-        name: 'Mike',
+        name: '',
         major:'',
 
         birth: '',
@@ -121,7 +123,7 @@ export default {
         selected: '',
 
         postalCode: '',
-        aboutMe: `Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
+        aboutMe: ''
       }
     };
   },
