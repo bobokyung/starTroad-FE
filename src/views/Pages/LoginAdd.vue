@@ -13,7 +13,7 @@
       <h6 class="heading-small text-muted mb-4">User information</h6>
       <div class="pl-lg-4">
            <div class="mb-2">
-             <b-avatar size="20rem"></b-avatar>
+             <label>Profile Image <b-avatar size="20rem"></b-avatar></label>
             </div>
 
            
@@ -27,8 +27,8 @@
 
         <b-row>  
             <b-form-file
-             v-model="imageData"
-             :state="Boolean(imageData)"
+             v-model="user.imageData"
+             :state="Boolean(user.imageData)"
              placeholder="Choose a prorfile image or drop it here..."
              drop-placeholder="Drop file here..."
              ></b-form-file>
