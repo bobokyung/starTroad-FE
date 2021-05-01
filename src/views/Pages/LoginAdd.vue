@@ -5,30 +5,23 @@
         <h3 class="mb-0">Make profile </h3>
       </b-col>
       <b-col cols="4" class="text-right">
-        <a href="/home" class="btn btn-sm btn-primary">Finish</a>
+        <a href="#dashboard" class="btn btn-sm btn-primary">Finish</a>
       </b-col>
     </b-row>
 
     <b-form @submit.prevent="updateProfile">
       <h6 class="heading-small text-muted mb-4">User information</h6>
       <div class="pl-lg-4">
-           <div class="mb-2">
-             <b-avatar size="20rem"></b-avatar>
-            </div>
-
-           
-
-
-
-
-           
-
-
+          
 
         <b-row>  
-            <b-form-file
-             v-model="imageData"
-             :state="Boolean(imageData)"
+           <label>Profile Image <b-avatar size="20rem"></b-avatar></label>
+
+        
+
+           <b-form-file
+             v-model="user.imageData"
+             :state="Boolean(user.imageData)"
              placeholder="Choose a prorfile image or drop it here..."
              drop-placeholder="Drop file here..."
              ></b-form-file>
@@ -135,6 +128,26 @@ export default {
       }
     };
   },
+  methods: {
+        previewImage: function(event) {
+            // Reference to the DOM input element
+            var input = event.target;
+            // Ensure that you have a file before attempting to read it
+            if (input.files && input.files[0]) {
+                // create a new FileReader to read this image and convert to base64 format
+                var reader = new FileReader();
+                // Define a callback function to run, when FileReader finishes its job
+                reader.onload = (e) => {
+                    // Note: arrow function used here, so that "this.imageData" refers to the imageData of Vue component
+                    // Read image as base64 and set to imageData
+                    user.imageData = e.target.result;
+                }
+                // Start the reader job - read file as a data url (base64 format)
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    }
+
   
   
   

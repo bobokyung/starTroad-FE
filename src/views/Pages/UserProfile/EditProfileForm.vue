@@ -5,7 +5,7 @@
         <h3 class="mb-0">Edit profile </h3>
       </b-col>
       <b-col cols="4" class="text-right">
-        <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+        <a href="#dashboard" class="btn btn-sm btn-primary">Settings</a>
       </b-col>
     </b-row>
 
@@ -13,6 +13,16 @@
       <h6 class="heading-small text-muted mb-4">User information</h6>
 
       <div class="pl-lg-4">
+        <b-row>  
+            <label>Profile Image <b-avatar size="20rem"></b-avatar></label>
+            <b-form-file
+             v-model="user.imageData"
+             :state="Boolean(user.imageData)"
+             placeholder="Choose a prorfile image or drop it here..."
+             drop-placeholder="Drop file here..."
+             ></b-form-file>
+        </b-row>
+
         <b-row>
           <b-col lg="6">
             <base-input
