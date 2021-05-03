@@ -5,7 +5,7 @@
         <h3 class="mb-0">Edit profile </h3>
       </b-col>
       <b-col cols="4" class="text-right">
-        <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+        <div class="btn btn-sm btn-primary" @click="gotoHome()">Settings</div>
       </b-col>
     </b-row>
 
@@ -14,13 +14,13 @@
 
       <div class="pl-lg-4">
         <div class="mb-2">
-             <b-avatar size="20rem"></b-avatar>
+           <label>Profile Image <b-avatar size="20rem"></b-avatar></label>
             </div>
 
         <b-row>  
             <b-form-file
-             v-model="imageData"
-             :state="Boolean(imageData)"
+             v-model="user.imageData"
+             :state="Boolean(user.imageData)"
              placeholder="Choose a prorfile image or drop it here..."
              drop-placeholder="Drop file here..."
              ></b-form-file>
@@ -129,9 +129,16 @@ export default {
   methods: {
     updateProfile() {
       alert('Your data: ' + JSON.stringify(this.user));
+    },
+    gotoHome(){
+      this.$router.push({path:'/dashboard'})
     }
     
   }
 };
 </script>
-<style></style>
+<style scoped>
+.btn{
+  cursor : pointer;
+}
+</style>
