@@ -51,6 +51,10 @@ const routes = [
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalkList.vue'),
           },
           {
+            path : "talk/talk_add",
+            component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalkAdd.vue'),
+          },
+          {
             path : "talk/:talk_id",
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalk.vue'),
           },
