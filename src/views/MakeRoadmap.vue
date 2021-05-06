@@ -18,15 +18,25 @@
       </b-row>
 
       <b-row class="justify-content-center">
-          <b-col lg="12" class="title-content-container">
-            <b-form>
-              <b-form-input class="form title" label="TITLE"
-              v-model="form.title" placeholder="로드맵의 제목을 입력해주세요">
-              </b-form-input>
-              <b-form-input class="form content"
-              v-model="form.content" placeholder="로드맵의 콘텐츠를 입력해주세요">
-              </b-form-input>
-            </b-form>
+          <b-col lg="6" class="title-content-container">            
+            <b-form-input class="form title" label="TITLE"
+            v-model="form.title" placeholder="로드맵의 제목을 입력해주세요">
+            </b-form-input>
+          </b-col>
+          <b-col lg="3" class="title-content-container">            
+            <b-form-input class="form title" label="TITLE"
+            v-model="form.img" placeholder="로드맵의 썸네일 이미지 링크를 입력해주세요">
+            </b-form-input>
+          </b-col>
+          <b-col lg ="3" class="title-content-container">
+            <b-form-select v-model="selected" class="from content"
+            placeholder="카테코리를 선택해주세요"
+            :options="options"></b-form-select>
+          </b-col>
+          <b-col class="title-content-container">
+            <b-form-input class="form content"
+            v-model="form.content" placeholder="로드맵의 콘텐츠를 입력해주세요">
+            </b-form-input>
           </b-col>
           <b-col lg="12" class="roadmap-container">
             <b-tabs content-class="mt-3" fill>
@@ -59,10 +69,17 @@ export default {
       form : {
         title : "",
         content : "",
+        img : "",
         category: "",
       },
       isActive : false,
       likeNum : 0,
+      selected : null,
+      options: [
+        { value: "CS", text: 'Computer Science' },
+        { value: "MATH", text: 'Mathematics' },
+        { value: "STATS", text: 'Statistics' },
+      ]
     }
   },
   computed :{
@@ -108,11 +125,11 @@ export default {
 }
 .justify-content-center{
   padding : 0;
+  .form{
+    height : 45px !important;
+  }
   .title-content-container{
- 
-    .form{
-      height : 45px;
-    }
+    padding: 0;
   }
   .roadmap-container{
     padding: 0;
