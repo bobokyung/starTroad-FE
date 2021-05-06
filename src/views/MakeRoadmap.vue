@@ -5,7 +5,29 @@
     </base-header>
 
     <b-container fluid class="mt--7">
+      <b-row>
+        <div class = "header-info-container">
+          <div class="fork-like-container">
+            <!-- fork과 like에 관한 conatiner임 -->
+            <b-button @click="pushHeart()">
+              <span :class="{heart:isActive}">❤ {{likeNum}}</span>
+            </b-button>
+            <b-button variant="warning" @click="forkRoadmap()">포크하기</b-button>
+          </div>
+        </div>
+      </b-row>
+
       <b-row class="justify-content-center">
+          <b-col lg="12" class="title-content-container">
+            <b-form>
+              <b-form-input class="form title" label="TITLE"
+              v-model="form.title" placeholder="로드맵의 제목을 입력해주세요">
+              </b-form-input>
+              <b-form-input class="form content"
+              v-model="form.content" placeholder="로드맵의 콘텐츠를 입력해주세요">
+              </b-form-input>
+            </b-form>
+          </b-col>
           <b-col lg="12" class="roadmap-container">
             <b-tabs content-class="mt-3" fill>
               <b-tab class="tab" title="MAP" active>
@@ -34,10 +56,29 @@ export default {
   },
   data(){
     return {
-
+      form : {
+        title : "",
+        content : "",
+        category: "",
+      },
+      isActive : false,
+      likeNum : 0,
     }
   },
+  computed :{
+
+  },
   methods:{
+    forkRoadmap(){
+      // 추가
+    },
+    pushHeart(){
+      this.likeNum++;
+      this.isActive = !this.isActive
+    },
+    onSubmit(event){
+      event.preventDefault()
+    },
   },
   mounted(){
 
@@ -46,7 +87,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header-info-container{
+  display:flex;
+  flex-wrap : wrap;
+  margin : 0 0 20px 0;
+  justify-content : space-between;
+  width : 100%;
+  .form-container{
+    width : 100px;
+    height : 30px;
+    border : 1px solid blue;
+  }
+  .fork-like-container{
+    margin-left: auto;
+    .heart{
+      color : red !important;
+    }
+  
+  }
+}
 .justify-content-center{
+  padding : 0;
+  .title-content-container{
+ 
+    .form{
+      height : 45px;
+    }
+  }
   .roadmap-container{
     padding: 0;
     width : 100%;
