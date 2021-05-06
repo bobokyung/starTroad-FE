@@ -3,9 +3,7 @@
        <!-- BootstrapVue Done -->
     <base-header class="pb-6 pb-8 pt-5 pt-md-8">
       <!-- Card stats -->
-      <font class="subtitle-home">
-        Computer Science <hr>
-      </font>
+      
       <b-row>
         <b-col xl="3" md="6">
         <b-card

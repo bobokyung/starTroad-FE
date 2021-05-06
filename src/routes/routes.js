@@ -27,13 +27,13 @@ const requireAuth = () => (from, to, next) => {
 const routes = [
   {
     path: '/',
-    redirect: 'dashboard',
+    redirect: 'home',
     component: DashboardLayout,
     beforeEnter : requireAuth(),
     children: [
       {
-        path: '/dashboard',
-        name: 'dashboard',
+        path: '/home',
+        name: 'home',
         beforeEnter : requireAuth(),
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route

@@ -100,7 +100,7 @@ export default {
   methods: {
     logOut(){
       store.dispatch("LOGOUT").then(() => {
-        this.$router.go('/dashboard')
+        this.$router.go('/home')
       })
     },
     goProfile(){
