@@ -91,7 +91,13 @@ const routes = [
         path: '/mystudy',
         name: 'mystudy',
         component: () => import(/* webpackChunkName: "demo" */ '../views/RegularTables.vue')
+      },
+      {
+        path: '/search',
+        name: 'search',
+        component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapSearch.vue')
       }
+      
     ]
   },
   {
