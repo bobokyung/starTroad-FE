@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <b-card no-body class="card-profile" alt="Image placeholder" img-top>
     <b-row class="justify-content-center">
       <b-col lg="3" class="order-lg-2">
@@ -12,7 +12,7 @@
 
     <b-card-header class="text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
       <div class="d-flex justify-content-between">
-       <!-- <a href="#" class="btn btn-sm btn-default float-right">Message</a>-->
+        <a href="#" class="btn btn-sm btn-default float-right">Message</a>
       </div>
     </b-card-header>
 
@@ -56,3 +56,4 @@
 export default {};
 </script>
 <style></style>
+-->
