@@ -13,7 +13,7 @@
       <h6 class="heading-small text-muted mb-4">User information</h6>
 
       <div class="pl-lg-4">
-        <div class="mb-2">
+        <!--프로필 이미지 주석 <div class="mb-2">
            <label>Profile Image <b-avatar size="20rem"></b-avatar></label>
             </div>
 
@@ -25,6 +25,7 @@
              drop-placeholder="Drop file here..."
              ></b-form-file>
         </b-row>
+        -->
 
 
 
@@ -42,7 +43,7 @@
             <base-input
               type="email"
               label="Email address"
-              placeholder="mike@email.com"
+              placeholder="email@email.com"
               v-model="user.email"
             >
             </base-input>
@@ -62,7 +63,7 @@
             <base-input
               type="text"
               label="Major"
-              placeholder="CS"
+              placeholder="major"
               v-model="user.major"
             >
             </base-input>
@@ -98,7 +99,7 @@
       <div class="pl-lg-4">
         <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
          <!--  <label class="form-control-label">About Me</label> -->
-          <b-form-textarea rows="4" value="Hello!." id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+          <b-form-textarea rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
         </b-form-group>
       </div>
 
@@ -113,16 +114,16 @@ export default {
         imageData:'',
 
 
-        values: ['computer', 'science'],
-        company: 'Creative Code Inc.',
-        userid: 'michael23',
+        values: [''],
+        company: '',
+        userid: '',
         email: '',
-        name: 'Mike',
+        name: '',
         major:'',
 
         birth: '',
         postalCode: '',
-        aboutMe: `Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
+        aboutMe: ``
       }
     };
   },
