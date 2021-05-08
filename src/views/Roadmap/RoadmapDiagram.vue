@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div id="toolbar">
+    <div v-if="!isMine" id="toolbar">
       <b-button variant="primary"
         @click="
           $refs.chart.add({
@@ -61,19 +61,30 @@ export default {
     NodeDialog,
     Flowchart,
   },
+  props : {
+    isMine : {
+      required : true,
+    }
+  },
   data: function () {
     return {
       nodes : [{"id":1620458696407,"x":10,"y":10,"name":"새로 만들기","type":"operation","approvers":[],"width":120,"height":60,"appovers":"로드맵 생성"}],
       connections : [],
-     
       nodeForm: { target: null },
       connectionForm: { target: null, operation: null },
       nodeDialogVisible: false,
       connectionDialogVisible: false,
     };
   },
-  async mounted() {},
   methods: {
+    reshapeData(){
+      let information = this.$store.state.information
+      let rawdata = JSON.parse(information)
+      
+      this.nodes = rawdata[0]
+      this.connections = rawdata[1]
+
+    },
     handleDblClick(position) {
       this.$refs.chart.add({
         id: +new Date(),
@@ -212,6 +223,13 @@ export default {
           }
         });
     },
+  },
+  mounted(){
+    
+
+  },
+  created(){
+    this.reshapeData()
   },
 };
 </script>

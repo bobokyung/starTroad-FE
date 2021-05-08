@@ -18,7 +18,7 @@
             <b-button @click="pushHeart()">
               <span :class="{heart:isActive}">❤ {{likeNum}}</span>
             </b-button>
-            <b-button variant="warning" @click="forkRoadmap()">포크하기</b-button>
+            <b-button v-if="isMine" variant="warning" @click="forkRoadmap()">포크하기</b-button>
           </div>
         </div>
       </b-row>
@@ -26,7 +26,7 @@
           <b-col lg="12" class="roadmap-container">
             <b-tabs v-model="tabIndex" content-class="mt-3" fill>
                 <b-tab class="tab" title="MAP" @click="navigate(``)">
-                    <RoadmapDiagram></RoadmapDiagram>
+                    <RoadmapDiagram :isMine="isMine"></RoadmapDiagram>
                 </b-tab>
                 <b-tab class="tab" title="detail" @click="navigate(`detail`)">
                     <router-view></router-view>
@@ -50,6 +50,8 @@ export default {
   },
   data(){
     return {
+        roadmap : null,
+        isMine : true,
         likeNum : 0,
         isActive : false,
         roadmapTitle : "프론트 개발자의 기본기 기르기",
@@ -60,7 +62,18 @@ export default {
   methods:{
       pushHeart(){
         this.isActive = !this.isActive
-    },
+      },
+      getRoadmap(){
+        this.$store.dispatch('getRoadmap')
+        .then(()=>{
+          this.roadmap = this.$store.state.roadmap
+          // 이
+        })
+        .catch((error)=>{
+
+        })
+      },
+    
       navigate(route){
           //console.log("clicked")
           let id = this.$route.params.id

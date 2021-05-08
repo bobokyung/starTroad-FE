@@ -48,6 +48,8 @@
 <script>
 import RoadmapDiagram from "../views/Roadmap/RoadmapDiagram"
 import RoadmapDetail from "../views/Roadmap/RoadmapDetail"
+import Api from '@/api/Api'
+
 export default {
   components : {
     RoadmapDiagram,
@@ -55,7 +57,6 @@ export default {
   },
   data(){
     return {
-      
       form : {
         title : "",
         content : "",
@@ -76,6 +77,26 @@ export default {
 
   },
   methods:{
+    saveRoadmap(){
+      let description = this.$store.state.roadmap.description
+      let information = this.$store.state.roadmap.information
+
+      let body = {
+        name : this.form.title,
+        summary : this.form.content,
+        tag : this.form.category,
+        img : this.form.image,
+        description : description,
+        information : information,
+      }
+      Api.makeRoadmap(body)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((error) => {
+        
+      })
+    },
     forkRoadmap(){
       // 추가
     },

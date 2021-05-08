@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import { BIconNodePlusFill } from 'bootstrap-vue'
+import Api from '@/api/Api'
 
 Vue.use(Vuex)
-
 const resourceHost = 'http://localhost:3000/api'
 
 const enhanceAccessToeken = () => {
@@ -15,7 +16,9 @@ enhanceAccessToeken()
 
 export default new Vuex.Store({
   state: {
-    accessToken: null
+    accessToken: null,
+    roadmap : null,
+
   },
   getters: {
     isAuthenticated (state) {
@@ -31,6 +34,9 @@ export default new Vuex.Store({
     LOGOUT (state) {
       state.accessToken = null
       delete localStorage.accessToken
+    },
+    getRoadmap(state, {roadmap}){
+      state.roadmap = roadmap
     }
   },
   actions: {
@@ -46,5 +52,18 @@ export default new Vuex.Store({
       axios.defaults.headers.common['Authorization'] = undefined
       commit('LOGOUT')
     },
+    getRoadmap({commit}, roadmap_id){
+      return Api.getRoadmap(roadmap_id)
+      .then((res) => {
+        
+        commit('getRoadmap', roadmap)
+      })
+      .catch((error) => {
+
+      })
+
+    }
+
+
   }
 })

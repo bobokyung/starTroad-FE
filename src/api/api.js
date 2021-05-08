@@ -1,7 +1,7 @@
 // 파일경로: src/api/api.js
 
 // 작성한 axios 인터셉터를 가져옵니다.
-import Send from '../util/send.js'
+import Send from '../util/Send.js'
 
 //params나 query는 모두 javascript object 형태로 넘겨줘야 합니다.
 
@@ -28,7 +28,7 @@ export default {
     getHome(user_id){
         //홈화면
         return Send({
-            url: `/home/${user_id}`,
+            url: `/home`,
             method: 'get'
         })
     },
