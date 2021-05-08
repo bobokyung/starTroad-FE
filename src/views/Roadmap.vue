@@ -15,9 +15,11 @@
           </div>
           <div class="fork-like-container">
             <!-- fork과 like에 관한 conatiner임 -->
+            <!--
             <b-button @click="pushHeart()">
               <span :class="{heart:isActive}">❤ {{likeNum}}</span>
             </b-button>
+            -->
             <b-button v-if="isMine" variant="warning" @click="forkRoadmap()">포크하기</b-button>
           </div>
         </div>
@@ -41,6 +43,7 @@
   </div>
 </template>
 <script>
+import Api from '@/api/Api'
 import RoadmapDiagram from "../views/Roadmap/RoadmapDiagram"
 import RoadmapDetail from "../views/Roadmap/RoadmapDetail"
 export default {
@@ -60,6 +63,15 @@ export default {
     }
   },
   methods:{
+      forkRoadmap(){
+        let data = {
+          id : this.roadmap.id
+        }
+        Api.forkRoadmap(data)
+        .then((res)=>{
+          console.log(res)
+        })
+      },
       pushHeart(){
         this.isActive = !this.isActive
       },

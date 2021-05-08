@@ -94,7 +94,7 @@ export default {
             data : data
         })
     },
-    forkRoadmap(){
+    forkRoadmap(data){
         //로드맵 포크
         return Send({
             url : `/roadmap/fork`,

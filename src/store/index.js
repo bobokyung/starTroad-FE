@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import { BIconNodePlusFill } from 'bootstrap-vue'
-import Api from '@/api/Api'
+import Api from '../api/Api'
 
 Vue.use(Vuex)
 const resourceHost = 'http://localhost:3000/api'
