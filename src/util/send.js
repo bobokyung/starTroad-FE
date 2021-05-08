@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 
+
 /*
     axios 인스턴스를 생성합니다.
     생성할때 사용하는 옵션들 (baseURL, timeout, headers 등)은 다음 URL에서 확인할 수 있습니다.
@@ -10,8 +11,7 @@ import axios from 'axios'
 const instance = axios.create({
     baseURL: 'http://www.startroad.net/api',
     timeout: 1000
-    // 해커 뉴스 API는 커스텀 헤더 넣으면 CORS걸려서 주석처리했습니다.
-    // headers: {'X-Custom-Header': 'foobar'}
+
   });
 
 /*
@@ -25,6 +25,7 @@ instance.interceptors.request.use(
     function (config) {
         // 요청 바로 직전
         // axios 설정값에 대해 작성합니다.
+        config.headers.Authorization = store.state.accessToken
         return config;
     }, 
     function (error) {

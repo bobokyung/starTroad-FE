@@ -37,7 +37,7 @@
                 </a>
               </div>
             </b-card-header>
-            <b-card-body class="px-lg-5 py-lg-5">
+            <!-- <b-card-body class="px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
                 <small>Or sign in with credentials</small>
               </div>
@@ -68,16 +68,16 @@
                   </div>
                 </b-form>
               </validation-observer>
-            </b-card-body>
+            </b-card-body> -->
           </b-card>
-          <b-row class="mt-3">
+          <!-- <b-row class="mt-3">
             <b-col cols="6">
               <router-link to="/home" class="text-light"><small>Forgot password?</small></router-link>
             </b-col>
             <b-col cols="6" class="text-right">
               <router-link to="/register" class="text-light"><small>Create new account</small></router-link>
             </b-col>
-          </b-row>
+          </b-row> -->
         </b-col>
       </b-row>
     </b-container>

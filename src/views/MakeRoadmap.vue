@@ -5,17 +5,6 @@
     </base-header>
 
     <b-container fluid class="mt--7">
-      <b-row>
-        <div class = "header-info-container">
-          <div class="fork-like-container">
-            <!-- fork과 like에 관한 conatiner임 -->
-            <b-button @click="pushHeart()">
-              <span :class="{heart:isActive}">❤ {{likeNum}}</span>
-            </b-button>
-            <b-button variant="warning" @click="forkRoadmap()">포크하기</b-button>
-          </div>
-        </div>
-      </b-row>
 
       <b-row class="justify-content-center">
           <b-col lg="6" class="title-content-container">            
@@ -66,6 +55,7 @@ export default {
   },
   data(){
     return {
+      
       form : {
         title : "",
         content : "",
@@ -99,6 +89,9 @@ export default {
   },
   mounted(){
 
+  },
+  created(){
+    
   }
 };
 </script>

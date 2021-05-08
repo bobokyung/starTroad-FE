@@ -28,13 +28,13 @@
                 icon: 'ni ni-pin-3 text-orange'
               }">
         </sidebar-item>
-        <sidebar-item
+        <!-- <sidebar-item
                 :link="{
                   name: '나의 스터디',
                   path: '/mystudy',
                   icon: 'ni ni-bullet-list-67 text-red'
                 }">
-        </sidebar-item>
+        </sidebar-item> -->
         
         
       </template>

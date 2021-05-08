@@ -29,12 +29,12 @@ const routes = [
     path: '/',
     redirect: 'home',
     component: DashboardLayout,
-    beforeEnter : requireAuth(),
+    //beforeEnter : requireAuth(),
     children: [
       {
         path: '/home',
         name: 'home',
-        beforeEnter : requireAuth(),
+        //beforeEnter : requireAuth(),
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
@@ -43,7 +43,7 @@ const routes = [
       {
         path: '/roadmap/:id',
         name: 'roadmap',
-        beforeEnter : requireAuth(),
+        //beforeEnter : requireAuth(),
         component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap.vue'),
         children : [
           {
