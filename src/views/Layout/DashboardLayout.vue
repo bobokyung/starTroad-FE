@@ -6,7 +6,7 @@
         <sidebar-item
           :link="{
             name: 'Home',
-            path: '/dashboard',
+            path: '/home',
             icon: 'ni ni-tv-2 text-primary',
           }"
         >

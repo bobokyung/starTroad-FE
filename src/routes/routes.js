@@ -27,13 +27,13 @@ const requireAuth = () => (from, to, next) => {
 const routes = [
   {
     path: '/',
-    redirect: 'dashboard',
+    redirect: 'home',
     component: DashboardLayout,
     beforeEnter : requireAuth(),
     children: [
       {
-        path: '/dashboard',
-        name: 'dashboard',
+        path: '/home',
+        name: 'home',
         beforeEnter : requireAuth(),
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -51,6 +51,10 @@ const routes = [
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalkList.vue'),
           },
           {
+            path : "talk/talk_add",
+            component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalkAdd.vue'),
+          },
+          {
             path : "talk/:talk_id",
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalk.vue'),
           },
@@ -61,6 +65,10 @@ const routes = [
           {
             path : "study",
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapStudy.vue'),
+          },
+          {
+            path : "study/study_add",
+            component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapStudyAdd.vue'),
           }
         ]
       },

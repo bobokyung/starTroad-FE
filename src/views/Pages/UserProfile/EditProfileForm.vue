@@ -131,7 +131,7 @@ export default {
       alert('Your data: ' + JSON.stringify(this.user));
     },
     gotoHome(){
-      this.$router.push({path:'/dashboard'})
+      this.$router.push({path:'/home'})
     }
     
   }

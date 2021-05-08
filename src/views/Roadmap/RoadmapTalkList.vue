@@ -39,6 +39,9 @@
             <base-pagination v-model="currentPage" :per-page="10" :total="50"></base-pagination>
         </b-card-footer>
     </b-card>
+    <b-card class="text-right">
+        <div class="btn btn-sm btn-primary" @click="gotoContents()">add</div>
+    </b-card>
   </b-container>
 </template>
 
@@ -95,8 +98,12 @@ export default {
       let roadmap_id = 1
       let talk_id = this.currentRow.id
       this.$router.push({path:`/roadmap/${roadmap_id}/talk/${talk_id}`})
+    },
+    gotoContents(){
+      this.$router.push({path:'/roadmap/${roadmap_id}/talk/talk_add'})
     }
   },
+  
   computed: {
 
   },
@@ -124,5 +131,8 @@ export default {
 
 .el-table{
   cursor: pointer;
+}
+.btn{
+  cursor : pointer;
 }
 </style>
