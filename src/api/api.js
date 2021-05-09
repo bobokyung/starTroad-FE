@@ -25,11 +25,11 @@ export default {
                 method: 'get'
             })
     },
-    googleLogin(){
-        console.log("asdfff")
+    googleLogin(data){
         return Send({
             url : `/auth/google`,
-            method : 'get'
+            method : 'post',
+            data : data
         })
     },
     getHome(){

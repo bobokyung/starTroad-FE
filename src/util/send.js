@@ -25,7 +25,10 @@ instance.interceptors.request.use(
     function (config) {
         // 요청 바로 직전
         // axios 설정값에 대해 작성합니다.
-        config.headers.Authorization = store.state.accessToken
+        config.withCredentials = true
+        config.headers["Access-Control-Allow-Origin"] = '*'
+        config.headers["Authorization"] = `Bearer ${store.state.accessToken}`
+        
         return config;
     }, 
     function (error) {

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import { BIconNodePlusFill } from 'bootstrap-vue'
 import Api from '../api/Api'
+import GAuth from 'vue-google-oauth2'
 
 Vue.use(Vuex)
 const resourceHost = 'https://startroad.me/api'
@@ -45,19 +46,28 @@ export default new Vuex.Store({
   },
   actions: {
     GOOGLELOGIN({commit}){
-      /*
-      axios.get(`${resourceHost}/google/auth/login`,)
-      .then((res)=>{
-        console.log(res)
+      this.$gAuth.getAuthCode()
+      .then((authCode)=>{
+        return this.$http.post('https://startroad.me/auth/google', { code: authCode, redirect_uri: 'postmessage' })
       })
-      */
-      return Api.googleLogin()
-      .then((res) =>{
+      .then((res)=>{
 
       })
       .catch((err) => {
         console.log(err)
       })
+      
+      /*
+      return Api.googleLogin()
+      .then((res) =>{
+        alert(res)
+        console.log("Asdf")
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      */
       
       
     },

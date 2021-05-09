@@ -31,54 +31,15 @@
                   <span class="btn-inner--icon"><img src="img/icons/common/github.svg"></span>
                   <span class="btn-inner--text">Github</span>
                 </a>github로그인-->
+                <!--https://startroad.me/api/auth/google -->
+                <!-- javascript:void(0) -->
                 <a href="javascript:void(0)" @click="googleLogin()" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"><img src="img/icons/common/google.svg"></span>
                   <span class="btn-inner--text">Google</span>
                 </a>
-                <b-button @click="googleLogin()">google</b-button>
               </div>
             </b-card-header>
-            <!-- <b-card-body class="px-lg-5 py-lg-5">
-              <div class="text-center text-muted mb-4">
-                <small>Or sign in with credentials</small>
-              </div>
-              <validation-observer v-slot="{handleSubmit}" ref="formValidator">
-                <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
-                  <base-input alternative
-                              class="mb-3"
-                              name="Email"
-                              :rules="{required: true, email: true}"
-                              prepend-icon="ni ni-email-83"
-                              placeholder="email"
-                              v-model="model.email">
-                  </base-input>
-
-                  <base-input alternative
-                              class="mb-3"
-                              name="Password"
-                              :rules="{required: true, min: 6}"
-                              prepend-icon="ni ni-lock-circle-open"
-                              type="password"
-                              placeholder="password"
-                              v-model="model.password">
-                  </base-input>
-
-                  <b-form-checkbox v-model="model.rememberMe">Remember me</b-form-checkbox>
-                  <div class="text-center">
-                    <base-button type="primary" native-type="submit" class="my-4">Sign in</base-button>
-                  </div>
-                </b-form>
-              </validation-observer>
-            </b-card-body> -->
           </b-card>
-          <!-- <b-row class="mt-3">
-            <b-col cols="6">
-              <router-link to="/home" class="text-light"><small>Forgot password?</small></router-link>
-            </b-col>
-            <b-col cols="6" class="text-right">
-              <router-link to="/register" class="text-light"><small>Create new account</small></router-link>
-            </b-col>
-          </b-row> -->
         </b-col>
       </b-row>
     </b-container>
@@ -97,12 +58,21 @@
     },
     methods: {
       googleLogin(){
-        this.$store.dispatch("GOOGLELOGIN")
-        .then((res)=>{
-          console.log(res)
+        console.log("asdf")
+        this.$gAuth.getAuthCode()
+        .then(authCode => {
+          console.log(authCode)
+          return this.$axios.get('https://startroad.me/api/google/token', 
+          { code: authCode, redirect_uri: 'postmessage' })
         })
-        .catch((error)=>{
+        .then(response => {
+          //and then
+          console.log(response)
+        })
+        .catch(error => {
+          console.log("asdfasdf")
           console.log(error)
+          //on fail do something
         })
       },
       onSubmit() {
