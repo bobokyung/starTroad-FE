@@ -87,6 +87,7 @@ export default {
     togglePreview(){
       this.viewToggle = !this.viewToggle
       this.toggleContent = this.viewToggle ? "미리보기" : "수정하기"
+      console.log(this.content)
     },
     onEditorChange: debounce(function(value) {
       this.content = value.html
@@ -111,6 +112,7 @@ export default {
   },
   mounted() {
     console.log('this is Quill instance:', this.editor)
+    console.log(this.content)
   }
   
 };

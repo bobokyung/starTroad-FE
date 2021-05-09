@@ -12,7 +12,7 @@
     <b-form @submit.prevent="updateProfile">
       <h6 class="heading-small text-muted mb-4">User information</h6>
       <div class="pl-lg-4">
-           <div class="mb-2">
+           <!--<div class="mb-2">
              <label>Profile Image <b-avatar size="20rem"></b-avatar></label>
             </div>
 
@@ -26,7 +26,7 @@
              placeholder="Choose a prorfile image or drop it here..."
              drop-placeholder="Drop file here..."
              ></b-form-file>
-        </b-row>
+        </b-row>-->
 
         <b-row>
           <b-col lg="6">
@@ -42,7 +42,7 @@
             <base-input
               type="email"
               label="Email address"
-              placeholder="mike@email.com"
+              placeholder="email@email.com"
               v-model="user.email"
             >
             </base-input>
@@ -62,7 +62,7 @@
             <base-input
               type="text"
               label="Major"
-              placeholder="CS"
+              placeholder="major"
               v-model="user.major"
             >
             </base-input>
@@ -101,7 +101,7 @@
       <div class="pl-lg-4">
         <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
          <!--  <label class="form-control-label">About Me</label> -->
-          <b-form-textarea rows="4" value="Hello!." id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+          <b-form-textarea rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
         </b-form-group>
       </div>
 
