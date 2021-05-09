@@ -215,7 +215,7 @@ export default {
   created(){
     Api.getHome()
     .then((res)=>{
-      
+      console.log(res)
     })
     .catch((error) => {
 

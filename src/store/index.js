@@ -12,6 +12,7 @@ const enhanceAccessToeken = () => {
   const {accessToken} = localStorage
   if (!accessToken) return
   axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+  axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrc3I5NzAzMzBAZ21haWwuY29tIiwiZXhwIjoxNjIwNTQyODE4LCJpYXQiOjE2MjA1MjQ4MTh9.QSIS9FcoTPh1zbRDaj34T2c1Am4iFxKUHq2vr_RRwHfA_nPp9U3hxqpZJjFXjE6TQEG8xsRnLxQy5AVRS5p84g`
 }
 enhanceAccessToeken()
 

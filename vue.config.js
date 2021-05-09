@@ -7,7 +7,13 @@ function resolveSrc(_path) {
 module.exports = {
   devServer: {
     // 프록시 설정
-    
+    proxy : "https://startroad.me/api"
+    /*
+    proxy : {
+      target : "https://startroad.me"
+    },
+    */
+    /*
     proxy: {
         // 프록시 요청을 보낼 api의 시작 부분
         '/api': {
@@ -17,6 +23,7 @@ module.exports = {
 
         }
     }
+    */
     
   },
   lintOnSave: true,

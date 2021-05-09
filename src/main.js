@@ -33,6 +33,7 @@ Vue.use(GAuth, {clientId: '839833191140-ljb88b6pkr5qebo9ogsp7gh64e82shvd.apps.go
 //axios setup
 Vue.prototype.$axios = axios
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.common['Access-Control-Allow-Headers'] = "*";
 
 /* eslint-disable no-new */
 new Vue({
