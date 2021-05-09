@@ -55,25 +55,25 @@ export default {
       myComment : "",
       sample : {
         "id" : 1,
-        "title" : "A 내용 추가해주세요",
+        "title" : "css 내용 추가해주세요",
         "author" : "sr",
         "created_at" : "2021-03-25 17:22:33",
-        "content" : "A 내용이 상당히 중요해보여요 로드맵에 추가가 필요합니다.",
+        "content" : "css 내용이 상당히 중요해보여요 로드맵에 추가가 필요합니다.",
         "comments" : [
             {
                 "author" : "sr2",
                 "created_at" : "2021-03-25 17:22:33",
-                "content" : "그 내용은 더이상 쓰이지 않는 기술입니다."
+                "content" : "기본 css보다는 scss나 sass tilwind css 구조가 더 중요해보입니다."
             },
             {
                 "author" : "sr3",
                 "created_at" : "2021-03-25 17:22:33",
-                "content" : "그 내용은 더이상 쓰이지 않는 기술입니다."
+                "content" : "css에 대해서는 모던 css내용을 넣는것이 좋아보입니다."
             },
             {
                 "author" : "sr4",
                 "created_at" : "2021-03-25 17:22:33",
-                "content" : "그 내용은 더이상 쓰이지 않는 기술입니다.",
+                "content" : "css 탬플릿부분도 강조해야합니다.",
             }
         ]
       }

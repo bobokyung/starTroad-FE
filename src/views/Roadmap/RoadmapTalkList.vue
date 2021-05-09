@@ -68,19 +68,19 @@ export default {
       currentPage : 1,
       talkLists :[
         {   
-            "title" : "A 내용 추가해주세요",
+            "title" : "CSS 내용 추가해주세요",
             "id" : 1,
             "author" : "sr",
             "created_at" : "2021-03-25 17:22:33"
         },
         {
-            "title" : "b 내용 삭제해주세요",
+            "title" : "REDUX 내용 삭제해주세요",
             "id" : 2,
             "author" : "es",
             "created_at" : "2021-03-27 17:22:33"
         },
         {
-            "title" : "c 내용 추가해주세요",
+            "title" : "WEBPACK 내용 추가해주세요",
             "id" : 3,
             "author" : "bk",
             "created_at" : "2021-03-28 17:22:33"
