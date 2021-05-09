@@ -31,10 +31,11 @@
                   <span class="btn-inner--icon"><img src="img/icons/common/github.svg"></span>
                   <span class="btn-inner--text">Github</span>
                 </a>github로그인-->
-                <a href="#" class="btn btn-neutral btn-icon">
+                <a href="javascript:void(0)" @click="googleLogin()" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"><img src="img/icons/common/google.svg"></span>
                   <span class="btn-inner--text">Google</span>
                 </a>
+                <b-button @click="googleLogin()">google</b-button>
               </div>
             </b-card-header>
             <!-- <b-card-body class="px-lg-5 py-lg-5">
@@ -95,6 +96,15 @@
       };
     },
     methods: {
+      googleLogin(){
+        this.$store.dispatch("GOOGLELOGIN")
+        .then((res)=>{
+          console.log(res)
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
+      },
       onSubmit() {
         let email = this.model.email
         let password = this.model.password

@@ -1,7 +1,7 @@
-// 파일경로: src/utils/send.js
+// 파일경로: src/utils/Send.js
 
 import axios from 'axios'
-
+import store from '../store/index'
 
 /*
     axios 인스턴스를 생성합니다.
@@ -9,7 +9,7 @@ import axios from 'axios'
     https://github.com/axios/axios 의 Request Config 챕터 확인
 */
 const instance = axios.create({
-    baseURL: 'http://www.startroad.net/api',
+    baseURL: 'https://startroad.me/api',
     timeout: 1000
 
   });
@@ -45,6 +45,7 @@ instance.interceptors.request.use(
 */
 instance.interceptors.response.use(
     function (response) {
+        console.log(response)
     /*
         http status가 200인 경우
         응답 바로 직전에 대해 작성합니다. 

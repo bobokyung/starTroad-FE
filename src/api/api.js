@@ -25,7 +25,14 @@ export default {
                 method: 'get'
             })
     },
-    getHome(user_id){
+    googleLogin(){
+        console.log("asdfff")
+        return Send({
+            url : `/auth/google`,
+            method : 'get'
+        })
+    },
+    getHome(){
         //홈화면
         return Send({
             url: `/home`,
@@ -40,18 +47,18 @@ export default {
             data : data
         })
     },
-    editProfile(user_id, data){
+    updateProfile(data){
         //프로필 수정
         return Send({
-            url : `/user/${user_id}`,
+            url : `/user`,
             method : 'put',
             data : data
         })
     },
-    getProfile(user_id){
+    getProfile(){
         //프로필 조회
         return Send({
-            url : `/user/${user_id}`,
+            url : `/user`,
             method : 'get'
         })
     },

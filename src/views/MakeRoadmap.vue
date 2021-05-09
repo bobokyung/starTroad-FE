@@ -67,6 +67,7 @@ export default {
       likeNum : 0,
       selected : null,
       options: [
+        { value: null, text: '카테고리를 선택해주세요' },
         { value: "CS", text: 'Computer Science' },
         { value: "MATH", text: 'Mathematics' },
         { value: "STATS", text: 'Statistics' },
@@ -74,7 +75,7 @@ export default {
     }
   },
   computed :{
-
+    
   },
   methods:{
     saveRoadmap(){

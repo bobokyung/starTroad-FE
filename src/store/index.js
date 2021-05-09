@@ -5,7 +5,7 @@ import { BIconNodePlusFill } from 'bootstrap-vue'
 import Api from '../api/Api'
 
 Vue.use(Vuex)
-const resourceHost = 'http://localhost:3000/api'
+const resourceHost = 'https://startroad.me/api'
 
 const enhanceAccessToeken = () => {
   const {accessToken} = localStorage
@@ -18,9 +18,13 @@ export default new Vuex.Store({
   state: {
     accessToken: null,
     roadmap : null,
+    description : null,
 
   },
   getters: {
+    description(state){
+      return state.description
+    },
     isAuthenticated (state) {
       state.accessToken = state.accessToken || localStorage.accessToken
       return state.accessToken
@@ -40,6 +44,23 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    GOOGLELOGIN({commit}){
+      /*
+      axios.get(`${resourceHost}/google/auth/login`,)
+      .then((res)=>{
+        console.log(res)
+      })
+      */
+      return Api.googleLogin()
+      .then((res) =>{
+
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      
+      
+    },
     LOGIN ({commit}, {email, password}) {
       return axios.post(`${resourceHost}/login`, {email, password})
         .then(({data}) => {

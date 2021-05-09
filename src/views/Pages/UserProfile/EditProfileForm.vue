@@ -26,9 +26,6 @@
              ></b-form-file>
         </b-row>
         -->
-
-
-
         <b-row>
           <b-col lg="6">
             <base-input
@@ -88,9 +85,8 @@
 
       
   <div>
-    <label for="tags-basic">Tag the field of interest and press enter</label>
-    <b-form-tags input-id="tags-basic" v-model="values"></b-form-tags>
-    <p class="mt-2">{{ values }}</p>
+      <b-form-select v-model="selected" class="from content"
+      :options="options"></b-form-select>
   </div>
 
       <hr class="my-4">
@@ -107,34 +103,63 @@
   </card>
 </template>
 <script>
+import Api from '@/api/Api'
+
 export default {
   data() {
     return {
+      selected : null,
+      options: [
+        { value: null, text: '카테고리를 선택해주세요' },
+        { value: "CS", text: 'Computer Science' },
+        { value: "MATH", text: 'Mathematics' },
+        { value: "STATS", text: 'Statistics' },
+      ],
       user: {
         imageData:'',
-
-
         values: [''],
         company: '',
         userid: '',
         email: '',
         name: '',
         major:'',
-
         birth: '',
         postalCode: '',
-        aboutMe: ``
+        aboutMe: ''
       }
     };
   },
   methods: {
-    updateProfile() {
-      alert('Your data: ' + JSON.stringify(this.user));
+    getProfile(){
+      Api.getProfile()
+      .then((res)=>{
+        console.log(res)
+      })
+      .catch((err) => {
+        
+      })
+
+    },
+    updateProfile(data) {
+      //data는 user에 대한 정보일것이다.
+      Api.updateProfile(data)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        
+      })
     },
     gotoHome(){
       this.$router.push({path:'/home'})
     }
     
+  },
+  mounted(){
+    
+  },
+  created(){
+    this.getProfile()
   }
 };
 </script>
