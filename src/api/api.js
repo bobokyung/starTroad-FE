@@ -64,6 +64,13 @@ export default {
             
         })
     },
+    getMyroadMap(){
+        return Send({
+            url: `/roadmap/myroadmap`,
+            method : 'get',
+            headers : this.requireAuth()
+        })
+    },
     addInfo(data){
         //로그인 추가정보
         return Send({
@@ -106,7 +113,7 @@ export default {
     },
     getRoadmap(roadmap_id){
         //로드맵 조회
-
+        console.log(roadmap_id)
         return Send({
             url : `/roadmap/${roadmap_id}`,
             method : 'get',
@@ -134,7 +141,8 @@ export default {
         return Send({
             url : `/roadmap/fork`,
             method : 'post',
-            data : data
+            data : qs.stringify(data),
+            headers : this.requireAuth()
         })
     },
     editRoadmap(roadmap_id, data){
@@ -142,7 +150,8 @@ export default {
         return Send({
             url : `/roadmap/modify/${roadmap_id}`,
             method : 'put',
-            data : data
+            data : qs.stringify(data),
+            headers : this.requireAuth()
         })
     },
 }

@@ -32,10 +32,10 @@
           <b-col lg="12" class="roadmap-container">
             <b-tabs content-class="mt-3" fill>
               <b-tab class="tab" title="MAP" active>
-                <RoadmapDiagram></RoadmapDiagram>
+                <RoadmapDiagram :isMine=isMine></RoadmapDiagram>
               </b-tab>
               <b-tab class="tab" title="Detail" >
-                <RoadmapDetail></RoadmapDetail>
+                <RoadmapDetail :isMine=isMine></RoadmapDetail>
               </b-tab>
               <!-- <b-tab class="tab" title="Talk" >
                 <RoadmapTalk></RoadmapTalk>
@@ -59,6 +59,7 @@ export default {
   },
   data(){
     return {
+      isMine : true,
       form : {
         title : "",
         content : "",
@@ -79,10 +80,13 @@ export default {
     
   },
   methods:{
+    initialize(){
+      this.$store.getters.description = null
+    },
     saveRoadmap(){
       let description = this.$store.state.description
       let information = this.$store.state.information
-      console.log(description, information)
+      //console.log(description, information)
       let body = {
         name : this.form.title,
         summary : this.form.content,
@@ -92,7 +96,7 @@ export default {
         information : information,
       }
       
-      console.log(body)
+      //console.log(body)
       
       Api.makeRoadmap(body)
       .then((res) => {
@@ -119,7 +123,7 @@ export default {
 
   },
   created(){
-    
+    //this.initialize()
   }
 };
 </script>
@@ -132,12 +136,6 @@ export default {
   margin : 0 0 20px 0;
   justify-content : space-between;
   width : 100%;
-
-  .button{
-    display : flex;
-    float : right;
-    margin : 0 0 10px 0;
-  }
 
   .form-container{
     width : 100px;
@@ -159,6 +157,11 @@ export default {
   }
   .title-content-container{
     padding: 0;
+    .button{
+    display : flex;
+    float : right;
+    margin : 0 0 10px 0;
+    }
   }
   .roadmap-container{
     padding: 0;

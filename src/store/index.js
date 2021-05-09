@@ -19,10 +19,13 @@ enhanceAccessToken()
 
 export default new Vuex.Store({
   state: {
+    roadmap : {
+      description : null,
+      information : null,
+    },
     accessToken: null,
     description : null,
     information : null,
-    description : null,
     roadmap_id : null,
 
   },
@@ -56,12 +59,21 @@ export default new Vuex.Store({
     setRoadmapId(state, roadmap_id){
       state.roadmap_id = roadmap_id
     },
+    saveRoadmap(state, roadmap){
+      state.roadmap = roadmap
+    },
     saveInformation(state, information){
-      console.log(information)
+      //console.log(information)
       state.information = information
+    },
+    modifyInformation(state, information){
+      state.roadmap.information = information
     },
     saveDescription(state, description){
       state.description = description
+    },
+    modifyDescription(state, description){
+      state.roadmap.description = description
     }
   },
   actions: {
@@ -106,6 +118,7 @@ export default new Vuex.Store({
     getRoadmap({commit}, roadmap_id){
       return Api.getRoadmap(roadmap_id)
       .then((res) => {
+        console.log(res)
         commit('getRoadmap', roadmap)
       })
       .catch((error) => {

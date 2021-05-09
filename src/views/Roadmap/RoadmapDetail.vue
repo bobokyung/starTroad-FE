@@ -1,6 +1,6 @@
 <template>
   <b-container class="roadmap-detail">
-    <b-row class="roadmap-detail-button-c">
+    <b-row v-if="isMine" class="roadmap-detail-button-c">
       <b-button class = "roadmap-detail-button" variant="info" @click="togglePreview()">
         {{ toggleContent }}
       </b-button>
@@ -44,9 +44,13 @@ export default {
   components : {
       quillEditor
   },
-
+  props:{
+    isMine:null,
+  },
   data () {
     return {
+      content : null,
+      type : null,
       toggleContent : "수정하기",
       viewToggle : false,
       editorOption: {
@@ -75,14 +79,20 @@ export default {
     }
   },
   computed:{
-    content(){
-      return this.$store.getters.description
-    }
+    // content(){
+    //   return this.$store.getters.description || this.$store.state.roadmap.description
+    // }
   },
 
   methods: {
     saveTmp(){
-      this.$store.commit("saveDescription", this.content)
+      if(this.type == "makemap"){
+        this.$store.commit("saveDescription", this.content)
+      }else if(this.type == "roadmap"){
+        this.$store.commit("modifyDescription", this.content)
+        console.log(this.$store.state.roadmap.description)
+      }
+      console.log("saveTmp")
     },
     togglePreview(){
       this.viewToggle = !this.viewToggle
@@ -99,6 +109,13 @@ export default {
     },
     onEditorReady(editor) {
       //console.log('editor ready!', editor)
+    },
+    loadData(){
+      if(this.type == "makemap"){
+        this.content = this.$store.state.description
+      }else if(this.type == "roadmap"){
+        this.content = this.$store.state.roadmap.description
+      }
     }
   },
   computed: {
@@ -110,6 +127,15 @@ export default {
     }
   },
   mounted() {
+    this.loadData()
+    //console.log(this.content)
+  },
+  created(){
+    //url 따라 저장하고 있는 내용이 각기 다르다.
+    this.type = this.$route.fullPath.split('/').slice()[1]
+    this.loadData()
+    //console.log(this.type)
+    //this.content = this.$store.state.roadmap.description
   }
   
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="!isMine" id="toolbar">
+    <div v-if="isMine" id="toolbar">
       <b-button variant="primary"
         @click="
           $refs.chart.add({
@@ -63,26 +63,20 @@ export default {
     Flowchart,
   },
   props : {
-    isMine : null
+    isMine : true,
+    info : null,
   },
-  /*
-  watch : {
-    nodes : function(data){
-      //실시간 node 변환마다 병합해서 저장해야함
-      console.log("Asdf")
-      this.shapeData()
-      console.log(this.$store.state.roadmap.information)
-
-    },
-    connections : function(data){
-      //실시간 connection 변환마다 병합해서 저장해야함
-      console.log("zxcv")
-      this.shapeData()
-      console.log(this.$store.state.roadmap.information)
-
-    }
+  
+   watch : {
+     info : function(newData){
+        this.information = newData
+        //console.log(this.information)
+        let info = JSON.parse(this.information)
+        this.nodes = info[0]
+        this.connections = info[1]
+     },
   },
-  */
+  
   data: function () {
     return {
       nodes : [],
@@ -91,21 +85,30 @@ export default {
       connectionForm: { target: null, operation: null },
       nodeDialogVisible: false,
       connectionDialogVisible: false,
+      information : this.info,
     };
   },
   methods: {
     shapeData(nodes, connections){
       let information = [nodes, connections]
-      this.$store.commit("saveInformation", JSON.stringify(information))
+      if(this.type == "makemap"){
+        this.$store.commit("saveInformation", JSON.stringify(information))
+        
+      }else if(this.type == "roadmap"){
+        console.log("여기는 roadmap입니다.")
+        this.$store.commit("modifyInformation", JSON.stringify(information))
+        //console.log(this.information)
+        //let information = this.$store.state.roadmap.information 
+      }
       
     },
-    zipData(){
-      let information = this.$store.state.information
-      let rawdata = JSON.parse(information)
-      
-      this.nodes = rawdata[0]
-      this.connections = rawdata[1]
-
+    reshapeData(info){
+      let infoJson = JSON.stringify(info)
+      this.nodes = infoJson[0]
+      this.connections = infoJson[1]
+      console.log("------------------------")
+      console.log(this.nodes)
+      console.log(this.connections)
     },
     handleDblClick(position) {
       this.$refs.chart.add({
@@ -236,9 +239,17 @@ export default {
   },
   mounted(){
     
+    if(this.type == "makemap"){
+      
+    }else if(this.type == "roadmap"){
+      //console.log(this.information)
+      //let information = this.$store.state.roadmap.information
 
+      
+    }
   },
   created(){
+    this.type = this.$route.fullPath.split('/').slice()[1]
     //this.reshapeData()
   },
 };
