@@ -62,7 +62,7 @@
         this.$gAuth.getAuthCode()
         .then(authCode => {
           console.log(authCode)
-          return this.$axios.get('https://startroad.me/api/auth/google/token', 
+          return this.$axios.post('https://startroad.me/api/auth/google/token', 
           { code: authCode, redirect_uri: 'postmessage' })
         })
         .then(response => {
