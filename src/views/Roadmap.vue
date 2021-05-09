@@ -53,6 +53,7 @@ export default {
   },
   data(){
     return {
+        id : null,
         roadmap : null,
         isMine : true,
         likeNum : 0,
@@ -79,10 +80,11 @@ export default {
         this.isActive = !this.isActive
       },
       getRoadmap(){
-        this.$store.dispatch('getRoadmap')
-        .then(()=>{
+        this.$store.dispatch('getRoadmap', 1)
+        .then((res)=>{
+          console.log(res)
           this.roadmap = this.$store.state.roadmap
-          // 이
+          console.log(this.roadmap)
         })
         .catch((error)=>{
 
@@ -97,9 +99,12 @@ export default {
       },
   },
   mounted(){
-
+    this.getRoadmap()
   },
   created(){
+      this.id = this.$route.fullPath.split('/').slice()[2]
+      //console.log(this.$route.fullPath.split('/').slice()[2])
+
       let path = this.$route.fullPath.split('/').slice(-1)[0]
       switch(path){
             case 'detail':

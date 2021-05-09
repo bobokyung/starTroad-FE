@@ -29,7 +29,7 @@ import store from './store'
 // plugin setup
 Vue.use(DashboardPlugin);
 Vue.use(Vuex);
-Vue.use(GAuth, {clientId: '839833191140-ljb88b6pkr5qebo9ogsp7gh64e82shvd.apps.googleusercontent.com', scope: 'profile email https://www.googleapis.com/auth/plus.login'})
+Vue.use(GAuth, {clientId: '1001767818480-4vs4v5me3m26g6nlte6evnrgstsn1pvg.apps.googleusercontent.com', scope: 'profile email https://www.googleapis.com/auth/plus.login'})
 //axios setup
 Vue.prototype.$axios = axios
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';

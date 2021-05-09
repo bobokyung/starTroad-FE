@@ -10,7 +10,7 @@ import store from '../store/index'
 */
 const instance = axios.create({
     baseURL: 'http://localhost:8081/api',
-    timeout: 1000,
+    timeout: 10000,
     headers : {
         "Access-Control-Allow-Origin" : "*",
         "Access-Control-Allow-Headers" : "*",
@@ -33,7 +33,6 @@ instance.interceptors.request.use(
         config.withCredentials = true
         config.headers["Access-Control-Allow-Origin"] = '*'
         config.headers["Access-Control-Allow-Headers"] = "*";
-        config.headers["Authorization"] = `Bearer ${store.state.accessToken}`
         config.headers['Access-Control-Allow-Methods'] = "GET, DELETE, PUT, POST";
         
         return config;
@@ -55,7 +54,7 @@ instance.interceptors.request.use(
 */
 instance.interceptors.response.use(
     function (response) {
-        console.log(response)
+        //console.log(response)
     /*
         http status가 200인 경우
         응답 바로 직전에 대해 작성합니다. 

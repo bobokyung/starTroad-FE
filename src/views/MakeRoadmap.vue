@@ -5,8 +5,10 @@
     </base-header>
 
     <b-container fluid class="mt--7">
-
       <b-row class="justify-content-center">
+          <b-col lg="12" class="title-content-container">
+            <b-button class="button" variant="success" @click="saveRoadmap()">저장하기</b-button>            
+          </b-col>
           <b-col lg="6" class="title-content-container">            
             <b-form-input class="form title" label="TITLE"
             v-model="form.title" placeholder="로드맵의 제목을 입력해주세요">
@@ -18,7 +20,7 @@
             </b-form-input>
           </b-col>
           <b-col lg ="3" class="title-content-container">
-            <b-form-select v-model="selected" class="from content"
+            <b-form-select v-model="form.category" class="from content"
             placeholder="카테코리를 선택해주세요"
             :options="options"></b-form-select>
           </b-col>
@@ -65,7 +67,6 @@ export default {
       },
       isActive : false,
       likeNum : 0,
-      selected : null,
       options: [
         { value: null, text: '카테고리를 선택해주세요' },
         { value: "CS", text: 'Computer Science' },
@@ -79,24 +80,29 @@ export default {
   },
   methods:{
     saveRoadmap(){
-      let description = this.$store.state.roadmap.description
-      let information = this.$store.state.roadmap.information
-
+      let description = this.$store.state.description
+      let information = this.$store.state.information
+      console.log(description, information)
       let body = {
         name : this.form.title,
         summary : this.form.content,
         tag : this.form.category,
-        img : this.form.image,
+        img : this.form.img,
         description : description,
         information : information,
       }
+      
+      console.log(body)
+      
       Api.makeRoadmap(body)
       .then((res) => {
         console.log(res)
       })
       .catch((error) => {
-        
+        console.log(error)
       })
+    
+      
     },
     forkRoadmap(){
       // 추가
@@ -120,11 +126,19 @@ export default {
 
 <style lang="scss" scoped>
 .header-info-container{
+
   display:flex;
   flex-wrap : wrap;
   margin : 0 0 20px 0;
   justify-content : space-between;
   width : 100%;
+
+  .button{
+    display : flex;
+    float : right;
+    margin : 0 0 10px 0;
+  }
+
   .form-container{
     width : 100px;
     height : 30px;

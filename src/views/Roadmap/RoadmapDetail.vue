@@ -4,7 +4,7 @@
       <b-button class = "roadmap-detail-button" variant="info" @click="togglePreview()">
         {{ toggleContent }}
       </b-button>
-      <b-button class = "roadmap-detail-button" variant="success">
+      <b-button class = "roadmap-detail-button" variant="success" @click="saveTmp()">
         저장하기
       </b-button>
     </b-row>
@@ -81,6 +81,9 @@ export default {
   },
 
   methods: {
+    saveTmp(){
+      this.$store.commit("saveDescription", this.content)
+    },
     togglePreview(){
       this.viewToggle = !this.viewToggle
       this.toggleContent = this.viewToggle ? "미리보기" : "수정하기"
@@ -89,13 +92,13 @@ export default {
       this.content = value.html
     }, 466),
     onEditorBlur(editor) {
-      console.log('editor blur!', editor)
+      //console.log('editor blur!', editor)
     },
     onEditorFocus(editor) {
-      console.log('editor focus!', editor)
+      //console.log('editor focus!', editor)
     },
     onEditorReady(editor) {
-      console.log('editor ready!', editor)
+      //console.log('editor ready!', editor)
     }
   },
   computed: {
@@ -107,7 +110,6 @@ export default {
     }
   },
   mounted() {
-    console.log('this is Quill instance:', this.editor)
   }
   
 };

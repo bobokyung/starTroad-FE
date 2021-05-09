@@ -46,6 +46,7 @@
   </div>
 </template>
 <script>
+import Api from '../../api/Api'
   export default {
     data() {
       return {
@@ -58,6 +59,7 @@
     },
     methods: {
       googleLogin(){
+        /*
         console.log("asdf")
         this.$gAuth.getAuthCode()
         .then(authCode => {
@@ -73,6 +75,27 @@
           console.log("asdfasdf")
           console.log(error)
           //on fail do something
+        })*/
+        this.$gAuth.signIn()
+        .then((GoogleUser) => {
+          let data = {
+            access_token : GoogleUser.qc.access_token
+          }
+          Api.googleLoginDirect(data)
+          .then((res)=>{
+            //console.log(res)
+            this.$store.commit('GOOGLELOGIN', res.data)
+            //나중에 수정할것 이위치에 action으로 그 accesstoken이 valid한지 valid하지 않은지 해야함
+            //dispatch로 하고 그다음에 redirect해야함 지금 시간이 없어서 제외함
+            this.redirect()
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+
+        })
+        .catch((error) => {
+          console.log(error)
         })
       },
       onSubmit() {

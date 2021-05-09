@@ -29,7 +29,7 @@ const routes = [
     path: '/',
     redirect: 'home',
     component: DashboardLayout,
-    //beforeEnter : requireAuth(),
+    beforeEnter : requireAuth(),
     children: [
       {
         path: '/home',

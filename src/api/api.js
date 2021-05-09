@@ -2,11 +2,27 @@
 
 // 작성한 axios 인터셉터를 가져옵니다.
 import Send from '../util/Send.js'
-
+import store from '../store'
+import qs from 'qs';
 //params나 query는 모두 javascript object 형태로 넘겨줘야 합니다.
+
+/*
+const headers = {
+    'Authorization' : `Bearer ${store.state.accessToken}`
+}
+*/
+
 
 export default {
     //sample
+    requireAuth(){
+        let auth = store.getters.isAuthenticated
+        const headers = {
+            'Authorization' : `Bearer ${auth}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        return headers
+    },
     getNews() {
         // axios 요청을 생성합니다.
         /*
@@ -32,11 +48,20 @@ export default {
             data : data
         })
     },
+    googleLoginDirect(data){
+        return Send({
+            url : `/auth/google/token`,
+            method : 'post',
+            data : data,
+        })
+    },
     getHome(){
         //홈화면
         return Send({
-            url: `/home`,
-            method: 'get'
+            url: `/home/`,
+            method: 'get',
+            headers : this.requireAuth()
+            
         })
     },
     addInfo(data){
@@ -67,7 +92,8 @@ export default {
         return Send({
             url : `/roadmap/generate`,
             method : 'post',
-            data : data
+            data : qs.stringify(data),
+            headers : this.requireAuth()
         })
     },
     searchRoadmap(params){
@@ -80,9 +106,11 @@ export default {
     },
     getRoadmap(roadmap_id){
         //로드맵 조회
+
         return Send({
             url : `/roadmap/${roadmap_id}`,
-            method : 'get'
+            method : 'get',
+            headers : this.requireAuth()
         })
     },
     likeRoadmap(data){

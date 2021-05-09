@@ -20,6 +20,7 @@
         수정하기(Node 두번클릭)
       </b-button>
       <b-button variant="success" @click="$refs.chart.save()">저장하기</b-button>
+
     </div>
     <flowchart
       :nodes="nodes"
@@ -62,13 +63,29 @@ export default {
     Flowchart,
   },
   props : {
-    isMine : {
-      required : true,
+    isMine : null
+  },
+  /*
+  watch : {
+    nodes : function(data){
+      //실시간 node 변환마다 병합해서 저장해야함
+      console.log("Asdf")
+      this.shapeData()
+      console.log(this.$store.state.roadmap.information)
+
+    },
+    connections : function(data){
+      //실시간 connection 변환마다 병합해서 저장해야함
+      console.log("zxcv")
+      this.shapeData()
+      console.log(this.$store.state.roadmap.information)
+
     }
   },
+  */
   data: function () {
     return {
-      nodes : [{"id":1620458696407,"x":10,"y":10,"name":"새로 만들기","type":"operation","approvers":[],"width":120,"height":60,"appovers":"로드맵 생성"}],
+      nodes : [],
       connections : [],
       nodeForm: { target: null },
       connectionForm: { target: null, operation: null },
@@ -77,7 +94,12 @@ export default {
     };
   },
   methods: {
-    reshapeData(){
+    shapeData(nodes, connections){
+      let information = [nodes, connections]
+      this.$store.commit("saveInformation", JSON.stringify(information))
+      
+    },
+    zipData(){
       let information = this.$store.state.information
       let rawdata = JSON.parse(information)
       
@@ -95,21 +117,9 @@ export default {
         approvers: "",
       });
     },
-    async handleChartSave(nodes, connections) {
-      nodes = JSON.stringify(nodes)
-      connections = JSON.stringify(connections)
-      
-      //node
-      //[{"id":1617528959889,"x":490,"y":40,"name":"Front-End","type":"start","approvers":[],"width":120,"height":60},{"id":1617528989863,"x":490,"y":180,"name":"Internet","type":"operation","approvers":[],"width":120,"height":60,"appovers":"Basic of Internets"},{"id":1617529015116,"x":700,"y":250,"name":"http","type":"operation","approvers":[],"width":120,"height":60,"appovers":"http basics"},{"id":1617529015482,"x":700,"y":100,"name":"Hosting","type":"operation","approvers":[],"width":120,"height":60,"appovers":"host on server"},{"id":1617529067671,"x":700,"y":170,"name":"What is Domain name","type":"start","approvers":[],"width":120,"height":60},{"id":1617529128772,"x":310,"y":110,"name":"browser","type":"operation","approvers":[],"width":120,"height":60,"appovers":"브라우저의 동작"},{"id":1617529131980,"x":310,"y":260,"name":"New","type":"operation","approvers":[],"width":120,"height":60},{"id":1617529132410,"x":310,"y":180,"name":"New","type":"operation","approvers":[],"width":120,"height":60},{"id":1617529173516,"x":490,"y":360,"name":"html 기초","type":"operation","approvers":[],"width":120,"height":60,"appovers":"html basics"},{"id":1617529320893,"x":300,"y":360,"name":"CSS structure","type":"start","approvers":[],"width":120,"height":60},{"id":1617529321015,"x":700,"y":360,"name":"Semantic html","type":"start","approvers":[],"width":120,"height":60},{"id":1617529349056,"x":490,"y":470,"name":"keep learning","type":"start","approvers":[],"width":120,"height":60}]
-      //connections
-      //[{"source":{"id":1617528959889,"position":"bottom"},"destination":{"id":1617528989863,"position":"top"},"id":1617529010903,"type":"pass","name":"Pass"},{"source":{"id":1617528989863,"position":"right"},"destination":{"id":1617529015482,"position":"left"},"id":1617529030538,"type":"pass","name":"Pass"},{"source":{"id":1617528989863,"position":"right"},"destination":{"id":1617529015116,"position":"left"},"id":1617529053358,"type":"pass","name":"Pass"},{"source":{"id":1617528989863,"position":"right"},"destination":{"id":1617529067671,"position":"left"},"id":1617529116480,"type":"pass","name":"Pass"},{"source":{"id":1617528989863,"position":"left"},"destination":{"id":1617529128772,"position":"right"},"id":1617529139380,"type":"pass","name":"Pass"},{"source":{"id":1617528989863,"position":"left"},"destination":{"id":1617529132410,"position":"right"},"id":1617529141325,"type":"pass","name":"Pass"},{"source":{"id":1617528989863,"position":"left"},"destination":{"id":1617529131980,"position":"right"},"id":1617529146156,"type":"pass","name":"Pass"},{"source":{"id":1617528989863,"position":"bottom"},"destination":{"id":1617529173516,"position":"top"},"id":1617529179733,"type":"pass","name":"Pass"},{"source":{"id":1617529173516,"position":"bottom"},"destination":{"id":1617529349056,"position":"top"},"id":1617529356941,"type":"pass","name":"Pass"},{"source":{"id":1617529173516,"position":"right"},"destination":{"id":1617529321015,"position":"left"},"id":1617529370163,"type":"pass","name":"Pass"},{"source":{"id":1617529173516,"position":"left"},"destination":{"id":1617529320893,"position":"right"},"id":1617529392839,"type":"pass","name":"Pass"}]
-      
-      
-      // axios.post(url, {nodes, connection}).then(resp => {
-      //   this.nodes = resp.nodes;
-      //   this.connections = resp.connections;
-      //   // Flowchart will refresh after this.nodes and this.connections changed
-      // });
+    handleChartSave(nodes, connections) {
+      this.shapeData(nodes, connections);
+      console.log(this.$store.state.information)
     },
     handleEditNode(node) {
       this.nodeForm.target = node;
@@ -229,7 +239,7 @@ export default {
 
   },
   created(){
-    this.reshapeData()
+    //this.reshapeData()
   },
 };
 </script>
