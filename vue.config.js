@@ -7,23 +7,23 @@ function resolveSrc(_path) {
 module.exports = {
   devServer: {
     // 프록시 설정
-    proxy : "https://startroad.me/api"
+    //proxy : "https://startroad.me/api"
     /*
     proxy : {
       target : "https://startroad.me"
     },
     */
-    /*
+    
     proxy: {
         // 프록시 요청을 보낼 api의 시작 부분
         '/api': {
             // 프록시 요청을 보낼 서버의 주소
-            target: 'https://startroad.me/api',
+            target: 'https://c2e79960-228b-4a11-8a9c-5f9973cd9f68.mock.pstmn.io',
             changeOrigin : true,
 
         }
     }
-    */
+    
     
   },
   lintOnSave: true,

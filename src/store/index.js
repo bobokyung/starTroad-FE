@@ -6,7 +6,7 @@ import Api from '../api/Api'
 import GAuth from 'vue-google-oauth2'
 
 Vue.use(Vuex)
-const resourceHost = 'https://startroad.me/api'
+const resourceHost = 'https://c2e79960-228b-4a11-8a9c-5f9973cd9f68.mock.pstmn.io/api'
 
 const enhanceAccessToeken = () => {
   const {accessToken} = localStorage

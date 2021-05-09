@@ -34,6 +34,7 @@ Vue.use(GAuth, {clientId: '839833191140-ljb88b6pkr5qebo9ogsp7gh64e82shvd.apps.go
 Vue.prototype.$axios = axios
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 axios.defaults.headers.common['Access-Control-Allow-Headers'] = "*";
+axios.defaults.headers.common['Access-Control-Allow-Methods'] = "GET, DELETE, PUT, POST";
 
 /* eslint-disable no-new */
 new Vue({

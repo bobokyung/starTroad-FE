@@ -9,8 +9,13 @@ import store from '../store/index'
     https://github.com/axios/axios 의 Request Config 챕터 확인
 */
 const instance = axios.create({
-    baseURL: 'https://startroad.me/api',
-    timeout: 1000
+    baseURL: 'http://localhost:8081/api',
+    timeout: 1000,
+    headers : {
+        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Headers" : "*",
+        "Access-Control-Allow-Methods" : "GET, DELETE, PUT, POST"
+    }
 
   });
 
@@ -27,7 +32,9 @@ instance.interceptors.request.use(
         // axios 설정값에 대해 작성합니다.
         config.withCredentials = true
         config.headers["Access-Control-Allow-Origin"] = '*'
+        config.headers["Access-Control-Allow-Headers"] = "*";
         config.headers["Authorization"] = `Bearer ${store.state.accessToken}`
+        config.headers['Access-Control-Allow-Methods'] = "GET, DELETE, PUT, POST";
         
         return config;
     }, 
