@@ -117,7 +117,7 @@ export default {
       getRoadmap(id){
         Api.getRoadmap(id)
         .then((res)=>{
-          this.$store.commit("saveRoadmap", res.data)
+          ("saveRoadmap", res.data)
 
           let storeRoadMap = this.$store.state.roadmap
           this.roadmap.id = res.data.id

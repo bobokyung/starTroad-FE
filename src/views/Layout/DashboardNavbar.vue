@@ -39,7 +39,7 @@
                     <img alt="Image placeholder" src="img/theme/team-4.jpg">
                   </span>
             <b-media-body class="ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+              <span class="mb-0 text-sm  font-weight-bold">{{profileName}}</span>
             </b-media-body>
           </b-media>
         </a>
@@ -67,6 +67,7 @@
   </base-nav>
 </template>
 <script>
+import Api from '@/api/Api'
 import { CollapseTransition } from 'vue2-transitions';
 import { BaseNav, Modal } from '@/components';
 import store from "@/store"
@@ -83,22 +84,49 @@ export default {
       description: 'Look of the dashboard navbar. Default (Green) or light (gray)'
     }
   },
+  watch : {
+    // search : function(newv){
+    //   console.log(this.$store.state.search)
+    // }
+  },
   computed: {
+    search:{
+      get(){
+        return this.$store.state.search
+      },
+      set(value){
+        this.$store.commit("updateSearch", value)
+      }
+
+    },
     routeName() {
       const { name } = this.$route;
       return this.capitalizeFirstLetter(name);
+    },
+    profileName(){
+      return this.$store.getters.getName
     }
   },
   data() {
     return {
+
       activeNotifications: false,
       showMenu: false,
       searchModalVisible: false,
       searchQuery: '',
-      search:''
     };
   },
   methods: {
+    getProfile(){
+      Api.getProfile()
+      .then((res)=>{
+        this.$store.commit("getProfile", res.data)
+        
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    },
     logOut(){
       store.dispatch("LOGOUT").then(() => {
         this.$router.go('/home')
@@ -117,8 +145,18 @@ export default {
       this.activeNotifications = false;
     },
     goSearch(){
-      this.$router.push('/search')
+      let query = {
+        tag : "CS",
+        title : this.search
+      }
+      this.$router.push({path : '/search', query:query})
     }
+  },
+  mounted(){
+    this.getProfile()
+  },
+  created(){
+    this.getProfile()
   }
 };
 </script>
@@ -126,5 +164,8 @@ export default {
 .nav-title{
   font-weight:700;
   font-size : 2.5rem;
+}
+.input-group-append{
+  cursor: pointer;
 }
 </style>

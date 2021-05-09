@@ -19,17 +19,25 @@ enhanceAccessToken()
 
 export default new Vuex.Store({
   state: {
+    search : "",
     roadmap : {
       description : null,
       information : null,
+    },
+    personal : {
+      name : "",
+      email : "",
     },
     accessToken: null,
     description : null,
     information : null,
     roadmap_id : null,
-
+    searchList : []
   },
   getters: {
+    getName(state){
+      return state.personal.name
+    },
     description(state){
       return state.description
     },
@@ -53,6 +61,10 @@ export default new Vuex.Store({
       state.accessToken = null
       delete localStorage.accessToken
     },
+    getProfile(state, personal){
+      console.log(personal)
+      state.personal = personal
+    },
     getRoadmap(state, {roadmap}){
       state.roadmap = roadmap
     },
@@ -74,7 +86,14 @@ export default new Vuex.Store({
     },
     modifyDescription(state, description){
       state.roadmap.description = description
+    },
+    updateSearch(state, search){
+      state.search = search
+    },
+    updateSearchList(state, list){
+      state.searchList = list
     }
+    
   },
   actions: {
     GOOGLELOGIN({commit}){
@@ -125,7 +144,23 @@ export default new Vuex.Store({
 
       })
 
+    },
+    search({commit}, {tag, title}){
+      console.log("search")
+      return Api.searchRoadmap({tag, title})
+      .then((data)=>{
+        //console.log(data.data)
+        data.data.forEach((v, i)=>{
+          if(v.image == null){
+            v.image = require('@/assets/default_roadmap.jpg')
+          }
+        })
+        console.log(data.data)
+        commit('updateSearchList', data.data)
+        
+      })
     }
+
 
 
   }

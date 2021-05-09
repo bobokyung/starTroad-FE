@@ -9,7 +9,7 @@ import store from '../store/index'
     https://github.com/axios/axios 의 Request Config 챕터 확인
 */
 const instance = axios.create({
-    baseURL: 'http://localhost:8081/api',
+    baseURL: 'https://startroad.me/api',
     timeout: 10000,
     headers : {
         "Access-Control-Allow-Origin" : "*",

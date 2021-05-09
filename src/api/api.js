@@ -90,8 +90,9 @@ export default {
     getProfile(){
         //프로필 조회
         return Send({
-            url : `/user`,
-            method : 'get'
+            url : `/user/`,
+            method : 'get',
+            headers : this.requireAuth()
         })
     },
     makeRoadmap(data){
@@ -108,7 +109,8 @@ export default {
         return Send({
             url : `/roadmap/search`,
             method : 'get',
-            params : params
+            params : params,
+            headers : this.requireAuth()
         })
     },
     getRoadmap(roadmap_id){
