@@ -166,6 +166,10 @@ export default {
             v.image = require('@/assets/default_roadmap.jpg')
           }
         })
+        console.log(res.data)
+        if(res.data.length > 8){
+          res.data = res.data.slice(0,8)
+        }
         this.roadmapList = res.data
         console.log(this.roadmapList)
       })

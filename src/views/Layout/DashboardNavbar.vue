@@ -146,7 +146,7 @@ export default {
     },
     goSearch(){
       let query = {
-        tag : "CS",
+        //tag : "",
         title : this.search
       }
       this.$router.push({path : '/search', query:query})
