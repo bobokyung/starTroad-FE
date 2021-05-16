@@ -2,25 +2,25 @@
   <b-container fluid class="comments-container">
     <div class="comments-body-container">
       <div class="title">
-        <h1>{{sample.title}}</h1>
+        <h1>{{sample.name}}</h1>
       </div>
       <div class="author">
-        <h2>{{sample.author}}</h2>
+        <h2>{{sample.talk_writer}}</h2>
         <span> commented at {{sample.created_at}} </span>
       </div>
       <div class="content">
-        <div>{{sample.content}}</div>
+        <div>{{sample.description}}</div>
       </div>
     </div>
 
     <hr>
-    <h2>의견(3)</h2>
+    <h2>의견({{commentLength}})</h2>
 
-    <div class="comments" v-for="comment in sample.comments"
+    <div class="comments" v-for="comment in sample.myComments"
     :key="comment.id">
       <div class="comments-header">
         <div class="author">
-          <h2>{{comment.author}}</h2>
+          <h2>{{comment.comment_writer}}</h2>
           <span> commented at {{comment.created_at}} </span>
         </div>
       </div>
@@ -46,49 +46,53 @@
 </template>
 
 <script>
+import Api from '@/api/Api'
 export default {
   components : {
 
   },
+  props : {
+    roadmap_id : null,
+    talk_id : null,
+  },
   data () {
     return {
       myComment : "",
-      sample : {
-        "id" : 1,
-        "title" : "css 내용 추가해주세요",
-        "author" : "sr",
-        "created_at" : "2021-03-25 17:22:33",
-        "content" : "css 내용이 상당히 중요해보여요 로드맵에 추가가 필요합니다.",
-        "comments" : [
-            {
-                "author" : "sr2",
-                "created_at" : "2021-03-25 17:22:33",
-                "content" : "기본 css보다는 scss나 sass tilwind css 구조가 더 중요해보입니다."
-            },
-            {
-                "author" : "sr3",
-                "created_at" : "2021-03-25 17:22:33",
-                "content" : "css에 대해서는 모던 css내용을 넣는것이 좋아보입니다."
-            },
-            {
-                "author" : "sr4",
-                "created_at" : "2021-03-25 17:22:33",
-                "content" : "css 탬플릿부분도 강조해야합니다.",
-            }
-        ]
-      }
+      sample : null,
+      commentLength : 0,
+
     }
   },
   // watch : {
 
   // },
   methods: {
+    fetch(){
+      this.sample = {}
+      let roadmap_id = this.roadmap_id
+      let talk_id = this.talk_id
 
+      Api.getTalk(roadmap_id, talk_id)
+      .then((res) => {
+        console.log("res")
+        console.log(res.data)
+        this.sample = res.data
+        this.commentLength = this.sample.myComments.length
+        console.log(this.sample.myComments)
+
+      })
+    }
   },
   computed: {
 
   },
   mounted() {
+    console.log("mounted")
+    console.log(this.roadmap_id, this.talk_id)
+    this.fetch()
+  },
+  created(){
+    
   }
   
 };

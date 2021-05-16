@@ -16,7 +16,7 @@
           tag="article"
           style=""
           class="mb-2">
-          <a class="fork-ribbon">Forked</a>
+          <a class="fork-ribbon" v-if=roadmap.isForked>Forked</a>
           <b-card-text>
             {{roadmap.summary}}
           </b-card-text>
@@ -54,6 +54,9 @@
         res.data.forEach((v, i)=>{
           if(v.image == null){
             v.image = require('@/assets/default_roadmap.jpg')
+          }
+          if(v.generator != v.owner){
+            v.isForked = true
           }
         })
         this.roadmapList = res.data

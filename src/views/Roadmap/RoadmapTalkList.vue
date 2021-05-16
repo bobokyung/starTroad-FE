@@ -16,7 +16,7 @@
                              prop="title"
                              min-width="200px">
                 <template v-slot="{row}">
-                  {{row.title}}
+                  {{row.name}}
                 </template>
             </el-table-column>
 
@@ -24,7 +24,7 @@
                              min-width="100px"
                              prop="author">
                 <template v-slot="{row}">
-                  {{row.author}}
+                  {{row.talkWriter}}
                 </template>
             </el-table-column>
 
@@ -46,12 +46,12 @@
 </template>
 
 <script>
+import Api from '@/api/Api'
+import moment from "moment";
 import { Dropdown, DropdownItem, DropdownMenu, Table, TableColumn } from 'element-ui';
 import projects from '@/views/Tables/projects'
 import users from '@/views/Tables/users'
 import LightTable from "@/views/Tables/RegularTables/LightTable";
-
-
 
 export default {
   components : {
@@ -64,43 +64,39 @@ export default {
   },
   data () {
     return {
+      roadmap_id : null,
       currentRow : null,
       currentPage : 1,
-      talkLists :[
-        {   
-            "title" : "CSS 내용 추가해주세요",
-            "id" : 1,
-            "author" : "sr",
-            "created_at" : "2021-03-25 17:22:33"
-        },
-        {
-            "title" : "REDUX 내용 삭제해주세요",
-            "id" : 2,
-            "author" : "es",
-            "created_at" : "2021-03-27 17:22:33"
-        },
-        {
-            "title" : "WEBPACK 내용 추가해주세요",
-            "id" : 3,
-            "author" : "bk",
-            "created_at" : "2021-03-28 17:22:33"
-        },
-    ]
-
+      talkLists :[]
     }
   },
   // watch : {
 
   // },
   methods: {
+    fetch(){
+      this.talkLists = []
+      let id = this.roadmap_id
+      Api.getTalkList(id)
+      .then((res)=>{
+        res.data.forEach((v, i) => {
+          let created_at = new Date(v.created_at)
+          v.created_at = moment(created_at).format("yyyy-MM-DD HH:mm:ss")
+        })
+        this.talkLists = res.data
+      })
+    },
     handleCurrentChange(val){
       this.currentRow = val
-      let roadmap_id = 1
+      let roadmap_id = this.roadmap_id
       let talk_id = this.currentRow.id
-      this.$router.push({path:`/roadmap/${roadmap_id}/talk/${talk_id}`})
+
+      this.$router.push({path:`/roadmap/${roadmap_id}/talk/${talk_id}`, 
+      params : {talk_id : talk_id, roadmap_id : roadmap_id}})
     },
     gotoContents(){
-      this.$router.push({path:'/roadmap/${roadmap_id}/talk/talk_add'})
+      let roadmap_id = this.roadmap_id
+      this.$router.push({path:`/roadmap/${roadmap_id}/talk/talk_add`, params : {roadmap_id}})
     }
   },
   
@@ -108,6 +104,12 @@ export default {
 
   },
   mounted() {
+    this.roadmap_id = this.$route.fullPath.split('/').slice()[2]
+    this.fetch()
+  },
+  created(){
+    this.roadmap_id = this.$route.fullPath.split('/').slice()[2]
+    //this.fetch()
   }
   
 };

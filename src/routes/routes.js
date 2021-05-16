@@ -41,11 +41,12 @@ const routes = [
         component: () => import(/* webpackChunkName: "demo" */ '../views/Dashboard.vue')
       },
       {
-        path: '/roadmap/:id',
+        path: '/roadmap/:roadmap_id',
         name: 'roadmap',
         //beforeEnter : requireAuth(),
         component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap.vue'),
         children : [
+          
           {
             path : "talk",
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalkList.vue'),
@@ -53,10 +54,12 @@ const routes = [
           {
             path : "talk/talk_add",
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalkAdd.vue'),
+            props : true
           },
           {
             path : "talk/:talk_id",
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalk.vue'),
+            props : true
           },
           {
             path : "detail",

@@ -4,6 +4,7 @@
 import Send from '../util/Send.js'
 import store from '../store'
 import qs from 'qs';
+import { identity } from 'lodash';
 //params나 query는 모두 javascript object 형태로 넘겨줘야 합니다.
 
 /*
@@ -161,5 +162,28 @@ export default {
             headers : this.requireAuth()
         })
     },
+    getTalkList(roadmap_id){
+        return Send({
+            url : `/roadmap/talk/${roadmap_id}`,
+            method : 'get',
+            headers : this.requireAuth()
+        })
+    },
+    addTalkList(roadmap_id, data){
+        return Send({
+            url : `/roadmap/talk/${roadmap_id}`,
+            method : 'post',
+            data : qs.stringify(data),
+            headers : this.requireAuth()
+        })
+    },
+    getTalk(roadmap_id, talk_id){
+        return Send({
+            url : `/roadmap/talk/${roadmap_id}/${talk_id}`,
+            method : 'get',
+            headers : this.requireAuth()
+        })
+    }
+
 }
 

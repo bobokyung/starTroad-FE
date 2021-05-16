@@ -9,7 +9,7 @@
     </b-col>
     </b-row>
 
-    <b-form @submit.prevent="updateTalk">
+    <b-form>
       <div class="pl-lg-4">   
         <b-row>
           <b-col>
@@ -17,7 +17,7 @@
               type="text"
               label="title"
               placeholder="Title"
-              v-model="title"
+              v-model = "name"
             >
             </base-input>
           </b-col>
@@ -26,7 +26,11 @@
 
       <div class="pl-lg-4">
         <b-form-group label="content" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
-          <b-form-textarea rows="10" id="about-form-textaria" placeholder="A few words about ..."></b-form-textarea>
+          <b-form-textarea rows="10" 
+          id="about-form-textaria" 
+          placeholder="A few words about ..."
+          v-model = "description"
+          ></b-form-textarea>
         </b-form-group>
       </div>
 
@@ -35,19 +39,29 @@
 </template>
 
 <script>
+import Api from '@/api/Api'
+
 export default {
+  props : {
+    roadmap_id : null
+  },
   data () {
     return {
-      title : '',
-      content : ''
+      name : '',
+      description : ''
     }
   }, 
   methods: {
-    updateTalk() {
-      alert('' + JSON.stringify());
-    },
     gotoComplete(){
-      this.$router.push({path:'/roadmap/${roadmap_id}/talk'})
+      let roadmap_id = this.roadmap_id
+      let data = {
+        name : this.name,
+        description : this.description
+      }
+      Api.addTalkList(roadmap_id, data)
+      .then((res)=>{
+        this.$router.push({path:`/roadmap/${roadmap_id}/talk`})
+      })
     }
   },
   
