@@ -149,7 +149,8 @@ export default {
         //tag : "",
         name : this.search
       }
-      this.$router.push({path : '/search', query:query})
+      this.$store.dispatch('search', query)
+      this.$router.push({path : '/search', query:query}).catch(()=>{});
     }
   },
   mounted(){

@@ -145,9 +145,9 @@ export default new Vuex.Store({
       })
 
     },
-    search({commit}, {tag, title}){
+    search({commit}, {name}){
       console.log("search")
-      return Api.searchRoadmap({tag, title})
+      return Api.searchRoadmap({name})
       .then((data)=>{
         //console.log(data.data)
         data.data.forEach((v, i)=>{

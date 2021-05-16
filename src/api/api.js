@@ -106,6 +106,8 @@ export default {
     },
     searchRoadmap(params){
         //로드맵 검색
+        console.log("여기가 params")
+        console.log(params)
         return Send({
             url : `/roadmap/search`,
             method : 'get',
@@ -124,10 +126,12 @@ export default {
     },
     likeRoadmap(data){
         //로드맵 좋아요 누르기
+        console.log(data)
         return Send({
             url : `/roadmap/like`,
             method : 'post',
-            data : data
+            data : qs.stringify(data),
+            headers : this.requireAuth()
         })
     },
     unlikeRoadmap(data){
@@ -135,7 +139,8 @@ export default {
         return Send({
             url : `/roadmap/unlike`,
             method : 'post',
-            data : data
+            data : qs.stringify(data),
+            headers : this.requireAuth()
         })
     },
     forkRoadmap(data){

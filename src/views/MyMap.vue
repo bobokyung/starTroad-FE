@@ -16,6 +16,7 @@
           tag="article"
           style=""
           class="mb-2">
+          <a class="fork-ribbon">Forked</a>
           <b-card-text>
             {{roadmap.summary}}
           </b-card-text>
@@ -78,4 +79,38 @@
   }
   };
 </script>
-<style></style>
+<style lang="scss" scoped>
+.fork-ribbon{
+
+    /* positioning */
+    position: absolute;
+    padding: 5px 38px;
+    width: 128px;
+    /* top right of the page */
+    top: 25px;
+    right: -25px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    /* effects with some shadow */
+    box-shadow: 0 0 0 3px #f6c304, 0 0 20px -3px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 0 #ffffff, 0 0 5px rgba(0, 0, 0, 0.3);
+    /* looks */
+    background-color: #f6c304;
+    color: #ffffff;
+    font-size: 13px;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-weight: bold;
+    /* ribbon effects */
+    border: 2px dotted #ffffff;
+    /* webkit antialias fix */
+    -webkit-backface-visibility: hidden;
+    letter-spacing: .5px;
+
+}
+
+</style>
+
+

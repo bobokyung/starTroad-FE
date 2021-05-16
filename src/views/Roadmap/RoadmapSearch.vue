@@ -8,7 +8,7 @@
         <b-col xl="3" md="6" v-for="roadmap in roadmapList" :key="roadmap.id">
         <b-card
           :title= roadmap.name
-          :img-src= roadmap.img
+          :img-src= roadmap.image
           img-width="238"
           img-height="200"
           :img-alt=Image
@@ -19,8 +19,8 @@
           <b-card-text>
             {{roadmap.summary}}
           </b-card-text>
-          <b-button href="#" variant="primary">Go roadmap</b-button>
-        </b-card>
+          <b-button href="#" variant="primary" @click="goToRoadmap(roadmap.id)">Go roadmap</b-button>
+        </b-card> 
         </b-col>
       </b-row>
         
@@ -58,12 +58,12 @@
         console.log("로드맵")
         console.log(this.roadmapList)
         let query = this.$route.query
+        console.log(query)
         this.$store.dispatch('search', query)
         
       },
       goToRoadmap(roadmap_id){
         //나중에는 data redering을 해보고 각 로드맵에 대한 id를 부여해서 roadmap 상세 페이지로 이동해야함
-        this.$store.dispatch('getRoadmap', roadmap_id)
         this.$router.push({path:`/roadmap/${roadmap_id}`})
       }
     },

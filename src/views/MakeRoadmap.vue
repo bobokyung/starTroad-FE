@@ -67,7 +67,6 @@ export default {
         category: "",
       },
       isActive : false,
-      likeNum : 0,
       options: [
         { value: null, text: '카테고리를 선택해주세요' },
         { value: "CS", text: 'Computer Science' },
@@ -112,7 +111,6 @@ export default {
       // 추가
     },
     pushHeart(){
-      this.likeNum++;
       this.isActive = !this.isActive
     },
     onSubmit(event){

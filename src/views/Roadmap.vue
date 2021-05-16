@@ -7,6 +7,7 @@
     <b-container fluid class="mt--7">
       <b-row ca>
         <h1>{{roadmap.name}}</h1>
+        <span class="fork" v-if="isForked">forked from {{roadmap.generator}}</span>
       </b-row>
       <b-row>
         <div class = "header-info-container">
@@ -15,11 +16,11 @@
           </div>
           <div class="fork-like-container">
             <!-- fork과 like에 관한 conatiner임 -->
-            <!--
+            
             <b-button @click="pushHeart()">
-              <span :class="{heart:isActive}">❤ {{likeNum}}</span>
+              <span :class="{heart:likeValid}">❤ {{roadmap.likeCount}}</span>
             </b-button>
-            -->
+            
             <b-button v-if="!isMine" variant="warning" @click="forkRoadmap()">포크하기</b-button>
             <b-button v-if="isMine" variant="success" @click="editRoadmap()">업데이트</b-button>
           </div>
@@ -62,12 +63,13 @@ export default {
           tag : null,
           information : null,
           description : null,
+          likeCount : null,
+          owner : null,
+          generator : null,
         },
-        // id : null,
-        // roadmap : null,
+        isforked : null,
+        isActive : null,
         isMine : true,
-        likeNum : 0,
-        isActive : false,
         tabIndex : 0,
     }
   },
@@ -115,23 +117,41 @@ export default {
         })
       },
       pushHeart(){
-        this.isActive = !this.isActive
+        let data = {
+          id : this.roadmap.id
+        }
+
+        if(this.likeValid){
+          Api.unlikeRoadmap(data)
+          .then((res)=>{
+            this.roadmap.likeCount = res.data.likeCount
+            this.likeValid = false
+          })
+        }else{
+          Api.likeRoadmap(data)
+          .then((res)=>{
+            this.roadmap.likeCount = res.data.likeCount
+            this.likeValid = true
+          })
+        }
       },
       getRoadmap(id){
         Api.getRoadmap(id)
         .then((res)=>{
           this.$store.commit("saveRoadmap", res.data)
-
+          console.log(res)
           let storeRoadMap = this.$store.state.roadmap
           this.roadmap.id = res.data.id
           this.roadmap.name = res.data.name
           this.roadmap.summary = res.data.summary
           this.roadmap.information = res.data.information
           this.roadmap.tag = res.data.tag
-
-          console.log(res.data.valid)
+          this.roadmap.likeCount = res.data.like_count
+          this.roadmap.generator = res.data.generator
+          this.roadmap.owner = res.data.owner
           this.isMine = res.data.valid == "yes" ? true : false
-          console.log(this.isMine)
+          this.likeValid = res.data.likeValid == "yes" ? true:false
+          this.isForked = (this.isMine && res.data.owner != res.data.generator) ? true : false
 
           console.log(this.$store.state.roadmap)
         })
@@ -169,6 +189,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.fork{
+  line-height : 3.2;
+  font-style : italic;
+  font-size : 14px;
+  margin : 0 10px;
+}
 .header-info-container{
   display:flex;
   flex-wrap : wrap;
