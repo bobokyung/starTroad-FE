@@ -183,7 +183,16 @@ export default {
             method : 'get',
             headers : this.requireAuth()
         })
-    }
+    },
+    addTalk(roadmap_id, talk_id, data){
+        return Send({
+            url:`/roadmap/talk/${roadmap_id}/${talk_id}`,
+            method : 'post',
+            data : qs.stringify(data),
+            headers : this.requireAuth(),
+        })
+
+    },
 
 }
 

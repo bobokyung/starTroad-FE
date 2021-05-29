@@ -39,7 +39,7 @@
         rows="3"
         max-rows="8"
       ></b-form-textarea>
-      <b-button href="#" variant="primary">등록하기</b-button>
+      <b-button href="#" variant="primary" @click="addComment()">등록하기</b-button>
     </div>
 
   </b-container>
@@ -81,7 +81,20 @@ export default {
         console.log(this.sample.myComments)
 
       })
-    }
+    },
+    addComment(){
+      console.log("Asdf")
+      let roadmap_id = this.roadmap_id
+      let talk_id = this.talk_id
+
+      let data = {
+        content : this.myComment
+      }
+      Api.addTalk(roadmap_id, talk_id, data)
+      .then((res) => {
+        this.fetch()
+      })
+    },
   },
   computed: {
 
