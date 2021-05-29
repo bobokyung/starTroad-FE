@@ -47,12 +47,14 @@
           <b-dropdown-header class="noti-title">
             <h6 class="text-overflow m-0">notice</h6>
           </b-dropdown-header>
-          <b-dropdown-item>
-            <span>{{sample.requester}} 님의 {{sample.studyId}} 스터디 참여 요청</span>
-            <div class="text-right"> 
-            <b-button variant="outline-primary" @click="goAccept()">수락</b-button>
-            <b-button variant="outline-primary" @click="goDeny()">거절</b-button>
-            </div>
+          <b-dropdown-item v-for="sample in sampleList" :key="sample.requester">
+           
+              <span>{{sample.requester}} 님의 {{sample.studyId}} 스터디 참여 요청</span>
+              <div class="text-right"> 
+                <b-button variant="outline-primary" @click="goAccept()">수락</b-button>
+                <b-button variant="outline-primary" @click="goDeny()">거절</b-button>
+              </div>
+            
           </b-dropdown-item>
           
           
@@ -141,10 +143,20 @@ export default {
   },
   data() {
     return {
-      sample : {
-        requester : "SR",
-        studyId : "vue.js"
-      },
+      sampleList : [
+        {
+          "requester" : "SR",
+          "studyId" : "vue.js"
+        },
+        { 
+          "requester" : "ES",
+          "studyId" : "node.js"
+        },
+        { 
+          "requester" : "BK",
+          "studyId" : "frontend"
+        },
+      ],
 
       activeNotifications: false,
       showMenu: false,
