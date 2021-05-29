@@ -14,9 +14,9 @@
       </div>
     </div>
     <b-row class="text-right">
-        <b-col class="personnal">
+        <b-col class="status">
            <b-avatar variant="black" icon="people-fill" class="mr-3"></b-avatar>
-        <span>{{sample.personnal}}/{{sample.maxpersonnal}}     </span>
+        <span>{{sample.status}}/{{sample.max_num}}     </span>
       </b-col>
         <b-col  cols="1" class="btn btn-sm btn-primary" @click="gotoparticipate()">스터디 참가</b-col>
     </b-row> 
@@ -66,8 +66,8 @@ export default {
         "author" : "sr",
         "created_at" : "2021-03-25 17:22:33",
         "content" : "자바스크립트 공부 같이할사람 구합니다. 월요일 7시 가능한사람 요청버튼 눌러주세요",
-        "personnal" : 3,
-        "maxpersonnal" : 6,
+        "status" : 3,
+        "max_num" : 6,
         "comments" : [
             {
                 "author" : "sr",
