@@ -72,10 +72,12 @@ const routes = [
           {
             path : "study/study_add",
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapStudyAdd.vue'),
+            props : true
           },
           {
             path : "study/:study_id",
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapStudy.vue'),
+            props : true
           }
         ]
       },

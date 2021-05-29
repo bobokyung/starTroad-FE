@@ -55,7 +55,7 @@ export default {
       alert('' + JSON.stringify());
     },
     gotoComplete(){
-      this.$router.push({path:'/roadmap/${roadmap_id}/s'})
+      this.$router.push({path:`/roadmap/${roadmap_id}/study`})
     }
   },
   

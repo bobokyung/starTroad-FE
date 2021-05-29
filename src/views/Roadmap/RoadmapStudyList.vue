@@ -1,18 +1,14 @@
 <template>
-  <div>
-    <b-container fluid class="mt--7">
+    <b-container fluid>
       <b-row>
         <b-col>
           <b-card no-body>
-        <b-card-header class="border-0">
-            <h3 class="mb-0">study</h3>
-        </b-card-header>
         <b-card class="text-right">
         <div class="btn btn-sm btn-primary" @click="gotoContents()">스터디생성하기</div>
         </b-card>
         <el-table class="table-responsive table"
                   header-row-class-name="thead-light"
-                  :data="projects">
+                  :data="studyLists">
             <el-table-column label="Project"
                              min-width="310px"
                              prop="name">
@@ -50,10 +46,11 @@
       </b-row>
       <div class="mt-5"></div>
     </b-container>
-  </div>
 </template>
 
 <script>
+import Api from '@/api/Api'
+import moment from "moment";
 import { Dropdown, DropdownItem, DropdownMenu, Table, TableColumn } from 'element-ui';
  
 export default {
@@ -66,28 +63,52 @@ export default {
   },
   data () {
     return {
-      projects,
-        users
+      roadmap_id : null,
+      currentRow : null,
+      currentPage : 1,
+      studyLists : []
     }
   },
   // watch : {
 
   // },
   methods: {
-      handleCurrentChange(val){
+    fetch(){
+      this.studyLists = []
+      let id = this.roadmap_id
+      Api.getStudyList(id)
+      .then((res)=>{
+        res.data.forEach((v,i) => {
+          //여기에서 스터디 참여 가능한지 가능하지 않은지 확인해야함.
+          let created_at = new Date(v.created_at)
+          v.created_at = moment(created_at).format("yyyy-MM-DD HH:mm:ss")
+        })
+        this.studyLists = res.data
+      })
+
+      
+    },
+    handleCurrentChange(val){
       this.currentRow = val
       let roadmap_id = 1
       let study_id = this.currentRow.id
-      this.$router.push({path:`/roadmap/${roadmap_id}/study/${study_id}`})
+      this.$router.push({path:`/roadmap/${roadmap_id}/study/${study_id}`,
+      params : {study_id : study_id, roadmap_id : roadmap_id}})
     },
-      gotoContents(){
-      this.$router.push({path:'/roadmap/${roadmap_id}/study/study_add'})
+    gotoContents(){
+      this.$router.push({path:`/roadmap/${roadmap_id}/study/study_add`,
+      params : {roadmap_id}})
     }
   },
   computed: {
 
   },
   mounted() {
+    this.roadmap_id = this.$route.fullPath.split('/').slice()[2]
+    this.fetch()
+  },
+  created(){
+    this.roadmap_id = this.$route.fullPath.split('/').slice()[2]
   }
   
 };

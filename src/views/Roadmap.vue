@@ -38,6 +38,9 @@
                 <b-tab class="tab" title="talk" @click="navigate(`talk`)">
                     <router-view></router-view>
                 </b-tab>
+                <b-tab class="tab" title="study" @click="navigate(`study`)">
+                    <router-view></router-view>
+                </b-tab>
             </b-tabs>
           </b-col>
       </b-row>
@@ -178,6 +181,9 @@ export default {
                 break
             case 'talk':
                 this.tabIndex = 2
+                break
+            case 'study':
+                this.tabIndex = 3
                 break
             default:
                 this.tabIndex = 0

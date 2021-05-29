@@ -193,6 +193,13 @@ export default {
         })
 
     },
+    getStudyList(roadmap_id){
+        return Send({
+            url : `/study/${roadmap_id}`,
+            method : 'get',
+            headers : this.requireAuth()
+        })
+    },
 
 }
 
