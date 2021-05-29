@@ -133,7 +133,6 @@ export default {
       this.connectionDialogVisible = true;
     },
     render: function (g, node, isSelected) {
-
       node.width = node.width || 120;
       node.height = node.height || 60;
       let borderColor = isSelected ? "#666666" : "#bbbbbb";
