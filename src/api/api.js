@@ -191,7 +191,6 @@ export default {
             data : qs.stringify(data),
             headers : this.requireAuth(),
         })
-<<<<<<< HEAD
 
     },
     getStudyList(roadmap_id){
@@ -216,9 +215,6 @@ export default {
             headers : this.requireAuth()
         })
     },
-=======
-    }, 
->>>>>>> bk
 
 }
 
