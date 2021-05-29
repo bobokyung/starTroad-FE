@@ -191,8 +191,7 @@ export default {
             data : qs.stringify(data),
             headers : this.requireAuth(),
         })
-
-    },
+    }, 
 
 }
 

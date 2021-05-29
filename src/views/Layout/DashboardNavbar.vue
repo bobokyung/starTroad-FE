@@ -20,8 +20,7 @@
             id="navbar-search-main">
         <b-form-group class="mb-0">
           <!--검색창 주석처리--> <b-input-group class="input-group-alternative input-group-merge">
-            <b-form-input placeholder="Search" type="text" v-model="search"> </b-form-input>
-
+            <b-form-input placeholder="Search" type="text" v-model="search" @keyup.enter="goSearch()"> </b-form-input>
             <div class="input-group-append">
               <span class="input-group-text"><i class="fas fa-search" @click="goSearch()"></i></span>
             </div>
