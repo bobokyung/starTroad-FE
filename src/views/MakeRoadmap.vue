@@ -90,7 +90,7 @@ export default {
         name : this.form.title,
         summary : this.form.content,
         tag : this.form.category,
-        img : this.form.img,
+        image : this.form.img,
         description : description,
         information : information,
       }
