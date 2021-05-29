@@ -51,7 +51,7 @@
            
               <span>{{sample.requester}} 님의 {{sample.studyId}} 스터디 참여 요청</span>
               <div class="text-right"> 
-                <b-button variant="outline-primary" @click="goAccept()">수락</b-button>
+                <b-button variant="outline-primary" @click="makeToast()">수락</b-button>
                 <b-button variant="outline-primary" @click="goDeny()">거절</b-button>
               </div>
             
@@ -200,10 +200,17 @@ export default {
       this.$store.dispatch('search', query)
       this.$router.push({path : '/search', query:query}).catch(()=>{});
     },
-    goAccept(){
+    makeToast(variant = null){
+      this.$bvToast.toast('수락하였습니다.', {
+        title: "알림",
+        toaster: "b-toaster-top-center"
+      })
 
     },
     goDeny(){
+      this.$bvToast.toast('거절하였습니다.', {
+          title: "알림",
+        })
 
     },
   },
