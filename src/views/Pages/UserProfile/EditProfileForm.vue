@@ -26,29 +26,6 @@
              ></b-form-file>
         </b-row>
         -->
-
-
-
-        <b-row>
-          <b-col lg="6">
-            <base-input
-              type="text"
-              label="User Id"
-              placeholder="Userid"
-              v-model="user.userid"
-            >
-            </base-input>
-          </b-col>
-          <b-col lg="6">
-            <base-input
-              type="email"
-              label="Email address"
-              placeholder="email@email.com"
-              v-model="user.email"
-            >
-            </base-input>
-          </b-col>
-        </b-row>
         <b-row >
           <b-col lg="6">
             <base-input
@@ -116,8 +93,7 @@ export default {
 
         values: [''],
         company: '',
-        userid: '',
-        email: '',
+        
         name: '',
         major:'',
 

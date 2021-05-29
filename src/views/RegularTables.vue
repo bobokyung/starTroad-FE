@@ -66,7 +66,6 @@
         </b-col>
       </b-row>
       <div class="mt-5"></div>
-      <dark-table></dark-table>
     </b-container>
   </div>
 </template>

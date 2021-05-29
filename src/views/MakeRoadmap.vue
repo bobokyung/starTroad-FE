@@ -46,7 +46,7 @@
               <b-tab class="tab" title="Detail" >
                 <RoadmapDetail></RoadmapDetail>
               </b-tab>
-              <!-- <b-tab class="tab" title="Talk" >
+              <!--=<b-tab class="tab" title="Talk" >
                 <RoadmapTalk></RoadmapTalk>
               </b-tab>
               <b-tab class="tab" title="Study" disabled><p>I'm a disabled tab!</p></b-tab> -->

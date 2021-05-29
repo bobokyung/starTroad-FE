@@ -64,11 +64,15 @@ const routes = [
           },
           {
             path : "study",
-            component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapStudy.vue'),
+            component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapStudyList.vue'),
           },
           {
             path : "study/study_add",
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapStudyAdd.vue'),
+          },
+          {
+            path : "study/:study_id",
+            component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapStudy.vue'),
           }
         ]
       },
