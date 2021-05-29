@@ -20,14 +20,14 @@
             id="navbar-search-main">
         <b-form-group class="mb-0">
           <!--검색창 주석처리--> <b-input-group class="input-group-alternative input-group-merge">
-            <b-form-input placeholder="Search" type="text" v-model="search"> </b-form-input>
-
+            <b-form-input placeholder="Search" type="text" v-model="search" @keyup.enter="goSearch()"> </b-form-input>
             <div class="input-group-append">
               <span class="input-group-text"><i class="fas fa-search" @click="goSearch()"></i></span>
             </div>
           </b-input-group>
         </b-form-group>
       </b-form>
+      
       <base-dropdown menu-on-right
                      class="nav-item"
                      tag="li"
@@ -38,6 +38,38 @@
                   <span class="avatar avatar-sm rounded-circle">
                     <img alt="Image placeholder" src="https://png.pngtree.com/png-vector/20190217/ourlarge/pngtree-vector-notification-icon-png-image_555490.jpg">
                   </span>
+      
+          </b-media>
+        </a>
+
+        <template>
+
+          <b-dropdown-header class="noti-title">
+            <h6 class="text-overflow m-0">notice</h6>
+          </b-dropdown-header>
+          <b-dropdown-item>
+            <span>{{sample.requester}} 님의 {{sample.studyId}} 스터디 참여 요청</span>
+            <div class="text-right"> 
+            <b-button variant="outline-primary" @click="goAccept()">수락</b-button>
+            <b-button variant="outline-primary" @click="goDeny()">거절</b-button>
+            </div>
+          </b-dropdown-item>
+          
+          
+          
+
+        </template>
+      </base-dropdown>
+
+
+      <base-dropdown menu-on-right
+                     class="nav-item"
+                     tag="li"
+                     title-tag="a"
+                     title-classes="nav-link pr-0">
+        <a href="#" class="nav-link pr-0" @click.prevent slot="title-container">
+          <b-media no-body class="align-items-center">
+                  
             <b-media-body class="ml-2 d-none d-lg-block">
               <span class="mb-0 text-sm  font-weight-bold">{{profileName}}</span>
             </b-media-body>
@@ -109,6 +141,10 @@ export default {
   },
   data() {
     return {
+      sample : {
+        requester : "SR",
+        studyId : "vue.js"
+      },
 
       activeNotifications: false,
       showMenu: false,
@@ -151,7 +187,13 @@ export default {
       }
       this.$store.dispatch('search', query)
       this.$router.push({path : '/search', query:query}).catch(()=>{});
-    }
+    },
+    goAccept(){
+
+    },
+    goDeny(){
+
+    },
   },
   mounted(){
     this.getProfile()

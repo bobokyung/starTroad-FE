@@ -21,6 +21,10 @@
                     </b-media>
                 </template>
             </el-table-column>
+            <el-table-column label="Roadmap title"
+                             prop="roadmap_name"
+                             min-width="140px">
+            </el-table-column>
             <el-table-column label="Date"
                              prop="date"
                              min-width="140px">
