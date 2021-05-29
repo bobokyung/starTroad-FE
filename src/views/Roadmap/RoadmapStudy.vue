@@ -2,26 +2,26 @@
   <b-container fluid class="comments-container">
     <div class="comments-body-container">
       <div class="title">
-        <h1>{{sample.title}}</h1>
+        <h1>{{sample.name}}</h1>
         
       </div>
       <div class="author">
-        <h2>{{sample.author}}</h2>
+        <h2>{{sample.leader}}</h2>
         <span> commented at {{sample.created_at}} </span>
       </div>
       <div class="content">
-        <div>{{sample.content}}</div>
+        <div>{{sample.description}}</div>
       </div>
     </div>
     <b-row class="text-right">
         <b-col class="status">
-           <b-avatar variant="black" icon="people-fill" class="mr-3"></b-avatar>
-        <span>{{sample.status}}/{{sample.max_num}}     </span>
+          <b-avatar variant="black" icon="people-fill" class="mr-3"></b-avatar>
+          <span>{{sample.now_num}}/{{sample.max_num}}</span>
+          <b-button class="join" variant="primary" @click="gotoparticipate()">스터디 참가</b-button>
       </b-col>
-        <b-col  cols="1" class="btn btn-sm btn-primary" @click="gotoparticipate()">스터디 참가</b-col>
     </b-row> 
     <hr>
-    <h2>댓글(3)</h2>
+    <!-- <h2>댓글(3)</h2>
 
     <div class="comments" v-for="comment in sample.comments"
     :key="comment.id">
@@ -47,15 +47,19 @@
         max-rows="8"
       ></b-form-textarea>
       <b-button href="#" variant="primary">등록하기</b-button>
-    </div>
+    </div> -->
 
   </b-container>
 </template>
 
 <script>
-export default {
-  components : {
+import Api from '@/api/Api'
+import moment from "moment";
 
+export default {
+  props : {
+    roadmap_id : null,
+    study_id : null,
   },
   data () {
     return {
@@ -92,7 +96,19 @@ export default {
 
   // },
   methods: {
-     gotoparticipate(){
+    fetch(){
+      this.sample = {}
+      let roadmap_id = this.roadmap_id
+      let study_id = this.study_id
+
+      Api.getStudy(roadmap_id, study_id)
+      .then((res) => {
+        res.data.created_at = moment(res.data.created_at).format("yyyy-MM-DD HH:mm:ss")
+        this.sample = res.data
+
+      })
+    },
+    gotoparticipate(){
       this.$router.push({})
     },
 
@@ -101,6 +117,7 @@ export default {
 
   },
   mounted() {
+    this.fetch()
   }
   
 };
@@ -126,6 +143,19 @@ export default {
         padding: 15px 0 0 0;
       }
     }
+  .text-right{
+    .status{
+      margin : 10px 0;
+      span{
+        font-size : 1.5rem;
+        vertical-align: middle;
+        font-weight : bold;
+      }
+      .join{
+        margin: 0 0 0 15px;
+      }
+    }
+  }
   .comments-body-container{
     max-width : 1000px;
     margin : 0 auto;

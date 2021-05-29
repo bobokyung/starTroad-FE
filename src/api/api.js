@@ -200,6 +200,21 @@ export default {
             headers : this.requireAuth()
         })
     },
+    addStudyList(roadmap_id, data){
+        return Send({
+            url : `/study/${roadmap_id}`,
+            method : 'post',
+            data : qs.stringify(data),
+            headers : this.requireAuth()
+        })
+    },
+    getStudy(roadmap_id, study_id){
+        return Send({
+            url : `/study/${roadmap_id}/${study_id}`,
+            method : 'get',
+            headers : this.requireAuth()
+        })
+    },
 
 }
 

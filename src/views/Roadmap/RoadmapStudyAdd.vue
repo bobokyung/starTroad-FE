@@ -42,12 +42,16 @@
 </template>
 
 <script>
+import Api from '@/api/Api'
 export default {
+  props : {
+    roadmap_id : null
+  },
   data () {
     return {
       title : '',
-      value : '5',
-      content : ''
+      value : 5,
+      content : '',
     }
   }, 
   methods: {
@@ -55,7 +59,17 @@ export default {
       alert('' + JSON.stringify());
     },
     gotoComplete(){
-      this.$router.push({path:`/roadmap/${roadmap_id}/study`})
+      let roadmap_id = this.roadmap_id
+      let data = {
+        name : this.title,
+        follow_map : this.roadmap_id,
+        description : this.content,
+        max_num : this.value,
+      }
+      Api.addStudyList(roadmap_id, data)
+      .then((res)=>{
+        this.$router.push({path:`/roadmap/${roadmap_id}/study`})
+      })
     }
   },
   

@@ -48,9 +48,6 @@
 <script>
 import Api from '@/api/Api'
 export default {
-  components : {
-
-  },
   props : {
     roadmap_id : null,
     talk_id : null,
@@ -74,11 +71,8 @@ export default {
 
       Api.getTalk(roadmap_id, talk_id)
       .then((res) => {
-        console.log("res")
-        console.log(res.data)
         this.sample = res.data
         this.commentLength = this.sample.myComments.length
-        console.log(this.sample.myComments)
 
       })
     },
@@ -100,8 +94,6 @@ export default {
 
   },
   mounted() {
-    console.log("mounted")
-    console.log(this.roadmap_id, this.talk_id)
     this.fetch()
   },
   created(){

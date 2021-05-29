@@ -8,32 +8,35 @@
         </b-card>
         <el-table class="table-responsive table"
                   header-row-class-name="thead-light"
+                  @current-change="handleCurrentChange"
                   :data="studyLists">
-            <el-table-column label="Project"
+            <el-table-column label="ID"
+                             min-width="100px"
+                             prop="id">
+                <template v-slot="{row}">
+                  {{row.id}}
+                </template>
+            </el-table-column>
+            <el-table-column label="STUDY"
                              min-width="310px"
                              prop="name">
                 <template v-slot="{row}">
-                    <b-media no-body class="align-items-center">
-                        <b-media-body>
-                            <span class="font-weight-600 name mb-0 text-sm">{{row.title}}</span>
-                        </b-media-body>
-                    </b-media>
+                  {{row.name}}
                 </template>
             </el-table-column>
             <el-table-column label="Date"
                              prop="date"
                              min-width="140px">
+                <template v-slot="{row}">
+                  {{row.created_at}}
+                </template>
             </el-table-column>
         
-
             <el-table-column label="Status"
                              min-width="170px"
                              prop="status">
                 <template v-slot="{row}">
-                    <badge class="badge-dot mr-4" type="">
-                        <i :class="`bg-${row.statusType}`"></i>
-                        <span class="status" :class="`text-${row.statusType}`">{{row.status}}</span>
-                    </badge>
+                  {{row.status}}
                 </template>
             </el-table-column>
         </el-table>
@@ -80,22 +83,24 @@ export default {
       .then((res)=>{
         res.data.forEach((v,i) => {
           //여기에서 스터디 참여 가능한지 가능하지 않은지 확인해야함.
-          let created_at = new Date(v.created_at)
+          let created_at = new Date(v.createdAt)
           v.created_at = moment(created_at).format("yyyy-MM-DD HH:mm:ss")
         })
         this.studyLists = res.data
+        
       })
 
       
     },
     handleCurrentChange(val){
       this.currentRow = val
-      let roadmap_id = 1
+      let roadmap_id = this.roadmap_id
       let study_id = this.currentRow.id
       this.$router.push({path:`/roadmap/${roadmap_id}/study/${study_id}`,
       params : {study_id : study_id, roadmap_id : roadmap_id}})
     },
     gotoContents(){
+      let roadmap_id = this.roadmap_id
       this.$router.push({path:`/roadmap/${roadmap_id}/study/study_add`,
       params : {roadmap_id}})
     }
@@ -115,4 +120,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.el-table.table-dark{
+  background-color: #172b4d;
+  color: #f8f9fe;
+}
+
+.el-table.table-dark th,
+.el-table.table-dark tr{
+  background-color: #999999;
+}
+
+.el-table.table-dark td,
+.el-table.table-dark th.is-leaf{
+  border-bottom: none;
+}
+
+.el-table{
+  cursor: pointer;
+}
+.btn{
+  cursor : pointer;
+}
 </style>
