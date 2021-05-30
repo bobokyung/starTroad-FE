@@ -74,10 +74,22 @@ export default {
         isActive : null,
         isMine : true,
         tabIndex : 0,
+        path : null,
     }
   },
   watch : {
-    
+    // path : function(newVal, oldVal){
+    //   this.activateTab(newVal)
+    //   this.path = this.$route.fullPath
+    //   console.log("와치")
+
+    //   //console.log(val)
+    //   //this.activateTab(val)
+    // },
+    $route : function(val){
+      this.path = val.path
+      this.activateTab(this.path)
+    }
   },
   methods:{
       editRoadmap(){
@@ -92,9 +104,9 @@ export default {
           description : description,
           information : information,
         }
-        console.log("edit roadmap")
-        console.log(description, information)
-        console.log(body)
+        // console.log("edit roadmap")
+        // console.log(description, information)
+        // console.log(body)
         Api.editRoadmap(id, body)
         .then((res) => {
           console.log(res)
@@ -110,9 +122,6 @@ export default {
         }
         Api.forkRoadmap(data)
         .then((res)=>{
-          console.log(res)
-        })
-        .then(()=>{
           this.$router.push('/mymap')
         })
         .catch((err)=>{
@@ -120,18 +129,17 @@ export default {
         })
       },
       pushHeart(){
-        let data = {
-          id : this.roadmap.id
-        }
-
+        
+        let roadmap_id = this.roadmap.id
+      
         if(this.likeValid){
-          Api.unlikeRoadmap(data)
+          Api.unlikeRoadmap(roadmap_id)
           .then((res)=>{
             this.roadmap.likeCount = res.data.likeCount
             this.likeValid = false
           })
         }else{
-          Api.likeRoadmap(data)
+          Api.likeRoadmap(roadmap_id)
           .then((res)=>{
             this.roadmap.likeCount = res.data.likeCount
             this.likeValid = true
@@ -166,30 +174,32 @@ export default {
           //console.log(this.$route.params)
           this.$router.push({path:`/roadmap/${id}/${route}`})
       },
+      activateTab(path){
+
+        if(path.includes('detail')){
+          this.tabIndex = 1
+        }else if(path.includes('talk')){
+          this.tabIndex = 2
+        }else if(path.includes('study')){
+          this.tabIndex = 3
+        }else{
+          this.tabIndex = 0
+        }
+      }
   },
   mounted(){
+    this.id = this.$route.fullPath.split('/').slice()[2]
+    this.path= this.$route.fullPath
+    this.activateTab(this.path)
     this.getRoadmap(this.id)
+    console.log("마운트")
   },
   created(){
       this.id = this.$route.fullPath.split('/').slice()[2]
-      //console.log(this.$route.fullPath.split('/').slice()[2])
-
-      let path = this.$route.fullPath.split('/').slice(-1)[0]
-      switch(path){
-            case 'detail':
-                this.tabIndex = 1
-                break
-            case 'talk':
-                this.tabIndex = 2
-                break
-            case 'study':
-                this.tabIndex = 3
-                break
-            default:
-                this.tabIndex = 0
-
-          }
-        //console.log(this.tabIndex)
+      console.log(this.id)
+      this.path= this.$route.fullPath
+      this.activateTab(this.path)
+      console.log("크리에이트")
       }
   }
 </script>

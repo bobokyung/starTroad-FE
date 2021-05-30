@@ -29,24 +29,18 @@ const routes = [
     path: '/',
     redirect: 'home',
     component: DashboardLayout,
-    //beforeEnter : requireAuth(),
+    beforeEnter : requireAuth(),
     children: [
       {
         path: '/home',
         name: 'home',
-        //beforeEnter : requireAuth(),
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "demo" */ '../views/Dashboard.vue')
       },
       {
         path: '/roadmap/:roadmap_id',
         name: 'roadmap',
-        //beforeEnter : requireAuth(),
         component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap.vue'),
         children : [
-          
           {
             path : "talk",
             component: () => import(/* webpackChunkName: "demo" */ '../views/Roadmap/RoadmapTalkList.vue'),
@@ -99,7 +93,7 @@ const routes = [
       {
         path: '/mystudy',
         name: 'mystudy',
-        component: () => import(/* webpackChunkName: "demo" */ '../views/RegularTables.vue')
+        component: () => import(/* webpackChunkName: "demo" */ '../views/MyStudy.vue')
       },
       {
         path: '/search',

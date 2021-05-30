@@ -125,22 +125,21 @@ export default {
             headers : this.requireAuth()
         })
     },
-    likeRoadmap(data){
+    likeRoadmap(roadmap_id){
         //로드맵 좋아요 누르기
-        console.log(data)
         return Send({
-            url : `/roadmap/like`,
+            url : `/roadmap/${roadmap_id}/like`,
             method : 'post',
-            data : qs.stringify(data),
+            // data : qs.stringify(data),
             headers : this.requireAuth()
         })
     },
-    unlikeRoadmap(data){
+    unlikeRoadmap(roadmap_id){
         //로드맵 좋아요 누르기 취소
         return Send({
-            url : `/roadmap/unlike`,
+            url : `/roadmap/${roadmap_id}/unlike`,
             method : 'post',
-            data : qs.stringify(data),
+            // data : qs.stringify(data),
             headers : this.requireAuth()
         })
     },
@@ -215,6 +214,12 @@ export default {
             headers : this.requireAuth()
         })
     },
-
+    getMyStudy(){
+        return Send({
+            url: `/study/mystudy`,
+            method : 'get',
+            headers : this.requireAuth()
+        })
+    },
 }
 
