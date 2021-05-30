@@ -5,14 +5,19 @@
         </b-card-header>
 
         <el-table class="table-responsive table"
-                  header-row-class-name="thead-light"
-                  :data="projects">
+            header-row-class-name="thead-light"
+            :data="projects"
+            :total-rows="rows"
+            :page-size=3
+            :current-page="currentPage">
+                  
             <el-table-column label="Project"
                              min-width="310px"
-                             prop="name">
-                <template v-slot="{row}">
+                             prop="name"
+                             >
+                <template v-slot="{row}" >
                     <b-media no-body class="align-items-center">
-                       <!-- study image  <a href="#" class="avatar rounded-circle mr-3">
+                        <!-- study image  <a href="#" class="avatar rounded-circle mr-3">
                             <img alt="Image placeholder" :src="row.img">
                         </a>-->
                         <b-media-body>
@@ -23,17 +28,18 @@
             </el-table-column>
             <el-table-column label="Roadmap title"
                              prop="roadmap_name"
-                             min-width="140px">
+                             min-width="140px"
+                             >
             </el-table-column>
             <el-table-column label="Date"
                              prop="date"
-                             min-width="140px">
+                             min-width="140px"
+                             >
             </el-table-column>
-        
-
             <el-table-column label="Status"
                              min-width="170px"
-                             prop="status">
+                             prop="status"
+                             >
                 <template v-slot="{row}">
                     <badge class="badge-dot mr-4" type="">
                         <i :class="`bg-${row.statusType}`"></i>
@@ -78,7 +84,11 @@
         </el-table>
 
         <b-card-footer class="py-4 d-flex justify-content-end">
-            <base-pagination v-model="currentPage" :per-page="10" :total="50"></base-pagination>
+            <base-pagination 
+                v-model="currentPage" 
+                :per-page="perPage" 
+                :page-size=5
+                aria-controls="table-responsive table"></base-pagination>
         </b-card-footer>
     </b-card>
 </template>
@@ -94,8 +104,14 @@
     data() {
       return {
         projects,
+        perPage: 3,
         currentPage: 1
       };
+    },
+    computed: {
+      rows() {
+        return this.projects.length
+      }
     }
   }
 </script>

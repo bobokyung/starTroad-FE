@@ -201,11 +201,11 @@ export default {
       this.$router.push({path : '/search', query:query}).catch(()=>{});
     },
     makeToast(variant = null){
-      this.$bvToast.toast('수락하였습니다.', {
-        title: "알림",
-        toaster: "b-toaster-top-center"
-      })
-
+        this.$bvToast.toast('수락하였습니다.', {
+          title: `수락하였습니다`,
+          variant: "b-toaster-top-center",
+          solid: true
+        })
     },
     goDeny(){
       this.$bvToast.toast('거절하였습니다.', {
