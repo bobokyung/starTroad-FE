@@ -17,11 +17,23 @@
                            aria-haspopup="true" aria-expanded="false">
                             <i class="ni ni-bell-55"></i>
                         </a>
+                        
+                        <template>
 
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                          <b-dropdown-header class="noti-title">
+                            <h6 class="text-overflow m-0">notice</h6>
+                          </b-dropdown-header>
+                          <b-dropdown-item v-for="sample in sampleList" :key="sample.requester">
+                          
+                              <h7 class="text-overflow m-0">{{sample.requester}} 님의 {{sample.studyId}} 스터디 참여 요청</h7>
+                              <div class="text-right"> 
+                                <b-button variant="outline-primary" @click="goAccept()">수락</b-button>
+                                <b-button variant="outline-primary" @click="goDeny()">거절</b-button>
+                              </div>
+                            
+                          </b-dropdown-item>
+                        </template>
+
                     </base-dropdown>
                     <base-dropdown class="nav-item" menu-on-right tag="li" title-tag="a">
                         <a slot="title-container" class="nav-link" href="#" role="button">
@@ -32,6 +44,7 @@
                             </div>
                         </a>
 
+                      
                         <div class=" dropdown-header noti-title">
                             <h6 class="text-overflow m-0">Welcome!</h6>
                         </div>
@@ -95,12 +108,32 @@
         description: 'Whether sidebar should autoclose on mobile when clicking an item'
       }
     },
+    data() {
+        return {
+          sampleList : [
+            {
+              "requester" : "SR",
+              "studyId" : "vue.js"
+            },
+            { 
+              "requester" : "ES",
+              "studyId" : "node.js"
+            },
+            { 
+              "requester" : "BK",
+              "studyId" : "frontend"
+            },
+          ],
+        }
+      },
     provide() {
       return {
+        
         autoClose: this.autoClose
       };
     },
     computed :{
+      
       isAuthenticated(){
         let isAuthenticated = false
         if(localStorage.getItem("accessToken")){
@@ -121,6 +154,15 @@
       if (this.$sidebar.showSidebar) {
         this.$sidebar.showSidebar = false;
       }
-    }
+    },
+    goAccept(){
+        {
+          
+        }
+    },
+    goDeny(){
+      {
+      }
+    },
   };
 </script>

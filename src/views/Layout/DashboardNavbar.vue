@@ -49,7 +49,7 @@
           </b-dropdown-header>
           <b-dropdown-item v-for="sample in sampleList" :key="sample.requester">
            
-              <span>{{sample.requester}} 님의 {{sample.studyId}} 스터디 참여 요청</span>
+              <h8 class="text-overflow m-0">{{sample.requester}} 님의 {{sample.studyId}} 스터디 참여 요청</h8>
               <div class="text-right"> 
                 <b-button variant="outline-primary" @click="makeToast()">수락</b-button>
                 <b-button variant="outline-primary" @click="goDeny()">거절</b-button>
