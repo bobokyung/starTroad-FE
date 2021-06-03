@@ -31,12 +31,22 @@
                   {{row.created_at}}
                 </template>
             </el-table-column>
-        
+
+            <el-table-column label="NUMBER"
+                             min-width="140px">
+                <template v-slot="{row}">
+                  {{row.now_num}} / {{row.max_num}}
+                </template>
+            </el-table-column>
+
             <el-table-column label="Status"
                              min-width="170px"
                              prop="status">
                 <template v-slot="{row}">
-                  {{row.status}}
+                    <badge class="badge-dot mr-4" type="">
+                        <i :class="`bg-${row.status_type}`"></i>
+                        <span class="status" :class="`text-${row.status_type}`">{{row.status_text}}</span>
+                    </badge>
                 </template>
             </el-table-column>
         </el-table>
@@ -82,9 +92,20 @@ export default {
       Api.getStudyList(id)
       .then((res)=>{
         res.data.forEach((v,i) => {
-          //여기에서 스터디 참여 가능한지 가능하지 않은지 확인해야함.
-          let created_at = new Date(v.createdAt)
-          v.created_at = moment(created_at).format("yyyy-MM-DD HH:mm:ss")
+          if(v.status == 0){
+            v.status_type = "info"
+            v.status_text = "모집중"
+          }else if(v.status == 1){
+            v.status_type = "success"
+            v.status_text = "모집완료"
+          }else if(v.status == 2){
+            v.status_type = "success"
+            v.status_text = "진행중"
+          }else if(v.status == 3){
+            v.status_type = "dark"
+            v.status_text = "진행종료"
+
+          }
         })
         this.studyLists = res.data
         
