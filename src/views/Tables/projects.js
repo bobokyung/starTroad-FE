@@ -70,5 +70,21 @@ export default [
     roadmap_name:'android',
     status: '모집완료',
     statusType: 'info',
+  },
+  {
+
+    title: 'Android',
+    date:'2020-11-12',
+    roadmap_name:'android',
+    status: '모집완료',
+    statusType: 'info',
+  },
+  {
+  
+    title: 'Android',
+    date:'2020-11-12',
+    roadmap_name:'android',
+    status: '모집완료',
+    statusType: 'info',
   }
 ]
