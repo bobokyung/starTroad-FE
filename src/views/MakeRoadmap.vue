@@ -83,6 +83,8 @@ export default {
       this.$store.getters.description = null
     },
     saveRoadmap(){
+      alert('저장되었습니다');
+      
       let description = this.$store.state.description
       let information = this.$store.state.information
       //console.log(description, information)

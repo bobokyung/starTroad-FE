@@ -86,6 +86,7 @@ export default {
 
   methods: {
     saveTmp(){
+      alert('저장되었습니다');
       if(this.type == "makemap"){
         this.$store.commit("saveDescription", this.content)
       }else if(this.type == "roadmap"){
