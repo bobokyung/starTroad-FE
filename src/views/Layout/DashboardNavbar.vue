@@ -47,22 +47,44 @@
           <b-dropdown-header class="noti-title">
             <h6 class="text-overflow m-0">notice</h6>
           </b-dropdown-header>
-          <b-dropdown-item v-for="sample in sampleList" :key="sample.requester">
+          <b-dropdown-item v-for="sample in sampleList" :key="sample.requester" @click="Toast()">
            
               <h8 class="text-overflow m-0">{{sample.requester}} 님의 {{sample.studyId}} 스터디 참여 요청</h8>
               <div class="text-right"> 
-                <b-button variant="outline-primary" @click="makeToast()">수락</b-button>
-                <b-button variant="outline-primary" @click="goDeny()">거절</b-button>
+                <b-button size="sm" @click="showBottom_accept = !showBottom_accept">
+                 수락
+              </b-button>
+               <b-button size="sm" @click="showBottom_deny = !showBottom_deny">
+                 거절
+              </b-button> 
+                <!--<b-button variant="outline-primary" @click="makeToast()">수락</b-button>
+                <b-button variant="outline-primary" @click="goDeny()">거절</b-button>-->
               </div>
             
           </b-dropdown-item>
-          
-          
-          
-
         </template>
-      </base-dropdown>
 
+
+      </base-dropdown>
+      <b-alert
+      v-model="showBottom_accept"
+      class="position-fixed fixed-bottom m-0 rounded-0"
+      style="z-index: 2000;"
+      variant="info"
+      dismissible
+    >
+      수락하였습니다!
+    </b-alert>
+    <b-alert
+      v-model="showBottom_deny"
+      class="position-fixed fixed-bottom m-0 rounded-0"
+      style="z-index: 2000;"
+      variant="warning"
+      dismissible
+      auto-hide-delay=1000
+    >
+      거절하였습니다!
+    </b-alert>
 
       <base-dropdown menu-on-right
                      class="nav-item"
@@ -105,7 +127,33 @@ import Api from '@/api/Api'
 import { CollapseTransition } from 'vue2-transitions';
 import { BaseNav, Modal } from '@/components';
 import store from "@/store"
+
 export default {
+  data() {
+    return {
+      sampleList : [
+        {
+          "requester" : "SR",
+          "studyId" : "vue.js"
+        },
+        { 
+          "requester" : "ES",
+          "studyId" : "node.js"
+        },
+        { 
+          "requester" : "BK",
+          "studyId" : "frontend"
+        },
+      ],
+      showBottom_accept: false,
+      showBottom_deny: false,
+
+      activeNotifications: false,
+      showMenu: false,
+      searchModalVisible: false,
+      searchQuery: '',
+    };
+  },
   components: {
     CollapseTransition,
     BaseNav,
@@ -140,29 +188,6 @@ export default {
     profileName(){
       return this.$store.getters.getName
     }
-  },
-  data() {
-    return {
-      sampleList : [
-        {
-          "requester" : "SR",
-          "studyId" : "vue.js"
-        },
-        { 
-          "requester" : "ES",
-          "studyId" : "node.js"
-        },
-        { 
-          "requester" : "BK",
-          "studyId" : "frontend"
-        },
-      ],
-
-      activeNotifications: false,
-      showMenu: false,
-      searchModalVisible: false,
-      searchQuery: '',
-    };
   },
   methods: {
     getProfile(){
@@ -199,6 +224,15 @@ export default {
       }
       this.$store.dispatch('search', query)
       this.$router.push({path : '/search', query:query}).catch(()=>{});
+    },
+    Toast(append = false) {
+        this.$bvToast.toast(`This is toast number`, {
+          title: 'BootstrapVue Toast',
+           autoHideDelay: no-auto-hide,
+          appendToast: append,
+          variant: 'warning',
+          toaster: 'b-toaster-top-right'
+        })
     },
     makeToast(variant = null){
         this.$bvToast.toast('수락하였습니다.', {
