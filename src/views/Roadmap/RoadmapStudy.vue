@@ -17,7 +17,8 @@
         <b-col class="status">
           <b-avatar variant="black" icon="people-fill" class="mr-3"></b-avatar>
           <span>{{sample.now_num}}/{{sample.max_num}}</span>
-          <b-button class="join" :variant="sample.button_color" :disabled="button_disable" @click="gotoparticipate()">{{sample.button_text}}</b-button>
+          <b-button class="join" :variant="sample.button_color" 
+          :disabled="sample.button_valid" @click="studyButtonHandler(sample.study_status)">{{sample.button_text}}</b-button>
       </b-col>
     </b-row> 
     <hr>
@@ -82,16 +83,16 @@ export default {
         
         res.data.created_at = moment(res.data.created_at).format("yyyy-MM-DD HH:mm:ss")
         //studystatus 버튼 모양을 결정하기 위한 것들
-        // 내가 만들고 내가 참여하고 있는 스터디 : 1 --> 제거하기 버튼
+        // 내가 만들고 내가 참여하고 있는 스터디 : 1 --> 삭제하기 버튼
         // 내가 만들지 않고 내가 참여하고 있는 스터디 : 2 --> 탈퇴하기 버튼
         // 내가 만들지 않고 내가 참가하기 신청을 한 스터디 : 3 --> 수락 대기중 버튼(비활성화)
         // 내가 만들지도 않고 내가 참여하고 있지도  스터디 : 3 --> 참가하기 버튼
         if(res.data.valid == "yes"){
           //내가 만든 스터디
           res.data.study_status = 1
-          res.data.button_text = "제거하기"
+          res.data.button_text = "삭제하기"
           res.data.button_color ="warning"
-          res.data.button_valid = true
+          res.data.button_valid = false
         }else{
           //내가 만들지 않은 스터디
           if(res.data.joinValid == "yes"){
@@ -99,21 +100,21 @@ export default {
             res.data.study_status = 2
             res.data.button_text = "탈퇴하기"
             res.data.button_color ="warning"
-            res.data.button_valid = true
+            res.data.button_valid = false
           
           }else if(res.data.joinValid == "pending"){
             // 내가 참가하기 신청을 한 스터디
             res.data.study_status = 3
             res.data.button_text = "수락 대기중"
             res.data.button_color ="primary" 
-            res.data.button_valid = false 
+            res.data.button_valid = true
           
           }else if(res.data.joinValid == "no"){ 
             // 내가 참여하고 있지 않은 스터디
             res.data.study_status = 4
             res.data.button_text = "참가하기"
             res.data.button_color ="success"
-            res.data.button_valid = true
+            res.data.button_valid = false
           }
         }
 
@@ -125,7 +126,19 @@ export default {
       })
     },
     
-    studyButtonHandler(){
+    studyButtonHandler(study_status){
+      
+      let roadmap_id = this.roadmap_id
+      let study_id = this.study_id
+
+      if(study_status == 4){
+        Api.requestParticipate(roadmap_id, study_id)
+        .then((res)=>{
+          console.log("레스")
+          console.log(res)
+          this.fetch()
+        })
+      }
 
     },
     gotoparticipate(){

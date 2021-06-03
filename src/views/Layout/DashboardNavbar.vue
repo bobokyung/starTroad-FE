@@ -33,7 +33,7 @@
                      tag="li"
                      title-tag="a"
                      title-classes="nav-link pr-0">
-        <a href="#" class="nav-link pr-0" @click.prevent slot="title-container">
+        <a href="#" class="nav-link pr-0" @click.prevent @click="getRequestList()" slot="title-container">
           <b-media no-body class="align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
                     <img alt="Image placeholder" src="https://png.pngtree.com/png-vector/20190217/ourlarge/pngtree-vector-notification-icon-png-image_555490.jpg">
@@ -47,12 +47,12 @@
           <b-dropdown-header class="noti-title">
             <h6 class="text-overflow m-0">notice</h6>
           </b-dropdown-header>
-          <b-dropdown-item v-for="sample in sampleList" :key="sample.requester">
+          <b-dropdown-item v-for="request in requestList" :key="request.id">
            
-              <h8 class="text-overflow m-0">{{sample.requester}} 님의 {{sample.studyId}} 스터디 참여 요청</h8>
+              <h8 class="text-overflow m-0">{{request.requesterName}} 님의 ({{request.study_id}}) : {{request.study_name}} 스터디 참여 요청</h8>
               <div class="text-right"> 
-                <b-button variant="outline-primary" @click="makeToast()">수락</b-button>
-                <b-button variant="outline-primary" @click="goDeny()">거절</b-button>
+                <b-button variant="outline-primary" @click="postStudyAccept(request)">수락</b-button>
+                <b-button variant="outline-primary" @click="postStudyDeny(request)">거절</b-button>
               </div>
             
           </b-dropdown-item>
@@ -119,9 +119,9 @@ export default {
     }
   },
   watch : {
-    // search : function(newv){
-    //   console.log(this.$store.state.search)
-    // }
+    $route : function(){
+      this.getRequestList()
+    }
   },
   computed: {
     search:{
@@ -143,20 +143,7 @@ export default {
   },
   data() {
     return {
-      sampleList : [
-        {
-          "requester" : "SR",
-          "studyId" : "vue.js"
-        },
-        { 
-          "requester" : "ES",
-          "studyId" : "node.js"
-        },
-        { 
-          "requester" : "BK",
-          "studyId" : "frontend"
-        },
-      ],
+      requestList : [],
 
       activeNotifications: false,
       showMenu: false,
@@ -165,6 +152,38 @@ export default {
     };
   },
   methods: {
+    getRequestList(){
+      Api.getRequestList()
+      .then((res)=>{
+        this.requestList = res.data
+      })
+    },
+    postStudyAccept(request){
+      console.log("수락")
+      let roadmap_id = request.roadmap_id
+      let study_id = request.study_id
+      let data = {
+        requester : request.requester,
+      }
+      Api.postStudyAccept(roadmap_id, study_id, data)
+      .then((res)=>{
+        console.log(res)
+        this.getRequestList()
+      })
+    },
+    postStudyDeny(request){
+      console.log("거절")
+      let roadmap_id = request.roadmap_id
+      let study_id = request.study_id
+      let data = {
+        requester : request.requester,
+      }
+      Api.postStudyDeny(roadmap_id, study_id, data)
+      .then((res)=>{
+        console.log(res)
+        this.getRequestList()
+      })
+    },
     getProfile(){
       Api.getProfile()
       .then((res)=>{
@@ -200,6 +219,7 @@ export default {
       this.$store.dispatch('search', query)
       this.$router.push({path : '/search', query:query}).catch(()=>{});
     },
+    //밑에 함수 api 보내는것이랑 같이 진행할것
     makeToast(variant = null){
         this.$bvToast.toast('수락하였습니다.', {
           title: `수락하였습니다`,

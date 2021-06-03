@@ -194,14 +194,14 @@ export default {
     },
     getStudyList(roadmap_id){
         return Send({
-            url : `/study/${roadmap_id}`,
+            url : `/roadmap/study/${roadmap_id}`,
             method : 'get',
             headers : this.requireAuth()
         })
     },
     addStudyList(roadmap_id, data){
         return Send({
-            url : `/study/${roadmap_id}`,
+            url : `/roadmap/study/${roadmap_id}`,
             method : 'post',
             data : qs.stringify(data),
             headers : this.requireAuth()
@@ -209,7 +209,7 @@ export default {
     },
     getStudy(roadmap_id, study_id){
         return Send({
-            url : `/study/${roadmap_id}/${study_id}`,
+            url : `/roadmap/study/${roadmap_id}/${study_id}`,
             method : 'get',
             headers : this.requireAuth()
         })
@@ -218,6 +218,36 @@ export default {
         return Send({
             url: `/study/mystudy`,
             method : 'get',
+            headers : this.requireAuth()
+        })
+    },
+    getRequestList(){
+        return Send({
+            url:`/study/requestlist`,
+            method : 'get',
+            headers : this.requireAuth()
+        })
+    },
+    requestParticipate(roadmap_id, study_id){
+        return Send({
+            url : `/roadmap/study/ask/${roadmap_id}/${study_id}`,
+            method : 'post',
+            headers : this.requireAuth()
+        })
+    },
+    postStudyAccept(roadmap_id, study_id, data){
+        return Send({
+            url:`/roadmap/study/accept/${roadmap_id}/${study_id}`,
+            method : 'post',
+            data : qs.stringify(data),
+            headers : this.requireAuth()
+        })
+    },
+    postStudyDeny(roadmap_id, study_id, data){
+        return Send({
+            url:`/roadmap/study/deny/${roadmap_id}/${study_id}`,
+            method : 'post',
+            data : qs.stringify(data),
             headers : this.requireAuth()
         })
     },
