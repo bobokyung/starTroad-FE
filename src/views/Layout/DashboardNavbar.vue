@@ -37,6 +37,8 @@
           <b-media no-body class="align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
                     <img alt="Image placeholder" src="https://png.pngtree.com/png-vector/20190217/ourlarge/pngtree-vector-notification-icon-png-image_555490.jpg">
+                    <!--<img alt="Image placeholder" src="https://cdn5.vectorstock.com/i/thumb-large/03/84/alarm-bell-icon-vector-21810384.jpg">-->
+                    
                   </span>
       
           </b-media>
@@ -56,13 +58,29 @@
               </div>
             
           </b-dropdown-item>
-          
-          
-          
-
         </template>
-      </base-dropdown>
 
+
+      </base-dropdown>
+      <b-alert
+      v-model="showBottom_accept"
+      class="position-fixed fixed-bottom m-0 rounded-0"
+      style="z-index: 2000;"
+      variant="info"
+      dismissible
+    >
+      수락하였습니다!
+    </b-alert>
+    <b-alert
+      v-model="showBottom_deny"
+      class="position-fixed fixed-bottom m-0 rounded-0"
+      style="z-index: 2000;"
+      variant="warning"
+      dismissible
+      auto-hide-delay=1000
+    >
+      거절하였습니다!
+    </b-alert>
 
       <base-dropdown menu-on-right
                      class="nav-item"
@@ -105,7 +123,33 @@ import Api from '@/api/Api'
 import { CollapseTransition } from 'vue2-transitions';
 import { BaseNav, Modal } from '@/components';
 import store from "@/store"
+
 export default {
+  data() {
+    return {
+      sampleList : [
+        {
+          "requester" : "SR",
+          "studyId" : "vue.js"
+        },
+        { 
+          "requester" : "ES",
+          "studyId" : "node.js"
+        },
+        { 
+          "requester" : "BK",
+          "studyId" : "frontend"
+        },
+      ],
+      showBottom_accept: false,
+      showBottom_deny: false,
+
+      activeNotifications: false,
+      showMenu: false,
+      searchModalVisible: false,
+      searchQuery: '',
+    };
+  },
   components: {
     CollapseTransition,
     BaseNav,

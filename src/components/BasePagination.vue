@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-pagination first-number last-number :per-page="perPage" :size="size" :value="value" @change="(val) => $emit('change', val)" :align="align" :total-rows="total">
+    <b-pagination first-number last-number :per-page="perPage" :size="size" :value="value" @change="(val) => $emit('change', val)" :align="align" :total-rows="1">
       <template v-slot:prev-text>
         <a class="page-link" aria-label="Previous">
           <span aria-hidden="true"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
@@ -26,13 +26,13 @@ export default {
     },
     perPage: {
       type: Number,
-      default: 10,
+      default: 5,
       description:
         "Pagination per page. Should be specified with total or pageCount"
     },
     total: {
       type: Number,
-      default: 0,
+      default: 2,
       description:
         "Can be specified instead of pageCount. The page count in this case will be total/perPage"
     },
