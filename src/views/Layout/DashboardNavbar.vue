@@ -37,6 +37,8 @@
           <b-media no-body class="align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
                     <img alt="Image placeholder" src="https://png.pngtree.com/png-vector/20190217/ourlarge/pngtree-vector-notification-icon-png-image_555490.jpg">
+                    <!--<img alt="Image placeholder" src="https://cdn5.vectorstock.com/i/thumb-large/03/84/alarm-bell-icon-vector-21810384.jpg">-->
+                    
                   </span>
       
           </b-media>

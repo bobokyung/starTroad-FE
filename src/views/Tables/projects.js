@@ -86,5 +86,29 @@ export default [
     roadmap_name:'android',
     status: '모집완료',
     statusType: 'info',
-  }
+  },
+  {
+   
+    title: 'web sever 공부할사람 모집',
+    date:'2020-04-01',
+    roadmap_name:'back',
+    status: '모집중',
+    statusType: 'success',
+  },
+  {
+   
+    title: 'web sever 공부할사람 모집',
+    date:'2020-04-01',
+    roadmap_name:'back',
+    status: '모집중',
+    statusType: 'success',
+  },
+  {
+   
+    title: 'web sever 공부할사람 모집',
+    date:'2020-04-01',
+    roadmap_name:'back',
+    status: '모집중',
+    statusType: 'success',
+  },
 ]
