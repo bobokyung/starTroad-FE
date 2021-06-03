@@ -1,6 +1,11 @@
 <template>
   <b-container fluid class="comments-container">
-    <div class="comments-body-container">
+    <b-button v-if="isMine" variant="primary" class="modify" @click="modifyStudy()">{{modify_text}}하기</b-button>
+    <!-- 수정하기 들어갈 경우 -->
+    <addRoadMapStudy v-if="modify" :option="modify" :roadmap_id="roadmap_id" :study_id="study_id" @modifyStudy="modifyStudy">
+    </addRoadMapStudy>
+
+    <div v-else class="comments-body-container">
       <div class="title">
         <h1>{{sample.name}}</h1>
         
@@ -12,7 +17,7 @@
       <div class="content">
         <div>{{sample.description}}</div>
       </div>
-    </div>
+
     <b-row class="text-right">
         <b-col class="status">
           <b-avatar variant="black" icon="people-fill" class="mr-3"></b-avatar>
@@ -21,43 +26,19 @@
           :disabled="sample.button_valid" @click="studyButtonHandler(sample.study_status)">{{sample.button_text}}</b-button>
       </b-col>
     </b-row> 
-    <hr>
-    <!-- <h2>댓글(3)</h2>
-
-    <div class="comments" v-for="comment in sample.comments"
-    :key="comment.id">
-      <div class="comments-header">
-        <div class="author">
-          <h2>{{comment.author}}</h2>
-          <span> commented at {{comment.created_at}} </span>
-        </div>
-      </div>
-      <div class="content">
-        <div>{{comment.content}}</div>
-      </div>
     </div>
-    
-    <hr>
-    <h2>댓글쓰기</h2>
-    <div class ="add-comments">
-      <b-form-textarea
-        id="textarea-auto-height"
-        v-model = "myComment"
-        placeholder="의견을 남겨주세요."
-        rows="3"
-        max-rows="8"
-      ></b-form-textarea>
-      <b-button href="#" variant="primary">등록하기</b-button>
-    </div> -->
-
   </b-container>
 </template>
 
 <script>
 import Api from '@/api/Api'
 import moment from "moment";
+import addRoadMapStudy from "./RoadmapStudyAdd"
 
 export default {
+  components : {
+    addRoadMapStudy
+  },
   props : {
     roadmap_id : null,
     study_id : null,
@@ -66,7 +47,10 @@ export default {
     return {
       button_disable : false,
       myComment : "",
-      sample : {}
+      sample : {},
+      isMine : false,
+      modify : false,
+      modify_text : "수정"
     }
   },
   // watch : {
@@ -80,7 +64,6 @@ export default {
 
       Api.getStudy(roadmap_id, study_id)
       .then((res) => {
-        
         res.data.created_at = moment(res.data.created_at).format("yyyy-MM-DD HH:mm:ss")
         //studystatus 버튼 모양을 결정하기 위한 것들
         // 내가 만들고 내가 참여하고 있는 스터디 : 1 --> 삭제하기 버튼
@@ -93,6 +76,7 @@ export default {
           res.data.button_text = "삭제하기"
           res.data.button_color ="warning"
           res.data.button_valid = false
+          this.isMine = true
         }else{
           //내가 만들지 않은 스터디
           if(res.data.joinValid == "yes"){
@@ -131,11 +115,24 @@ export default {
       let roadmap_id = this.roadmap_id
       let study_id = this.study_id
 
-      if(study_status == 4){
-        Api.requestParticipate(roadmap_id, study_id)
+      if(study_status == 1){
+        //삭제하기
+        Api.deleteStudy(roadmap_id, study_id)
         .then((res)=>{
-          console.log("레스")
-          console.log(res)
+          this.$router.push({path:`/roadmap/${roadmap_id}/study`})
+        })
+
+      }else if(study_status == 2){
+        //탈퇴하기
+        Api.withdrawStudy(roadmap_id,study_id)
+        .then((res)=>{
+          this.fetch()
+        })
+
+      }else if(study_status == 4){
+        //참가하기
+        Api.joinStudy(roadmap_id, study_id)
+        .then((res)=>{
           this.fetch()
         })
       }
@@ -144,7 +141,16 @@ export default {
     gotoparticipate(){
       this.$router.push({})
     },
+    modifyStudy(){
+      this.modify = !this.modify
 
+      if(!this.modify){
+        this.modify_text = "수정"
+        this.fetch()
+      }else{
+        this.modify_text = "취소"
+      }
+    }
   },
   computed: {
 
@@ -160,6 +166,11 @@ export default {
 .comments-container{
     max-width : 1000px;
     margin : 0 auto;
+    
+    .modify{
+      display : block;
+      margin : 0 0 10px 0;
+    }
     .author > h2{
       display:inline
     }

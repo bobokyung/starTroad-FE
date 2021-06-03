@@ -207,6 +207,14 @@ export default {
             headers : this.requireAuth()
         })
     },
+    modifyStudyList(roadmap_id, study_id, data){
+        return Send({
+            url : `/roadmap/study/modify/${roadmap_id}/${study_id}`,
+            method : 'put',
+            data : qs.stringify(data),
+            headers : this.requireAuth()
+        })
+    },
     getStudy(roadmap_id, study_id){
         return Send({
             url : `/roadmap/study/${roadmap_id}/${study_id}`,
@@ -228,9 +236,23 @@ export default {
             headers : this.requireAuth()
         })
     },
-    requestParticipate(roadmap_id, study_id){
+    joinStudy(roadmap_id, study_id){
         return Send({
             url : `/roadmap/study/ask/${roadmap_id}/${study_id}`,
+            method : 'post',
+            headers : this.requireAuth()
+        })
+    },
+    deleteStudy(roadmap_id, study_id){
+        return Send({
+            url : `/roadmap/study/delete/${roadmap_id}/${study_id}`,
+            method : 'delete',
+            headers : this.requireAuth()
+        })
+    },
+    withdrawStudy(roadmap_id, study_id){
+        return Send({
+            url : `/roadmap/study/quit/${roadmap_id}/${study_id}`,
             method : 'post',
             headers : this.requireAuth()
         })

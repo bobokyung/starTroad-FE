@@ -64,6 +64,7 @@ instance.interceptors.response.use(
     },
 
     function (error) {
+        //400번대 Error 처리할것
     /*
         http status가 200이 아닌 경우
         응답 에러 처리를 작성합니다.

@@ -159,6 +159,7 @@ export default {
       })
     },
     postStudyAccept(request){
+      console.log(request)
       console.log("수락")
       let roadmap_id = request.roadmap_id
       let study_id = request.study_id
