@@ -14,21 +14,24 @@
                     header-row-class-name="thead-light"
                     id="studytable"
                     :current-page="currentPage"
-                    @current-change="handleCurrentChange"
+                    @row-clicked="handleCurrentChange"
                     :per-page="perPage"
                     :items="projects">
-
-                <b-tr label="ID"
+                <b-tr>
+                <b-th 
                                 min-width="100px"
-                                prop="id">
-                </b-tr>
-                <b-tr label="Roadmap title"
+                                prop="id">ID
+                </b-th>
+                <b-th 
                                 prop="name"
                                 min-width="310px">
-                </b-tr>
-                <b-tr label="Status"
+                                Roadmap title
+                </b-th>
+                <b-th 
                                 min-width="170px"
                                 prop="status">
+                                Status
+                </b-th>
                 </b-tr>
 
             </b-table>
@@ -60,7 +63,22 @@
         perPage: 5,
         currentPage:1,
         projects : [
-          
+          {
+                id:"1",
+                name: 'my sql같이 공부해요~@!',
+                date:'2020-01-01',
+                roadmap_name:'vue.js',
+                status: 0,
+                statusType: 'success',
+            },
+            {
+                id:"2",
+                name: 'HTML공부 할사람 있나요',
+                date:'2020-02-01',
+                roadmap_name:'front',
+                status: 0,
+                statusType: 'info',
+            },
         ]
       };
     },
