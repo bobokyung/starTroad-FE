@@ -17,7 +17,7 @@
                     @row-clicked="handleCurrentChange"
                     :per-page="perPage"
                     :items="projects">
-                <b-tr>
+                <!--<b-tr>
                 <b-th 
                                 min-width="100px"
                                 prop="id">ID
@@ -32,7 +32,10 @@
                                 prop="status">
                                 Status
                 </b-th>
-                </b-tr>
+                </b-tr>-->
+                <template slot="id" slot-scope="data">
+        {{ data.id }}
+      </template>
 
             </b-table>
 
@@ -89,7 +92,6 @@
     },
     methods : {
       handleCurrentChange(val){
-        
         this.currentRow = val
         let roadmap_id = this.currentRow.followMap
         let study_id = this.currentRow.id
