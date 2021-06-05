@@ -135,7 +135,7 @@ export default {
     likeRoadmap(roadmap_id){
         //로드맵 좋아요 누르기
         return Send({
-            url : `/roadmap/${roadmap_id}/like`,
+            url : `/roadmap/like/${roadmap_id}`,
             method : 'post',
             // data : qs.stringify(data),
             headers : this.requireAuth()
@@ -144,7 +144,7 @@ export default {
     unlikeRoadmap(roadmap_id){
         //로드맵 좋아요 누르기 취소
         return Send({
-            url : `/roadmap/${roadmap_id}/unlike`,
+            url : `/roadmap/unlike/${roadmap_id}`,
             method : 'post',
             // data : qs.stringify(data),
             headers : this.requireAuth()
@@ -190,8 +190,13 @@ export default {
             headers : this.requireAuth()
         })
     },
-    editTalk(roadmap_id, talk_id){
-
+    editTalk(roadmap_id, talk_id, data){
+        return Send({
+            url:`/roadmap/talk/modify/${roadmap_id}/${talk_id}`,
+            method : 'put',
+            data : qs.stringify(data),
+            headers : this.requireAuth(),
+        })
     },
     deleteTalk(roadmap_id, talk_id){
         return Send({
@@ -205,6 +210,14 @@ export default {
         return Send({
             url:`/roadmap/talk/${roadmap_id}/${talk_id}`,
             method : 'post',
+            data : qs.stringify(data),
+            headers : this.requireAuth(),
+        })
+    },
+    editComment(roadmap_id, talk_id, comment_id, data){
+        return Send({
+            url:`/roadmap/talk/modify/${roadmap_id}/${talk_id}/${comment_id}`,
+            method : 'put',
             data : qs.stringify(data),
             headers : this.requireAuth(),
         })

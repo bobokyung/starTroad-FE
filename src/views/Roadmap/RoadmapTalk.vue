@@ -2,7 +2,14 @@
   <b-container fluid class="comments-container">
     <div class="comments-body-container">
       <div class="title">
-        <h1>{{sample.name}}</h1>
+        <h1 v-if="!talk_edit">{{sample.name}}</h1>
+        <b-form-input
+          class="title-input"
+          v-else
+          v-model="sample.name"
+          required
+        ></b-form-input>
+        
         <p class="edit-delete h3">
           <b-icon-pencil-fill @click="editTalk()"></b-icon-pencil-fill>
           <b-icon-x @click="deleteTalk()"></b-icon-x>
@@ -13,7 +20,13 @@
         <span> commented at {{sample.created_at}} </span>
       </div>
       <div class="content">
-        <div>{{sample.description}}</div>
+        <div v-if="!talk_edit">{{sample.description}}</div>
+        <b-form-textarea
+          v-else
+          v-model = "sample.description"
+          rows="3"
+          max-rows="8"
+        ></b-form-textarea>
       </div>
     </div>
 
@@ -33,7 +46,14 @@
         </p>
       </div>
       <div class="content">
-        <div>{{comment.content}}</div>
+        <div v-if="!comment.edit">{{comment.content}}</div>
+          <b-form-textarea
+            v-else
+            id="textarea-auto-height"
+            v-model = "comment.content"
+            rows="3"
+            max-rows="8"
+          ></b-form-textarea>
       </div>
     </div>
     
@@ -65,6 +85,7 @@ export default {
       myComment : "",
       sample : null,
       commentLength : 0,
+      talk_edit : false
 
     }
   },
@@ -81,7 +102,8 @@ export default {
       .then((res) => {
 
         res.data.myComments.forEach((v, i) => {
-          v.commentValid = v.commentValid=="yes" ? true : false
+          v.commentValid = v.commentValid =="yes" ? true : false
+          v.edit = false
         })
 
         this.sample = res.data
@@ -100,7 +122,23 @@ export default {
 
     },
     editTalk(){
+      let roadmap_id = this.roadmap_id
+      let talk_id = this.talk_id
       
+      let data = {
+        name : this.sample.name,
+        description : this.sample.description
+
+      }
+
+      if(this.talk_edit){
+        Api.editTalk(roadmap_id, talk_id, data)
+        .then((res)=>{
+          this.talk_edit = !this.talk_edit
+        })
+      }else{
+        this.talk_edit = !this.talk_edit
+      }
     },
     addComment(){
       let roadmap_id = this.roadmap_id
@@ -115,7 +153,6 @@ export default {
       })
     },
     deleteComment(comment){
-      console.log(comment)
       let roadmap_id = this.roadmap_id
       let talk_id = this.talk_id
       let comment_id = comment.id
@@ -126,8 +163,22 @@ export default {
       })
       
     },
-    editComment(){
+    editComment(comment){
+      let roadmap_id = this.roadmap_id
+      let talk_id = this.talk_id
+      let comment_id = comment.id
+      let data = {
+        content : comment.content
+      }
 
+      if(comment.edit){
+        Api.editComment(roadmap_id, talk_id, comment_id, data)
+        .then((res)=>{
+          comment.edit = !comment.edit
+        })
+      }else{
+        comment.edit = !comment.edit
+      }
     }
   },
   computed: {
@@ -154,6 +205,9 @@ export default {
           margin : 0 4px;
         }
       }
+    .title-input{
+      width : 80%;
+    }
     .author > h2{
       display:inline
     }

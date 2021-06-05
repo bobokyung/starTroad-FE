@@ -282,9 +282,6 @@ export default {
   mounted(){
     this.getProfile()
   },
-  created(){
-    this.getProfile()
-  }
 };
 </script>
 <style scoped>

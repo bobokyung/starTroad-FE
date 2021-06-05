@@ -170,7 +170,7 @@ export default {
       },
       deleteRoadmap(){
         let id = this.roadmap.id
-        console.log("삭제")
+
         Api.deleteRoadmap(id)
         .then((res)=>{
           this.$router.push({path:`/`})
