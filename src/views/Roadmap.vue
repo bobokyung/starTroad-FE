@@ -23,6 +23,7 @@
             
             <b-button v-if="!isMine" variant="warning" @click="forkRoadmap()">포크하기</b-button>
             <b-button v-if="isMine" variant="success" @click="editRoadmap()">업데이트</b-button>
+            <b-button v-if="isMine" variant="danger" @click="deleteRoadmap()">삭제하기</b-button>
           </div>
         </div>
       </b-row>
@@ -167,7 +168,15 @@ export default {
           console.log(this.$store.state.roadmap)
         })
       },
-    
+      deleteRoadmap(){
+        let id = this.roadmap.id
+
+        Api.deleteRoadmap(id)
+        .then((res)=>{
+          this.$router.push({path:`/`})
+        })
+
+      },
       navigate(route){
           //console.log("clicked")
           let id = this.roadmap.id

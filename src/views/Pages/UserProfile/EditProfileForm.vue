@@ -13,25 +13,13 @@
       <h6 class="heading-small text-muted mb-4">User information</h6>
 
       <div class="pl-lg-4">
-        <!--프로필 이미지 주석 <div class="mb-2">
-           <label>Profile Image <b-avatar size="20rem"></b-avatar></label>
-            </div>
-
-        <b-row>  
-            <b-form-file
-             v-model="user.imageData"
-             :state="Boolean(user.imageData)"
-             placeholder="Choose a prorfile image or drop it here..."
-             drop-placeholder="Drop file here..."
-             ></b-form-file>
-        </b-row>
-        -->
         <b-row >
           <b-col lg="6">
             <base-input
               type="text"
               label="Name"
               placeholder="Name"
+              disabled
               v-model="user.name"
             >
             </base-input>
@@ -73,10 +61,8 @@
       <!-- Description -->
       <h6 class="heading-small text-muted mb-4">About me</h6>
       <div class="pl-lg-4">
-        <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
-         <!--  <label class="form-control-label">About Me</label> -->
-          <b-form-textarea rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
-        </b-form-group>
+
+          <b-form-textarea rows="4" v-model="user.message" id="about-form-textaria"></b-form-textarea>
       </div>
 
     </b-form>
@@ -104,7 +90,7 @@ export default {
         major:'',
         birth: '',
         postalCode: '',
-        aboutMe: ''
+        message: ''
       }
     };
   },
@@ -112,7 +98,13 @@ export default {
     getProfile(){
       Api.getProfile()
       .then((res)=>{
-        console.log(res)
+        this.user.name = res.data.name
+        this.user.major = res.data.major
+        this.user.birth = res.data.birth
+        this.user.interest = "CS"
+        this.user.message = res.data.message
+        console.log(res.data)
+
       })
       .catch((err) => {
         

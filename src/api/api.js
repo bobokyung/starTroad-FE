@@ -118,17 +118,24 @@ export default {
     },
     getRoadmap(roadmap_id){
         //로드맵 조회
-        console.log(roadmap_id)
         return Send({
             url : `/roadmap/${roadmap_id}`,
             method : 'get',
             headers : this.requireAuth()
         })
     },
+    deleteRoadmap(roadmap_id){
+        //로드맵 조회
+        return Send({
+            url : `/roadmap/delete/${roadmap_id}`,
+            method : 'delete',
+            headers : this.requireAuth()
+        })
+    },
     likeRoadmap(roadmap_id){
         //로드맵 좋아요 누르기
         return Send({
-            url : `/roadmap/${roadmap_id}/like`,
+            url : `/roadmap/like/${roadmap_id}`,
             method : 'post',
             // data : qs.stringify(data),
             headers : this.requireAuth()
@@ -137,7 +144,7 @@ export default {
     unlikeRoadmap(roadmap_id){
         //로드맵 좋아요 누르기 취소
         return Send({
-            url : `/roadmap/${roadmap_id}/unlike`,
+            url : `/roadmap/unlike/${roadmap_id}`,
             method : 'post',
             // data : qs.stringify(data),
             headers : this.requireAuth()
@@ -183,14 +190,44 @@ export default {
             headers : this.requireAuth()
         })
     },
-    addTalk(roadmap_id, talk_id, data){
+    editTalk(roadmap_id, talk_id, data){
+        return Send({
+            url:`/roadmap/talk/modify/${roadmap_id}/${talk_id}`,
+            method : 'put',
+            data : qs.stringify(data),
+            headers : this.requireAuth(),
+        })
+    },
+    deleteTalk(roadmap_id, talk_id){
+        return Send({
+            url : `/roadmap/talk/delete/${roadmap_id}/${talk_id}`,
+            method : 'delete',
+            headers : this.requireAuth()
+        })
+
+    },
+    addComment(roadmap_id, talk_id, data){
         return Send({
             url:`/roadmap/talk/${roadmap_id}/${talk_id}`,
             method : 'post',
             data : qs.stringify(data),
             headers : this.requireAuth(),
         })
-
+    },
+    editComment(roadmap_id, talk_id, comment_id, data){
+        return Send({
+            url:`/roadmap/talk/modify/${roadmap_id}/${talk_id}/${comment_id}`,
+            method : 'put',
+            data : qs.stringify(data),
+            headers : this.requireAuth(),
+        })
+    },
+    deleteComment(roadmap_id, talk_id, comment_id){
+        return Send({
+            url : `/roadmap/talk/delete/${roadmap_id}/${talk_id}/${comment_id}`,
+            method : 'delete',
+            headers : this.requireAuth()
+        })
     },
     getStudyList(roadmap_id){
         return Send({
