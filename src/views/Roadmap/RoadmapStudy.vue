@@ -96,7 +96,7 @@ export default {
           }else if(res.data.joinValid == "no"){ 
             // 내가 참여하고 있지 않은 스터디
             res.data.study_status = 4
-            res.data.button_text = "참가하기"
+            res.data.button_text = "참가요청"
             res.data.button_color ="success"
             res.data.button_valid = false
           }

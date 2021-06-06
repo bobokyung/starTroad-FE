@@ -15,17 +15,23 @@
                     @current-change="handleCurrentChange"
                     :data="projects">
                 <el-table-column label="ID"
-                                min-width="100px"
+                                min-width="50px"
                                 prop="id">
                 </el-table-column>
                 <el-table-column label="Roadmap title"
-                                prop="name"
-                                min-width="310px">
+                                prop="name">
                 </el-table-column>
-                <el-table-column label="Status"
-                                min-width="170px"
-                                prop="status">
-                </el-table-column>
+             <el-table-column label="Status"
+                             prop="status">
+                <template v-slot="{row}">
+                    <badge class="badge-dot mr-4" type="">
+                        <i :class="`bg-${row.status_type}`"></i>
+                        <span class="status" :class="`text-${row.status_type}`">{{row.status_text}}</span>
+                    </badge>
+                    <span class="num-bagde">{{row.now_num}} / {{row.max_num}}</span>
+                    <b-icon v-if="row.valid==`yes`" class="manage" icon="gear"></b-icon>
+                </template>
+            </el-table-column>
 
             </el-table>
 
@@ -53,85 +59,13 @@
     },
     data() {
       return {
-        projects : [
-          // {
-          //     title: 'my sql같이 공부해요~@!',
-          //     date:'2020-01-01',
-          //     roadmap_name:'vue.js',
-          //     status: '모집중',
-          //     statusType: 'success',
-          //   },
-          //   {
-              
-          //     title: 'HTML공부 할사람 있나요',
-          //     date:'2020-02-01',
-          //     roadmap_name:'front',
-          //     status: '모집완료',
-          //     statusType: 'info',
-          //   },
-          //   {
-            
-          //     title: 'web sever 공부할사람 모집',
-          //     date:'2020-04-01',
-          //     roadmap_name:'back',
-          //     status: '모집중',
-          //     statusType: 'success',
-          //   },
-          //   {
-            
-          //     title: 'React같이 공부좀 합시다',
-          //     date:'2020-07-01',
-          //     roadmap_name:'backend',
-          //     status: '모집완료',
-          //     statusType: 'info',
-          //   },
-          //   {
-            
-          //     title: 'Vue 스터디',
-          //     date:'2020-08-01',
-          //     roadmap_name:'frontend',
-          //     status: '모집완료',
-          //     statusType: 'info',
-          //   },
-          //   {
-          
-          //     title: 'CSS인원 구합니다',
-          //     date:'2020-11-01',
-          //     roadmap_name:'front',
-          //     status: '모집완료',
-          //     statusType: 'info',
-          //   },
-          //   {
-            
-          //     title: 'Devops 토요일에 공부합시다',
-          //     date:'2020-11-01',
-          //     roadmap_name:'dev',
-          //     status: '모집완료',
-          //     statusType: 'info',
-          //   },
-          //   {
-            
-          //     title: 'node.js 초보',
-          //     date:'2020-12-01',
-          //     roadmap_name:'front',
-          //     status: '모집중',
-          //     statusType: 'success',
-          //   },
-          //   {
-            
-          //     title: 'Android',
-          //     date:'2020-11-12',
-          //     roadmap_name:'android',
-          //     status: '모집완료',
-          //     statusType: 'info',
-          //   }
-        ]
+        projects : []
       };
     },
     methods : {
       handleCurrentChange(val){
         this.currentRow = val
-        let roadmap_id = this.currentRow.followMap
+        let roadmap_id = this.currentRow.follow_map
         let study_id = this.currentRow.id
         this.$router.push({path:`/roadmap/${roadmap_id}/study/${study_id}`,
         params : {study_id : study_id, roadmap_id : roadmap_id}})
@@ -139,7 +73,25 @@
       fetch(){
         Api.getMyStudy()
         .then((res)=>{
-          this.projects = res.data
+        res.data.forEach((v,i) => {
+          if(v.status == 0){
+            v.status_type = "info"
+            v.status_text = "모집중"
+          }else if(v.status == 1){
+            v.status_type = "success"
+            v.status_text = "모집완료"
+          }else if(v.status == 2){
+            v.status_type = "success"
+            v.status_text = "진행중"
+          }else if(v.status == 3){
+            v.status_type = "dark"
+            v.status_text = "진행종료"
+
+          }
+        })
+        console.log(res.data)
+        this.projects = res.data
+
         })
       },
     },
@@ -151,7 +103,7 @@
     },
   };
 </script>
-<style>
+<style lang="scss" scoped>
 .el-table.table-dark{
   background-color: #172b4d;
   color: #f8f9fe;
@@ -166,4 +118,11 @@
 .el-table.table-dark th.is-leaf{
   border-bottom: none;
 }
+.el-table{
+  cursor: pointer;
+}
+.manage{
+  float : right;
+}
+
 </style>

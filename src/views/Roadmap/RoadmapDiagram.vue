@@ -122,6 +122,7 @@ export default {
     },
     handleChartSave(nodes, connections) {
       this.shapeData(nodes, connections);
+      alert("저장되었습니다.");
       console.log(this.$store.state.information)
     },
     handleEditNode(node) {

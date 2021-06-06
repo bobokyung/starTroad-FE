@@ -101,10 +101,12 @@ export default {
       
       Api.makeRoadmap(body)
       .then((res) => {
-        console.log(res)
+        this.$store.state.description = null
+        this.$store.state.information = null
+        
+        this.$route.push({path:`/mystudy`})
       })
       .catch((error) => {
-        console.log(error)
       })
     
       
