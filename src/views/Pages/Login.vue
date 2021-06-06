@@ -59,23 +59,6 @@ import Api from '../../api/Api'
     },
     methods: {
       googleLogin(){
-        /*
-        console.log("asdf")
-        this.$gAuth.getAuthCode()
-        .then(authCode => {
-          console.log(authCode)
-          return this.$axios.post('https://startroad.me/api/auth/google/callback', 
-          { code: authCode, redirect_uri: 'https://startroad.me/api/auth/google/callback' })
-        })
-        .then(response => {
-          //and then
-          console.log(response)
-        })
-        .catch(error => {
-          console.log("asdfasdf")
-          console.log(error)
-          //on fail do something
-        })*/
         this.$gAuth.signIn()
         .then((GoogleUser) => {
           let data = {
@@ -90,12 +73,10 @@ import Api from '../../api/Api'
             this.redirect()
           })
           .catch((err) => {
-            console.log(err)
           })
 
         })
         .catch((error) => {
-          console.log(error)
         })
       },
       onSubmit() {

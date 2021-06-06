@@ -102,8 +102,6 @@ export default {
           }
         }
 
-      
-        console.log(res.data)
         this.sample = res.data
         
 

@@ -95,7 +95,6 @@ export default {
         this.$store.commit("saveInformation", JSON.stringify(information))
         
       }else if(this.type == "roadmap"){
-        console.log("여기는 roadmap입니다.")
         this.$store.commit("modifyInformation", JSON.stringify(information))
         //console.log(this.information)
         //let information = this.$store.state.roadmap.information 
@@ -106,9 +105,6 @@ export default {
       let infoJson = JSON.stringify(info)
       this.nodes = infoJson[0]
       this.connections = infoJson[1]
-      console.log("------------------------")
-      console.log(this.nodes)
-      console.log(this.connections)
     },
     handleDblClick(position) {
       this.$refs.chart.add({
@@ -123,7 +119,6 @@ export default {
     handleChartSave(nodes, connections) {
       this.shapeData(nodes, connections);
       alert("저장되었습니다.");
-      console.log(this.$store.state.information)
     },
     handleEditNode(node) {
       this.nodeForm.target = node;

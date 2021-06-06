@@ -203,8 +203,6 @@ export default {
       })
     },
     postStudyAccept(request){
-      console.log(request)
-      console.log("수락")
       let roadmap_id = request.roadmap_id
       let study_id = request.study_id
       let data = {
@@ -212,12 +210,10 @@ export default {
       }
       Api.postStudyAccept(roadmap_id, study_id, data)
       .then((res)=>{
-        console.log(res)
         this.getRequestList()
       })
     },
     postStudyDeny(request){
-      console.log("거절")
       let roadmap_id = request.roadmap_id
       let study_id = request.study_id
       let data = {
@@ -225,7 +221,6 @@ export default {
       }
       Api.postStudyDeny(roadmap_id, study_id, data)
       .then((res)=>{
-        console.log(res)
         this.getRequestList()
       })
     },
@@ -236,7 +231,6 @@ export default {
         
       })
       .catch((err) => {
-        console.log(err)
       })
     },
     logOut(){

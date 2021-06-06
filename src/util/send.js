@@ -54,7 +54,6 @@ instance.interceptors.request.use(
 */
 instance.interceptors.response.use(
     function (response) {
-        //console.log(response)
     /*
         http status가 200인 경우
         응답 바로 직전에 대해 작성합니다. 

@@ -118,38 +118,6 @@ export default {
     return {
       Image : "@/assets/default_roadmap.jpg",
       roadmapList : [],
-      /*
-      roadmapList : [
-        {
-          "id" : 1,
-          "name" : "FE_TEST",
-          "tag" : "CS",
-          "description" : "Roadmap of vue.js",
-          "image" : "data:image/png;base64,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" 
-        },
-        {
-          "id" : 2,
-          "name" : "BE_TEST",
-          "tag" : "CS",
-          "description" : "Roadmap of vue.js",
-          "image" : "https://roadmap.sh/roadmaps/android/roadmap.svg" 
-        },
-        {
-          "id" : 3,
-          "name" : "DEVOPS_TEST",
-          "tag" : "CS",
-          "description" : "Roadmap of DEVOPS",
-          "image" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGJ60Xu0X3mLhnmrwCWRbEbg_zxpkhlytCkw&usqp=CAU" 
-        },
-        {
-          "id" : 4,
-          "name" : "testmap",
-          "tag" : "CS",
-          "description" : "Roadmap of ect",
-          "image" : "data:image/png;base64,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" 
-        },
-      ]
-      */
     };
   },
   computed :{
@@ -160,21 +128,20 @@ export default {
     fetch(){
       Api.getHome()
       .then((res)=>{
-        console.log(res)
+
         res.data.forEach((v, i)=>{
           if(v.image == null){
             v.image = require('@/assets/default_roadmap.jpg')
           }
         })
-        console.log(res.data)
         if(res.data.length > 8){
           res.data = res.data.slice(0,8)
         }
         this.roadmapList = res.data
-        console.log(this.roadmapList)
+
       })
       .catch((error) => {
-        console.log(error)
+
       })
     },
     goToRoadmap(roadmap_id){

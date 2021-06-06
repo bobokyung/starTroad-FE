@@ -105,7 +105,6 @@ export default {
         this.user.interest = JSON.parse(res.data.interest)[0]
         this.user.message = res.data.message
         this.user.email = res.data.email
-        console.log(this.user)
 
       })
       .catch((err) => {
@@ -126,6 +125,7 @@ export default {
       Api.updateProfile(email, data)
       .then((res) => {
         this.getProfile()
+        alert('수정되었습니다.');
       })
       .catch((err) => {
         

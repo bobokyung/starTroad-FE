@@ -55,10 +55,8 @@
     },
     methods: {
       fetch(){
-        console.log("로드맵")
-        console.log(this.roadmapList)
+
         let query = this.$route.query
-        console.log(query)
         this.$store.dispatch('search', query)
         
       },

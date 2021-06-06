@@ -52,17 +52,17 @@ export default new Vuex.Store({
       localStorage.accessToken = accessToken
     },
     GOOGLELOGIN(state, accessToken){
-      console.log(accessToken)
+
       state.accessToken = accessToken
       localStorage.accessToken = accessToken
-      console.log(accessToken)
+
     },
     LOGOUT (state) {
       state.accessToken = null
       delete localStorage.accessToken
     },
     getProfile(state, personal){
-      console.log(personal)
+
       state.personal = personal
     },
     getRoadmap(state, {roadmap}){
@@ -75,7 +75,7 @@ export default new Vuex.Store({
       state.roadmap = roadmap
     },
     saveInformation(state, information){
-      //console.log(information)
+
       state.information = information
     },
     modifyInformation(state, information){
@@ -105,27 +105,13 @@ export default new Vuex.Store({
 
       })
       .catch((err) => {
-        console.log(err)
       })
-      
-      /*
-      return Api.googleLogin()
-      .then((res) =>{
-        alert(res)
-        console.log("Asdf")
-        console.log(res)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-      */
       
       
     },
     LOGIN ({commit}, {email, password}) {
       return axios.post(`${resourceHost}/login`, {email, password})
         .then(({data}) => {
-          console.log(data)
           commit('LOGIN', data)
           axios.defaults.headers.common['Authorization'] = `Bearer ${data.accessToken}`;
         })
@@ -137,7 +123,6 @@ export default new Vuex.Store({
     getRoadmap({commit}, roadmap_id){
       return Api.getRoadmap(roadmap_id)
       .then((res) => {
-        console.log(res)
         commit('getRoadmap', roadmap)
       })
       .catch((error) => {
@@ -146,16 +131,13 @@ export default new Vuex.Store({
 
     },
     search({commit}, {name}){
-      console.log("search")
       return Api.searchRoadmap({name})
       .then((data)=>{
-        //console.log(data.data)
         data.data.forEach((v, i)=>{
           if(v.image == null){
             v.image = require('@/assets/default_roadmap.jpg')
           }
         })
-        console.log(data.data)
         commit('updateSearchList', data.data)
         
       })

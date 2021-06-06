@@ -91,9 +91,9 @@ export default {
         this.$store.commit("saveDescription", this.content)
       }else if(this.type == "roadmap"){
         this.$store.commit("modifyDescription", this.content)
-        console.log(this.$store.state.roadmap.description)
+
       }
-      console.log("saveTmp")
+
     },
     togglePreview(){
       this.viewToggle = !this.viewToggle

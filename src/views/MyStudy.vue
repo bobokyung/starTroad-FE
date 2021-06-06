@@ -89,7 +89,6 @@
 
           }
         })
-        console.log(res.data)
         this.projects = res.data
 
         })

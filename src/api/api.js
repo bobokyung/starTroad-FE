@@ -108,8 +108,6 @@ export default {
     },
     searchRoadmap(params){
         //로드맵 검색
-        console.log("여기가 params")
-        console.log(params)
         return Send({
             url : `/roadmap/search`,
             method : 'get',

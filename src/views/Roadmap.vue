@@ -110,7 +110,6 @@ export default {
         // console.log(body)
         Api.editRoadmap(id, body)
         .then((res) => {
-          console.log(res)
         })
         .catch((err) => {
 
@@ -151,7 +150,6 @@ export default {
         Api.getRoadmap(id)
         .then((res)=>{
           this.$store.commit("saveRoadmap", res.data)
-          console.log(res)
           let storeRoadMap = this.$store.state.roadmap
           this.roadmap.id = res.data.id
           this.roadmap.name = res.data.name
@@ -165,7 +163,6 @@ export default {
           this.likeValid = res.data.likeValid == "yes" ? true:false
           this.isForked = (this.isMine && res.data.owner != res.data.generator) ? true : false
 
-          console.log(this.$store.state.roadmap)
         })
       },
       deleteRoadmap(){
@@ -201,14 +198,13 @@ export default {
     this.path= this.$route.fullPath
     this.activateTab(this.path)
     this.getRoadmap(this.id)
-    console.log("마운트")
+
   },
   created(){
       this.id = this.$route.fullPath.split('/').slice()[2]
-      console.log(this.id)
       this.path= this.$route.fullPath
       this.activateTab(this.path)
-      console.log("크리에이트")
+
       }
   }
 </script>

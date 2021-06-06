@@ -60,10 +60,8 @@
           }
         })
         this.roadmapList = res.data
-        console.log(this.roadmapList)
       })
       .catch((error) => {
-        console.log(error)
       })
     },
     goToRoadmap(roadmap_id){
