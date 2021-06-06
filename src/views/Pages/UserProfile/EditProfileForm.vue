@@ -5,7 +5,8 @@
         <h3 class="mb-0">Edit profile </h3>
       </b-col>
       <b-col cols="4" class="text-right">
-        <div class="btn btn-sm btn-primary" @click="gotoHome()">Settings</div>
+        <div class="btn btn-primary" @click="gotoHome()">뒤로가기</div>
+        <div class="btn btn-success" @click="updateProfile()">업데이트</div>
       </b-col>
     </b-row>
 
@@ -53,7 +54,7 @@
 
       
   <div>
-      <b-form-select v-model="selected" class="from content"
+      <b-form-select v-model="user.interest" class="from content"
       :options="options"></b-form-select>
   </div>
 
@@ -85,7 +86,7 @@ export default {
         imageData:'',
         values: [''],
         company: '',
-        
+        interest : '',
         name: '',
         major:'',
         birth: '',
@@ -101,9 +102,10 @@ export default {
         this.user.name = res.data.name
         this.user.major = res.data.major
         this.user.birth = res.data.birth
-        this.user.interest = "CS"
+        this.user.interest = JSON.parse(res.data.interest)[0]
         this.user.message = res.data.message
-        console.log(res.data)
+        this.user.email = res.data.email
+        console.log(this.user)
 
       })
       .catch((err) => {
@@ -111,11 +113,19 @@ export default {
       })
 
     },
-    updateProfile(data) {
+    updateProfile() {
       //data는 user에 대한 정보일것이다.
-      Api.updateProfile(data)
+      let email = this.user.email
+      let data = {
+        birth : this.user.birth,
+        major : this.user.major,
+        interest  : `[\"${this.user.interest}\", \"b\"]`,
+        message : this.user.message,
+        
+      }
+      Api.updateProfile(email, data)
       .then((res) => {
-        console.log(res)
+        this.getProfile()
       })
       .catch((err) => {
         
@@ -137,5 +147,11 @@ export default {
 <style scoped>
 .btn{
   cursor : pointer;
+}
+.btn-primary{
+  margin : 0
+}
+.text-right{
+
 }
 </style>

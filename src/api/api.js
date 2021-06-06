@@ -80,12 +80,13 @@ export default {
             data : data
         })
     },
-    updateProfile(data){
+    updateProfile(email,data){
         //프로필 수정
         return Send({
-            url : `/user`,
+            url : `/user/${email}`,
             method : 'put',
-            data : data
+            data : qs.stringify(data),
+            headers : this.requireAuth()
         })
     },
     getProfile(){
