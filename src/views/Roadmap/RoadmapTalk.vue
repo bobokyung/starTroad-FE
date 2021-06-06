@@ -10,7 +10,7 @@
           required
         ></b-form-input>
         
-        <p class="edit-delete h3">
+        <p v-if="sample.talkValid == `yes`" class="edit-delete h3">
           <b-icon-pencil-fill @click="editTalk()"></b-icon-pencil-fill>
           <b-icon-x @click="deleteTalk()"></b-icon-x>
         </p>
@@ -105,7 +105,7 @@ export default {
           v.commentValid = v.commentValid =="yes" ? true : false
           v.edit = false
         })
-
+        console.log(res.data)
         this.sample = res.data
         this.commentLength = this.sample.myComments.length
 
