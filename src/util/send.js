@@ -38,7 +38,7 @@ instance.interceptors.request.use(
         return config;
     }, 
     function (error) {
-        // 요청 에러 처리를 작성합니다.
+        
         return Promise.reject(error);
     }
 );
@@ -63,6 +63,24 @@ instance.interceptors.response.use(
     },
 
     function (error) {
+        switch(error.response.status){
+            case 401:
+                //권한이 없음 재로그인 시도해야함.
+                try{
+                    localStorage.removeItem('accessToken')
+                }catch(e){
+                    localStorage.accessToken = null
+                }
+                location.reload()
+                break;
+            default:
+                console.log(`서버에서 에러가 발생했습니다 : ${error.reponse.status}`)
+        }
+
+        if(error.response.status == 401){
+            //권한이 없음 재로그인 시도해야함
+        }
+        console.log(error.response.status)
         //400번대 Error 처리할것
     /*
         http status가 200이 아닌 경우

@@ -52,7 +52,7 @@
       Api.getMyroadMap()
       .then((res)=>{
         res.data.forEach((v, i)=>{
-          if(v.image == null || v.image == ''){
+          if(v.image == null || v.image == '' || v.image == ' '){
             v.image = require('@/assets/default_roadmap.jpg')
           }
           if(v.generator != v.owner){
