@@ -21,7 +21,7 @@
               label="Name"
               placeholder="Name"
               disabled
-              v-model="user.name"
+              v-model="name"
             >
             </base-input>
           </b-col>
@@ -30,7 +30,7 @@
               type="text"
               label="Major"
               placeholder="major"
-              v-model="user.major"
+              v-model="major"
             >
             </base-input>
           </b-col>
@@ -41,7 +41,7 @@
               type="text"
               label="birth"
               placeholder="YYYY-MM-DD"
-              v-model="user.birth"
+              v-model="birth"
             >
             </base-input>
           </b-col>
@@ -54,7 +54,7 @@
 
       
   <div>
-      <b-form-select v-model="user.interest" class="from content"
+      <b-form-select v-model="interest" class="from content"
       :options="options"></b-form-select>
   </div>
 
@@ -63,7 +63,7 @@
       <h6 class="heading-small text-muted mb-4">About me</h6>
       <div class="pl-lg-4">
 
-          <b-form-textarea rows="4" v-model="user.message" id="about-form-textaria"></b-form-textarea>
+          <b-form-textarea rows="4" v-model="message" id="about-form-textaria"></b-form-textarea>
       </div>
 
     </b-form>
@@ -82,30 +82,35 @@ export default {
         { value: "MATH", text: 'Mathematics' },
         { value: "STATS", text: 'Statistics' },
       ],
-      user: {
-        imageData:'',
-        values: [''],
-        company: '',
-        interest : '',
-        name: '',
-        major:'',
-        birth: '',
-        postalCode: '',
-        message: ''
-      }
+    
+      imageData:'',
+      values: [''],
+      company: '',
+      interest :  `[\"CS\", \"b\"]`,
+      name: '',
+      major:'',
+      birth: '',
+      postalCode: '',
+      message: ''
+      
     };
   },
   methods: {
     getProfile(){
       Api.getProfile()
       .then((res)=>{
-        this.user.name = res.data.name
-        this.user.major = res.data.major
-        this.user.birth = res.data.birth
-        this.user.interest = JSON.parse(res.data.interest)[0]
-        this.user.message = res.data.message
-        this.user.email = res.data.email
+        console.log(res.data)
+        this.name = res.data.name || ''
+        this.email = res.data.email || ''
+        this.major = res.data.major || ''
+        this.birth = res.data.birth || ''
+        if(res.data.interest !=null){
+          this.interest = JSON.parse(res.data.interest)[0]
+        }
 
+        this.message = res.data.message || ''
+
+        console.log(this.email)
       })
       .catch((err) => {
         
@@ -114,12 +119,12 @@ export default {
     },
     updateProfile() {
       //data는 user에 대한 정보일것이다.
-      let email = this.user.email
+      let email = this.email
       let data = {
-        birth : this.user.birth,
-        major : this.user.major,
-        interest  : `[\"${this.user.interest}\", \"b\"]`,
-        message : this.user.message,
+        birth : this.birth,
+        major : this.major,
+        interest  : `[\"${this.interest}\", \"b\"]`,
+        message : this.message,
         
       }
       Api.updateProfile(email, data)
@@ -137,10 +142,11 @@ export default {
     
   },
   mounted(){
-    
+    this.getProfile()
+    console.log(this.email)
   },
   created(){
-    this.getProfile()
+
   }
 };
 </script>
