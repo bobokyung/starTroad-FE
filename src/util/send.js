@@ -64,6 +64,7 @@ instance.interceptors.response.use(
 
     function (error) {
         switch(error.response.status){
+            /*
             case 401:
                 //권한이 없음 재로그인 시도해야함.
                 try{
@@ -75,6 +76,7 @@ instance.interceptors.response.use(
                 break;
             default:
                 console.log(`서버에서 에러가 발생했습니다 : ${error.reponse.status}`)
+                */
         }
 
         if(error.response.status == 401){
