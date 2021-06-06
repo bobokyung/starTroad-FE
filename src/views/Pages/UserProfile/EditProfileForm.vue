@@ -50,7 +50,7 @@
       <hr class="my-4">
 
       <!-- Address -->
-      <h6 class="heading-small text-muted mb-4">Contact information</h6>
+      <h6 class="heading-small text-muted mb-4">Interest</h6>
 
       
   <div>

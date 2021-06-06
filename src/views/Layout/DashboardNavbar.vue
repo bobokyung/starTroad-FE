@@ -127,20 +127,7 @@ import store from "@/store"
 export default {
   data() {
     return {
-      sampleList : [
-        {
-          "requester" : "SR",
-          "studyId" : "vue.js"
-        },
-        { 
-          "requester" : "ES",
-          "studyId" : "node.js"
-        },
-        { 
-          "requester" : "BK",
-          "studyId" : "frontend"
-        },
-      ],
+      sampleList : [],
       showBottom_accept: false,
       showBottom_deny: false,
 
@@ -148,6 +135,7 @@ export default {
       showMenu: false,
       searchModalVisible: false,
       searchQuery: '',
+      requestList : [],
     };
   },
   components: {
@@ -184,16 +172,6 @@ export default {
     profileName(){
       return this.$store.getters.getName
     }
-  },
-  data() {
-    return {
-      requestList : [],
-
-      activeNotifications: false,
-      showMenu: false,
-      searchModalVisible: false,
-      searchQuery: '',
-    };
   },
   methods: {
     getRequestList(){
