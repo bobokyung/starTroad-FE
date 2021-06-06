@@ -73,6 +73,29 @@
         </b-col>
       </b-row>
       <br><br>
+      <font class="subtitle-home">
+        Others <hr>
+      </font>
+      <b-row>
+        <b-col xl="3" md="6" v-for="roadmap in this.noTagLists" :key="roadmap.id">
+        <b-card
+          :title= roadmap.name
+          :img-src= roadmap.image
+          img-width="238"
+          img-height="200"
+          :img-alt=Image
+          img-top
+          tag="article"
+          style=""
+          class="mb-2">
+          <b-card-text>
+            {{roadmap.summary}}
+          </b-card-text>
+          <b-button href="#" variant="primary" @click="goToRoadmap(roadmap.id)">Go roadmap</b-button>
+        </b-card>
+        </b-col>
+      </b-row>
+      <br><br>
     </base-header>
   </div>
 </template>
@@ -98,13 +121,17 @@ export default {
   },
   methods: {
     beforeFetch(){
-      
+      Api.getProfile()
+      .then((res)=>{
+
+      })
     },
     fetch(){
       this.roadmapList = []
       this.csLists = []
       this.mathLists = []
       this.statsLists = []
+      this.noTagLists = []
 
       Api.getHome()
       .then((res)=>{
@@ -127,6 +154,7 @@ export default {
               this.statLists.push(v)
               break;
             default:
+              this.noTagLists.push(v)
               break;
           }
 
@@ -140,6 +168,9 @@ export default {
         }
         if(this.statLists.length > 8){
           this.statLists = this.statLists.slice(0,8)
+        }
+        if(this.noTagLists.length > 8){
+          this.noTagLists = this.noTagLists.slice(0,8)
         }
 
         //this.roadmapList = res.data

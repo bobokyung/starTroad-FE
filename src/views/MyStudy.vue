@@ -29,7 +29,7 @@
                         <span class="status" :class="`text-${row.status_type}`">{{row.status_text}}</span>
                     </badge>
                     <span class="num-bagde">{{row.now_num}} / {{row.max_num}}</span>
-                    <b-icon v-if="row.valid==`yes`" class="manage" icon="gear"></b-icon>
+                    <b-icon v-if="row.valid==`yes`" class="manage" icon="eye"></b-icon>
                 </template>
             </el-table-column>
 
@@ -93,6 +93,7 @@
 
         })
       },
+
     },
     mounted(){
       this.fetch()
