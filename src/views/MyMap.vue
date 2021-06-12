@@ -16,7 +16,7 @@
           tag="article"
           style=""
           class="mb-2">
-          <a class="fork-ribbon" v-if=roadmap.isForked>Forked</a>
+          <a class="fork-ribbon" v-if=roadmap.isForked> Forked </a>
           <b-card-text>
             {{roadmap.summary}}
           </b-card-text>

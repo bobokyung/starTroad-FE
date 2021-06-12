@@ -118,6 +118,7 @@ export default {
     },
     handleChartSave(nodes, connections) {
       this.shapeData(nodes, connections);
+      this.$emit("activateButton")
       alert("저장되었습니다.");
     },
     handleEditNode(node) {

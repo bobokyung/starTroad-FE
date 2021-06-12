@@ -7,7 +7,7 @@
     <b-container fluid class="mt--7">
       <b-row class="justify-content-center">
           <b-col lg="12" class="title-content-container">
-            <b-button class="button" variant="success" @click="saveRoadmap()">저장하기</b-button>            
+            <b-button class="button" variant="success" :disabled="buttonDisable" @click="saveRoadmap()">저장하기</b-button>            
           </b-col>
           <b-col lg="6" class="title-content-container">            
             <b-form-input class="form title" label="TITLE"
@@ -32,10 +32,10 @@
           <b-col lg="12" class="roadmap-container">
             <b-tabs content-class="mt-3" fill>
               <b-tab class="tab" title="MAP" active>
-                <RoadmapDiagram :isMine=isMine></RoadmapDiagram>
+                <RoadmapDiagram :isMine=isMine @activateButton="activateButton"></RoadmapDiagram>
               </b-tab>
               <b-tab class="tab" title="Detail" >
-                <RoadmapDetail :isMine=isMine></RoadmapDetail>
+                <RoadmapDetail :isMine=isMine @activateButton="activateButton"></RoadmapDetail>
               </b-tab>
               <!--=<b-tab class="tab" title="Talk" >
                 <RoadmapTalk></RoadmapTalk>
@@ -66,6 +66,7 @@ export default {
         img : "",
         category: "",
       },
+      buttonDisable : true,
       isActive : false,
       options: [
         { value: null, text: '카테고리를 선택해주세요' },
@@ -79,6 +80,9 @@ export default {
     
   },
   methods:{
+    activateButton(){
+      this.buttonDisable = false
+    },
     initialize(){
       this.$store.getters.description = null
     },
@@ -104,7 +108,7 @@ export default {
         this.$store.state.description = null
         this.$store.state.information = null
         
-        this.$route.push({path:`/mystudy`})
+        this.$route.push({path:`/mymap`})
       })
       .catch((error) => {
       })
